@@ -1,4 +1,4 @@
-package com.sinergitec.yacattm.repos;
+package com.sinergitec.yacattm.repos.seg;
 
 public interface Login {
 	

@@ -1,5 +1,5 @@
 
-import com.sinergitec.yacattm.repos.imp.ImpLogin;
+import com.sinergitec.yacattm.repos.seg.imp.ImpLogin;
 
 public class Ejecuta {
 	

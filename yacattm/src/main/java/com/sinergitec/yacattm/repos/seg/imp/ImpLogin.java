@@ -1,4 +1,4 @@
-package com.sinergitec.yacattm.repos.imp;
+package com.sinergitec.yacattm.repos.seg.imp;
 
 import java.io.IOException;
 
@@ -7,7 +7,8 @@ import com.progress.open4gl.Open4GLException;
 import com.progress.open4gl.StringHolder;
 import com.progress.open4gl.javaproxy.Connection;
 import com.sinergitec.yacattm.progress.ConexionApp;
-import com.sinergitec.yacattm.repos.Login;
+import com.sinergitec.yacattm.repos.seg.Login;
+
 import yacattm.*;
 
 public class ImpLogin implements Login {
