@@ -2,6 +2,8 @@ package com.sinergitec.yacattm.repos.seg.imp;
 
 import java.io.IOException;
 
+import org.springframework.stereotype.Repository;
+
 import com.progress.open4gl.BooleanHolder;
 import com.progress.open4gl.Open4GLException;
 import com.progress.open4gl.StringHolder;
@@ -11,6 +13,7 @@ import com.sinergitec.yacattm.repos.seg.Login;
 
 import yacattm.*;
 
+@Repository
 public class ImpLogin implements Login {
 
 	private boolean lResultado;
