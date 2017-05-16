@@ -25,15 +25,15 @@ public class LoginCtrl {
 	
 	@GetMapping("/")
 	public String redirectLogin() {
-		return "redirect:/login";
+		return "redirect:/segloginG";
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/segLoginG")
 	public String login() {
 		return "login";
 	}
 
-	@PostMapping("/validaSesion")
+	@PostMapping("/segValidaSesionP")
 	public ModelAndView valida(@ModelAttribute("compania") String cCompania, @ModelAttribute("usuario") String cUsuario,
 			@ModelAttribute("password") String cPassword) {
 		
@@ -46,11 +46,11 @@ public class LoginCtrl {
 		loginRep.getAcceso(cCompania, cUsuario, cPassword);
 		
 		if(loginRep.islResultado()){
-			model = new ModelAndView("login");
+			model = new ModelAndView("segloginV");
 			return model;
 		}
 		
-		model = new ModelAndView("inicio");
+		model = new ModelAndView("segInicioV");
 
 		return model;
 	}
