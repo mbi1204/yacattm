@@ -13,20 +13,20 @@
 </head>
 <body>
 
-	<div class="container-fluid card">
-		<div class="container card-block">
+	<div class="container-fluid">
+		<div class="container">
 
 			<div class="col-12">
 				<br />
 			</div>
 
-			<form>
+			<form th:action="@{/validaSesion}" method="POST">
 				<div class="form-group row">
 					<label for="compania"
 						class="offset-md-3 col-md-2 text-center col-form-label">Compañia:</label>
 					<div class="col-md-4">
 						<input type="text" class="form-control form-control-lg"
-							id="compania" placeholder="Compañia" />
+							id="compania" name="compania" placeholder="Compañia" />
 					</div>
 				</div>
 
@@ -35,7 +35,7 @@
 						class="offset-md-3 col-md-2 text-center col-form-label">Usuario:</label>
 					<div class="col-md-4">
 						<input type="text" class="form-control form-control-lg"
-							id="usuario" placeholder="Usuario" />
+							id="usuario" name="usuario" placeholder="Usuario" />
 					</div>
 				</div>
 
@@ -44,7 +44,7 @@
 						class="offset-md-3 col-md-2 text-center col-form-label">Contraseña:</label>
 					<div class="col-md-4">
 						<input type="password" class="form-control form-control-lg"
-							id="password" placeholder="Contraseña" />
+							id="password" name="password" placeholder="Contraseña" />
 					</div>
 				</div>
 

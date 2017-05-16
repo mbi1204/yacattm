@@ -1,0 +1,58 @@
+package com.sinergitec.yacattm.controller.seg;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.sinergitec.yacattm.repos.seg.Login;
+
+/*
+ * Autor: Aestrada
+ * Fecha: 15 de mayo de 2017
+ * Descripcion: Gestiona las peticiones hechas a la 
+ * aplicacion unicamente del modulo de seguridad
+ * 
+ */
+
+@Controller
+public class LoginCtrl {
+
+	@Autowired
+	private Login login;
+	
+	@GetMapping("/")
+	public String redirectLogin() {
+		return "redirect:/login";
+	}
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@PostMapping("/validaSesion")
+	public ModelAndView valida(@ModelAttribute("compania") String cCompania, @ModelAttribute("usuario") String cUsuario,
+			@ModelAttribute("password") String cPassword) {
+		
+		System.out.println(cCompania);
+		System.out.println(cUsuario);
+		System.out.println(cPassword);
+		
+		ModelAndView model;
+		
+		login.getAcceso(cCompania, cUsuario, cPassword);
+		
+		if(login.islResultado()){
+			model = new ModelAndView("login");
+			return model;
+		}
+		
+		model = new ModelAndView("inicio");
+
+		return model;
+	}
+
+}

@@ -10,5 +10,14 @@ public interface Login {
 	 * @param cPassword
 	 */	
 	
-	public void getAcceso(String  cCompania, String cUsurio , String cPassword);	
+	public void getAcceso(String  cCompania, String cUsurio , String cPassword);
+	
+	public boolean islResultado();
+	
+	public void setlResultado(boolean lResultado);
+	
+	public String getcMensaje();
+	
+	public void setcMensaje(String cMensaje);
+	
 }
