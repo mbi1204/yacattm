@@ -9,12 +9,12 @@ import com.progress.open4gl.Open4GLException;
 import com.progress.open4gl.StringHolder;
 import com.progress.open4gl.javaproxy.Connection;
 import com.sinergitec.yacattm.progress.ConexionApp;
-import com.sinergitec.yacattm.repos.seg.Login;
+import com.sinergitec.yacattm.repos.seg.LoginRep;
 
 import yacattm.*;
 
 @Repository
-public class ImpLogin implements Login {
+public class ImpLoginRep implements LoginRep {
 
 	private boolean lResultado;
 	private String cMensaje;

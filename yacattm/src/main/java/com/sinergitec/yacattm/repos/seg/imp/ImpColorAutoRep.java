@@ -15,7 +15,7 @@ import com.progress.open4gl.javaproxy.Connection;
 import com.sinergitec.yacattm.model.ct.ColorAuto;
 import com.sinergitec.yacattm.progress.ConexionApp;
 import com.sinergitec.yacattm.progress.VectorResultSet;
-import com.sinergitec.yacattm.repos.seg.RepColorAuto;
+import com.sinergitec.yacattm.repos.seg.ColorAutoRep;
 
 import yacattm.app;
 
@@ -25,7 +25,7 @@ import yacattm.app;
  *
  */
 
-public class ImpRepColorAuto implements RepColorAuto {
+public class ImpColorAutoRep implements ColorAutoRep {
 	
 	private boolean lResultado;
 	private String cMensaje;

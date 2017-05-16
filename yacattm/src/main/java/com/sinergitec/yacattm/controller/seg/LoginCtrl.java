@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sinergitec.yacattm.repos.seg.Login;
+import com.sinergitec.yacattm.repos.seg.LoginRep;
 
 /*
  * Autor: Aestrada
@@ -21,7 +21,7 @@ import com.sinergitec.yacattm.repos.seg.Login;
 public class LoginCtrl {
 
 	@Autowired
-	private Login login;
+	private LoginRep loginRep;
 	
 	@GetMapping("/")
 	public String redirectLogin() {
@@ -43,9 +43,9 @@ public class LoginCtrl {
 		
 		ModelAndView model;
 		
-		login.getAcceso(cCompania, cUsuario, cPassword);
+		loginRep.getAcceso(cCompania, cUsuario, cPassword);
 		
-		if(login.islResultado()){
+		if(loginRep.islResultado()){
 			model = new ModelAndView("login");
 			return model;
 		}

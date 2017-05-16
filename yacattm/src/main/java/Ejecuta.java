@@ -2,8 +2,8 @@
 import java.awt.Color;
 
 import com.sinergitec.yacattm.model.ct.ColorAuto;
-import com.sinergitec.yacattm.repos.seg.imp.ImpLogin;
-import com.sinergitec.yacattm.repos.seg.imp.ImpRepColorAuto;
+import com.sinergitec.yacattm.repos.seg.imp.ImpLoginRep;
+import com.sinergitec.yacattm.repos.seg.imp.ImpColorAutoRep;
 
 public class Ejecuta {
 	
@@ -15,7 +15,7 @@ public class Ejecuta {
 		System.out.println(obj.islResultado()  + " " +    obj.getcMensaje() );
 		*/
 		
-		ImpRepColorAuto obj = new ImpRepColorAuto();
+		ImpColorAutoRep obj = new ImpColorAutoRep();
 		
 		ColorAuto colorauto = new ColorAuto();
 		

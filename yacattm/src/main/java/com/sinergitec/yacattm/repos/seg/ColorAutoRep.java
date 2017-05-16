@@ -9,7 +9,7 @@ import com.sinergitec.yacattm.model.ct.ColorAuto;
  * @author mendoza
  *
  */
-public interface RepColorAuto {
+public interface ColorAutoRep {
 /**
  * busca la lista de la tabla  getColorAuto
  * @return

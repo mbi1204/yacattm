@@ -1,6 +1,6 @@
 package com.sinergitec.yacattm.repos.seg;
 
-public interface Login {
+public interface LoginRep {
 	
 	/**
 	 * Autor: aestrada
