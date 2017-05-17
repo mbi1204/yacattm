@@ -7,10 +7,7 @@
 
 <title>Color Auto</title>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous" />
-
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -18,10 +15,14 @@
 </head>
 <body>
 
-	<div class="container-fluid">
+
+	<div class="container">
+		<h2>Catalogo Colores Autos</h2>
 		<!-- Trigger the modal with a button -->
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#myModal">Open Modal</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#exampleModal" data-whatever="@mdo">Open modal
+			for @mdo</button>
+
 
 		<table class="table table-striped">
 			<thead class="thead-inverse">
@@ -32,19 +33,64 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="ListColorAuto : ${colorAuto} ">
-					<th><span th:text="${ListColorAuto.compania}">Compania
-					</span></th>
-					<th><span th:text="${ListColorAuto.color}">Color </span></th>
-					<th><span th:text="${ListColorAuto.activo} ">Activo? </span></th>
+				<tr th:each="ListColorAuto : ${ListColorAuto} ">
+					<td><span th:text="${ListColorAuto.compania}">Compania
+					</span></td>
+					<td><span th:text="${ListColorAuto.color}">Color </span></td>
+					<td><span th:text="${ListColorAuto.activo} ">Activo? </span></td>
+					<!--
+					<td><a href="#"
+						th:href="@{/ope/ctColorAuto/delete?color=__${ListColorAuto.color}__}">
+							<button type="button" class="btn btn-danger">borrar</button>
+					</a></td>
+					-->
+					<td>
+						<form action="#"
+							th:action="@{/ope/ctColorAuto/delete}" 	th:object="${ListColorAuto}" method="post">
+							<button 
+								type="submit">
+								<i>details</i>
+							</button>
+						</form>
+					</td>
 
 				</tr>
 
 			</tbody>
 		</table>
 
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="#" th:action="@{/ope/ctColorAuto/add}"
+						th:object="${colorAuto}" method="post">
+						<div class="modal-body">
+
+							<div class="form-group">
+								<label for="color" class="form-control-label">color:</label> <input
+									type="text" class="form-control" id="color" th:field="*{color}" />
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Sendmessage</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
 	</div>
-
-
 </body>
 </html>
