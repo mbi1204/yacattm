@@ -23,11 +23,11 @@ public class ColorAutoCtrl {
 	@Autowired	
 	private ColorAutoRep colorAutoRep;
 		
-	/*
-	@GetMapping("/ope/ctColorAutoG")
-	public String login() {
-		return "/ope/cat/ctColorAutoV";
-	}*/
+	
+	@GetMapping("")
+	public String redirecion() {		
+		return "redirect:/ope/ctColorAuto/lista";
+	}
 	
 	@GetMapping("/lista")
 	public ModelAndView ListAllColorAuto(){
