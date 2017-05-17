@@ -25,12 +25,12 @@ public class LoginCtrl {
 	
 	@GetMapping("/")
 	public String redirectLogin() {
-		return "redirect:/segloginG";
+		return "redirect:/segLoginG";
 	}
 
 	@GetMapping("/segLoginG")
 	public String login() {
-		return "login";
+		return "segloginV";
 	}
 
 	@PostMapping("/segValidaSesionP")
