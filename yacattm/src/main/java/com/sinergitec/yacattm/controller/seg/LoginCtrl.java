@@ -37,16 +37,12 @@ public class LoginCtrl {
 	public ModelAndView valida(@ModelAttribute("compania") String cCompania, @ModelAttribute("usuario") String cUsuario,
 			@ModelAttribute("password") String cPassword) {
 		
-		System.out.println(cCompania);
-		System.out.println(cUsuario);
-		System.out.println(cPassword);
-		
 		ModelAndView model = new ModelAndView();		
 		loginRep.getAcceso(cCompania, cUsuario, cPassword);
 		
 		if(loginRep.islResultado()){
-			model.addObject("error", loginRep.getcMensaje());
 			model.setViewName("segloginV");
+			model.addObject("error", loginRep.getcMensaje());
 			return model;
 		}
 		
