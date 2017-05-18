@@ -32,5 +32,8 @@ function segValidaForm(){
 
 $(document).ready(function(){
 	
+	if($('#message').val() != ""){
+		swal('Oops...',$('#message').val(),'error');
+	}
 	
 });
