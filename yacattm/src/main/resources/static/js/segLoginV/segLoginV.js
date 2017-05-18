@@ -58,15 +58,7 @@ function segValidaForm(){
 }
 
 $( document ).ready(function() {
-    console.log($('#message').val());
-    
-    
-    swal({
-    	  title: 'Oops...',
-    	  html: $('<div th:text="${error}">')
-    	    .addClass('some-class'),
-    	  animation: false
-    	})
+    console.log(document.getElementById("message"));
     
     if($('#message').val() != ""){
 		swal('Oops...',$('#message').val(),'error');
