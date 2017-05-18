@@ -18,8 +18,14 @@ public interface ColorAutoRep {
 	 * 
 	 * @return
 	 */
-	public void AgregarColorAuto(String cUusario, ColorAuto obj);
-
-	public List<ColorAuto> ListaColorAuto(String cCveCia, Boolean lCancelado);
-
+	
+	public void agregar(String cUusario, ColorAuto nuevos);
+	public void eliminar(ColorAuto viejos);
+	public void actulizar(ColorAuto viejos , ColorAuto nuevos);
+	public ColorAuto getColorAuto(int iModo, String cQuery);
+	public List<ColorAuto> ListaColorAuto(int iModo, String cQuery);
+	public Boolean getResultado();
+	public String  getMensaje();
+	
+	
 }
