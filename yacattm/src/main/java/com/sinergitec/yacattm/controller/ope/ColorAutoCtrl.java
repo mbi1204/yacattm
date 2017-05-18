@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sinergitec.yacattm.model.ct.ColorAuto;
 import com.sinergitec.yacattm.repos.seg.ColorAutoRep;
 
 /**
@@ -23,18 +26,38 @@ public class ColorAutoCtrl {
 	@Autowired	
 	private ColorAutoRep colorAutoRep;
 		
-	/*
-	@GetMapping("/ope/ctColorAutoG")
-	public String login() {
-		return "/ope/cat/ctColorAutoV";
-	}*/
+	
+	@GetMapping("")
+	public String redirecion() {		
+		return "redirect:/ope/ctColorAuto/lista";
+	}
 	
 	@GetMapping("/lista")
 	public ModelAndView ListAllColorAuto(){
 		ModelAndView mav = new ModelAndView("/ope/cat/ctColorAutoV");
-		mav.addObject("colorAuto" ,colorAutoRep.ListaColorAuto("AUTOTEC", true));
+		mav.addObject("colorAuto" , new ColorAuto());
+		mav.addObject("ListColorAuto" ,colorAutoRep.ListaColorAuto("AUTOTEC", true));
 		return mav;
 		
 	}
+	
+	@PostMapping("/add")
+	public ModelAndView add(@ModelAttribute("colorAuto") ColorAuto colorAuto){
+		System.out.println("color->" + colorAuto.getColor());
+		System.out.println("compañia->" + colorAuto.getCompania());
+		//ModelAndView mav = new ModelAndView("lista");
+		return null;		
+	}
+	
+	@PostMapping("/delete")
+	public ModelAndView delete(@ModelAttribute("colorAuto") ColorAuto colorAuto){
+		System.out.println("id->" + colorAuto.getRowid().toString());
+		System.out.println("color->" + colorAuto.getColor());
+		System.out.println("compañia->" + colorAuto.getCompania());		
+		return null;
+	
+	}
+	
+	
 
 }
