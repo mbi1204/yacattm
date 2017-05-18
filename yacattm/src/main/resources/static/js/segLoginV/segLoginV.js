@@ -57,10 +57,9 @@ function segValidaForm(){
 	
 }
 
-$(document).ready(function(){
-	
-	if($('#message').val() != ""){
+$( document ).ready(function() {
+    console.log($('#message').val());
+    if($('#message').val() != ""){
 		swal('Oops...',$('#message').val(),'error');
 	}
-	
 });
