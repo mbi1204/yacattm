@@ -11,7 +11,7 @@ function segValidaForm(){
 	var cUsuario  = $('#usuario').val();
 	var cPassword = $('#password').val();
 	
-	if(cComapania == "" && cUsuario == "" && cPassword == ""){
+	if(cCompania == "" && cUsuario == "" && cPassword == ""){
 		
 		$('#companiaD').addClass('has-danger');
 		$('#compania').addClass('form-control-danger');
