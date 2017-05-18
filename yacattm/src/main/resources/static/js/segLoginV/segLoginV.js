@@ -29,3 +29,7 @@ function segValidaForm(){
 	}
 	
 }
+
+$(document.ready(function(){
+	
+}));
