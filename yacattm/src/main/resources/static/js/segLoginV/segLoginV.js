@@ -30,6 +30,6 @@ function segValidaForm(){
 	
 }
 
-$(document.ready(function(){
+$(document).ready(function(){
 	
-}));
+});
