@@ -58,7 +58,12 @@ public class ColorAutoCtrl {
 		ColorAuto colorAuto = new ColorAuto();
 		colorAuto = this.colorAutoRep.getColorAuto(1, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' AND ctColorAuto.cColor = '" + cColor + "' NO-LOCK:");
 		
-				System.out.println("color->" + colorAuto.toString());
+		this.colorAutoRep.eliminar("SISIMB", colorAuto);
+		System.out.println("Ctrl" + " " + this.colorAutoRep.getMensaje());
+		
+		
+		
+			
 				
 		return null;	
 	}

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import org.codehaus.groovy.control.messages.Message;
 import org.springframework.stereotype.Repository;
 
 import com.progress.open4gl.BooleanHolder;
@@ -202,14 +203,61 @@ public class ImpColorAutoRep implements ColorAutoRep {
 
 	
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public void eliminar(ColorAuto viejos) {
+	public void eliminar(String cUsuario,ColorAuto viejos) {
 		// TODO Auto-generated method stub
+		Connection conexion = null;
+		try {
+			conexion = ConexionApp.iniConexion();
+
+			BooleanHolder lhResultado = new BooleanHolder();
+			StringHolder chTexto = new StringHolder();
+			app app = new app(conexion);
+
+			Vector vector = new Vector();
+			vector.add(viejos.getLista());
+
+			ResultSet tt_Viejos = new VectorResultSet(vector);
+						
+			app.as_ctColorAuto_Borra(cUsuario, tt_Viejos, lhResultado, chTexto);		
+
+			this.setResultado(lhResultado.getBooleanValue());
+			this.setMensaje(this.getClass().getName() + Thread.currentThread().getStackTrace()[1].getMethodName() + " "
+					+ chTexto.getStringValue());
+			
+			
+			System.out.println(this.getMensaje());
+
+			app._release();
+
+		} catch (Open4GLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			this.setResultado(true);
+			this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+					+ this.getClass().getEnclosingMethod().getName());
+
+		} finally {
+			try {
+				ConexionApp.finConexion(conexion);
+
+			} catch (Open4GLException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				this.setResultado(true);
+				this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+						+ this.getClass().getEnclosingMethod().getName());
+			}
+		}
+
+		
 		
 	}
 
 	@Override
-	public void actulizar(ColorAuto viejos, ColorAuto nuevos) {
+	public void actulizar(String cUsuario, ColorAuto viejos, ColorAuto nuevos) {
 		// TODO Auto-generated method stub
 		
 	}
