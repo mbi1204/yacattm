@@ -50,6 +50,7 @@ public class ColorAutoCtrl {
 		System.out.println("color->" + colorAuto.getColor());
 		System.out.println("compañia->" + colorAuto.getCompania());
 		//ModelAndView mav = new ModelAndView("lista");
+		//imb
 		return null;		
 	}
 	
