@@ -1,5 +1,7 @@
 package com.sinergitec.yacattm.controller.ope;
 
+import java.awt.Color;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sinergitec.yacattm.model.ct.ColorAuto;
@@ -36,27 +39,30 @@ public class ColorAutoCtrl {
 	public ModelAndView ListAllColorAuto(){
 		ModelAndView mav = new ModelAndView("/ope/cat/ctColorAutoV");
 		mav.addObject("colorAuto" , new ColorAuto());
-		mav.addObject("ListColorAuto" ,colorAutoRep.ListaColorAuto("AUTOTEC", true));
+		mav.addObject("ListColorAuto" ,colorAutoRep.ListaColorAuto(0 ,"FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' NO-LOCK:"));
+		
 		return mav;
 		
 	}
 	
-	@PostMapping("/add")
-	public ModelAndView add(@ModelAttribute("colorAuto") ColorAuto colorAuto){
+	@PostMapping("/agregar")
+	public ModelAndView agregar(@ModelAttribute("colorAuto") ColorAuto colorAuto){
 		System.out.println("color->" + colorAuto.getColor());
 		System.out.println("compañia->" + colorAuto.getCompania());
 		//ModelAndView mav = new ModelAndView("lista");
 		return null;		
 	}
 	
-	@PostMapping("/delete")
-	public ModelAndView delete(@ModelAttribute("colorAuto") ColorAuto colorAuto){
-		System.out.println("id->" + colorAuto.getRowid().toString());
-		System.out.println("color->" + colorAuto.getColor());
-		System.out.println("compañia->" + colorAuto.getCompania());		
-		return null;
-	
+	@GetMapping("/eliminar")
+	public ModelAndView eliminar(@RequestParam (name="cColor" ,required=true) String cColor){
+		ColorAuto colorAuto = new ColorAuto();
+		colorAuto = this.colorAutoRep.getColorAuto(1, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' AND ctColorAuto.cColor = '" + cColor + "' NO-LOCK:");
+		
+				System.out.println("color->" + colorAuto.toString());
+				
+		return null;	
 	}
+	
 	
 	
 

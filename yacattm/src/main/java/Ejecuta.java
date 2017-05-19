@@ -25,8 +25,8 @@ public class Ejecuta {
 		colorauto.setRowid(null);
 		
 		
-		obj.AgregarColorAuto("SISIMB", colorauto);
-		System.out.println("-error------>" + " " + obj.getcMensaje());		
+	//	obj.AgregarColorAuto("SISIMB", colorauto);
+	//	System.out.println("-error------>" + " " + obj.getcMensaje());		
 		
 		/*obj.getColorAuto("autotec", false);*/
 		
