@@ -20,7 +20,7 @@
 				<br />
 			</div>
 
-			<form th:action="@{/validaSesion}" method="POST">
+			<form id="formLogin" th:action="@{/segValidaSesionP}" method="POST">
 				<div id="companiaD" class="form-group row">
 					<label for="compania"
 						class="offset-md-3 col-md-2 text-center col-form-label" ><h5>Compañia:</h5></label>
@@ -51,14 +51,13 @@
 					</div>
 				</div>
 
-
 				<div class="offset-5 offset-md-6">
 					<button type="button" class="btn btn-primary btn-lg" onclick="segValidaForm();">Ingresar</button>
 				</div>
 
 			</form>
 			
-			<div class="col-12" id="message"></div>
+			<div class="col-12" style="display:none;"><span id="message" th:text="${error}"></span></div>
 
 			<div class="col-12">
 				<br />
