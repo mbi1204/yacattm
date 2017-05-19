@@ -49,6 +49,7 @@ function segValidaForm(){
 		$('#password').addClass('form-control-danger');
 		document.getElementById("errorP").innerHTML = "Ingresa tu contraseña";
 		
+		
 		return;
 		
 	}
