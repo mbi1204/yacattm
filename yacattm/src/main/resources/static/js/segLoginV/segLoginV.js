@@ -58,9 +58,7 @@ function segValidaForm(){
 }
 
 $( document ).ready(function() {
-    console.log(document.getElementById("message").value);
-    
-    if(document.getElementById("message").value != ""){
-		swal('Oops...',document.getElementById("message").value,'error');
+    if(document.getElementById("message").innerHTML != ""){
+		swal('Oops...',document.getElementById("message").innerHTML,'error');
 	}
 });
