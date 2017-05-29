@@ -19,9 +19,9 @@ public interface ColorAutoRep {
 	 * @return
 	 */
 	
-	public void agregar(String cUusario, ColorAuto nuevos);
-	public void eliminar(String cUusario,ColorAuto viejos);
-	public void actulizar(String cUusario,ColorAuto viejos , ColorAuto nuevos);
+	public void agregar(String cUsuario, ColorAuto nuevos);
+	public void eliminar(String cUsuario,ColorAuto viejos);
+	public void actulizar(String cUsuario,ColorAuto viejos , ColorAuto nuevos);
 	public ColorAuto getColorAuto(int iModo, String cQuery);
 	public List<ColorAuto> ListaColorAuto(int iModo, String cQuery);
 	public Boolean getResultado();

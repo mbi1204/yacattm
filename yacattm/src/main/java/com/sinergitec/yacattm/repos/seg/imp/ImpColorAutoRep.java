@@ -53,8 +53,7 @@ public class ImpColorAutoRep implements ColorAutoRep {
 			app.as_ctColorAuto_Inserta(cUsuario, tt_Nuevos, lhResultado, chTexto);
 
 			this.setResultado(lhResultado.getBooleanValue());
-			this.setMensaje(this.getClass().getName() + Thread.currentThread().getStackTrace()[1].getMethodName() + " "
-					+ chTexto.getStringValue());
+			this.setMensaje(chTexto.getStringValue());
 
 			app._release();
 
@@ -114,8 +113,7 @@ public class ImpColorAutoRep implements ColorAutoRep {
 			}
 
 			this.setResultado(lhResultado.getBooleanValue());
-			this.setMensaje(this.getClass().getName() + Thread.currentThread().getStackTrace()[1].getMethodName() + " "
-					+ chTexto.getStringValue());
+			this.setMensaje(chTexto.getStringValue());
 
 			app._release();
 
@@ -158,7 +156,7 @@ public class ImpColorAutoRep implements ColorAutoRep {
 			
 			app.as_ctColorAuto_Carga(iModo, cQuery, tt_ColorAuto, lhResultado, chTexto);
 
-			System.out.println(chTexto.getStringValue());
+			
 			ResultSet rs_ColorAuto = tt_ColorAuto.getResultSetValue();
 			
 			
@@ -170,9 +168,8 @@ public class ImpColorAutoRep implements ColorAutoRep {
 				colorAuto.setRowid(rs_ColorAuto.getBytes("id"));
 			}
 
-			this.setResultado(lhResultado.getBooleanValue());
-			this.setMensaje(this.getClass().getName() + Thread.currentThread().getStackTrace()[1].getMethodName() + " "
-					+ chTexto.getStringValue());
+			this.setResultado(lhResultado.getBooleanValue());			
+			this.setMensaje(chTexto.getStringValue());
 
 			app._release();
 
@@ -223,11 +220,58 @@ public class ImpColorAutoRep implements ColorAutoRep {
 			app.as_ctColorAuto_Borra(cUsuario, tt_Viejos, lhResultado, chTexto);		
 
 			this.setResultado(lhResultado.getBooleanValue());
-			this.setMensaje(this.getClass().getName() + Thread.currentThread().getStackTrace()[1].getMethodName() + " "
-					+ chTexto.getStringValue());
+			this.setMensaje(chTexto.getStringValue());			
+		
+			app._release();
+
+		} catch (Open4GLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			this.setResultado(true);
+			this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+					+ this.getClass().getEnclosingMethod().getName());
+
+		} finally {
+			try {
+				ConexionApp.finConexion(conexion);
+
+			} catch (Open4GLException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				this.setResultado(true);
+				this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+						+ this.getClass().getEnclosingMethod().getName());
+			}
+		}		
+		
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public void actulizar(String cUsuario, ColorAuto viejos, ColorAuto nuevos) {
+		// TODO Auto-generated method stub
+		
+		Connection conexion = null;
+		try {
+			conexion = ConexionApp.iniConexion();
+
+			BooleanHolder lhResultado = new BooleanHolder();
+			StringHolder chTexto = new StringHolder();
+			app app = new app(conexion);
+
+			Vector vViejos = new Vector();
+			vViejos.add(viejos.getLista());
+						
+			Vector vNuevos = new Vector();
+			vNuevos.add(nuevos.getLista());
 			
-			
-			System.out.println(this.getMensaje());
+			ResultSet tt_Viejos = new VectorResultSet(vViejos);
+			ResultSet tt_Nuevos = new VectorResultSet(vNuevos);			
+						
+			app.as_ctColorAuto_Actualiza(cUsuario, tt_Viejos, tt_Nuevos, lhResultado, chTexto);			
+			this.setResultado(lhResultado.getBooleanValue());			
+			this.setMensaje(chTexto.getStringValue());
 
 			app._release();
 
@@ -252,13 +296,6 @@ public class ImpColorAutoRep implements ColorAutoRep {
 			}
 		}
 
-		
-		
-	}
-
-	@Override
-	public void actulizar(String cUsuario, ColorAuto viejos, ColorAuto nuevos) {
-		// TODO Auto-generated method stub
 		
 	}
 
