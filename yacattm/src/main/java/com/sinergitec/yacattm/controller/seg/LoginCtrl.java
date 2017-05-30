@@ -46,7 +46,7 @@ public class LoginCtrl {
 			return "segloginV";
 		}
 
-		return "redirect: /menu/inicio";
+		return "redirect:/menu/inicio";
 	}
 
 }

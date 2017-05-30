@@ -13,7 +13,7 @@ public class MenuCtrl {
 	
 	@GetMapping("")
 	public String redireccion(){
-		return "redirect: /menu/inicio";
+		return "redirect:/menu/inicio";
 	}
 	
 	@GetMapping("/inicio")
