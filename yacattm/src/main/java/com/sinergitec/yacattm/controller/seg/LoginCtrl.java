@@ -2,10 +2,11 @@ package com.sinergitec.yacattm.controller.seg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sinergitec.yacattm.repos.seg.LoginRep;
 
@@ -18,6 +19,7 @@ import com.sinergitec.yacattm.repos.seg.LoginRep;
  */
 
 @Controller
+@SessionAttributes("Usuario")
 public class LoginCtrl {
 
 	@Autowired
@@ -34,21 +36,17 @@ public class LoginCtrl {
 	}
 
 	@PostMapping("/segValidaSesionP")
-	public ModelAndView valida(@ModelAttribute("compania") String cCompania, @ModelAttribute("usuario") String cUsuario,
-			@ModelAttribute("password") String cPassword) {
+	public String valida(@ModelAttribute("compania") String cCompania, @ModelAttribute("usuario") String cUsuario,
+			@ModelAttribute("password") String cPassword, Model model) {
 		
-		ModelAndView model = new ModelAndView();		
 		loginRep.getAcceso(cCompania, cUsuario, cPassword);
 		
 		if(loginRep.islResultado()){
-			model.setViewName("segloginV");
-			model.addObject("error", loginRep.getcMensaje());
-			return model;
+			model.addAttribute("error", loginRep.getcMensaje());
+			return "segloginV";
 		}
-		
-		model.setViewName("segInicioV");
 
-		return model;
+		return "redirect: /menu/inicio";
 	}
 
 }

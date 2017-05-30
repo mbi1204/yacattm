@@ -8,6 +8,7 @@ import com.progress.open4gl.BooleanHolder;
 import com.progress.open4gl.Open4GLException;
 import com.progress.open4gl.StringHolder;
 import com.progress.open4gl.javaproxy.Connection;
+import com.sinergitec.yacattm.model.ct.SessionUsu;
 import com.sinergitec.yacattm.progress.ConexionApp;
 import com.sinergitec.yacattm.repos.seg.LoginRep;
 
@@ -18,25 +19,35 @@ public class ImpLoginRep implements LoginRep {
 
 	private boolean lResultado;
 	private String cMensaje;
+	private SessionUsu objUsuario;
 
 	@Override
 	public void getAcceso(String cCompania, String cUsuario, String cPassword) {
 		// TODO Auto-generated method stub
 		
-		
-
 		Connection conexion = null;
 		try {
 			conexion = ConexionApp.iniConexion();
 
 			BooleanHolder lhResultado = new BooleanHolder();
-			StringHolder chTexto = new StringHolder();
+			StringHolder chTexto  = new StringHolder();
+			StringHolder cNombre  = new StringHolder();
+			StringHolder cPuesto  = new StringHolder();
+			SessionUsu objUsuario = new SessionUsu(); 
 			app app = new app(conexion);
 
-			app.as_Acceso_Carga(cCompania, cUsuario, cPassword, lhResultado, chTexto);
-
+			app.as_Acceso_Carga(cCompania, cUsuario, cPassword, cNombre, cPuesto, lhResultado, chTexto);
+			
 			this.setlResultado(lhResultado.getBooleanValue());
 			this.setcMensaje(this.getClass().getName() + Thread.currentThread().getStackTrace()[1].getMethodName()  + " " +   chTexto.getStringValue());
+			
+			/*Llenado del objeto usuario*/
+			objUsuario.setCompania(cCompania);
+			objUsuario.setUsuario(cUsuario);
+			objUsuario.setNombre(cNombre.getStringValue());
+			objUsuario.setPuesto(cPuesto.getStringValue());
+			
+			this.setUsuario(objUsuario);
 
 			app._release();
 
@@ -100,6 +111,26 @@ public class ImpLoginRep implements LoginRep {
 
 	public void setcMensaje(String cMensaje) {
 		this.cMensaje = cMensaje;
+	}
+	
+	/**
+	 * regresa el objeto usuario del resultado del query
+	 * 
+	 * @return
+	 */
+
+	public SessionUsu getUsuario() {
+		return objUsuario;
+	}
+
+	/**
+	 * cambia el usuario del resultado del query
+	 * 
+	 * @param cMensaje
+	 */
+
+	public void setUsuario(SessionUsu objUsuario) {
+		this.objUsuario = objUsuario;
 	}
 
 }

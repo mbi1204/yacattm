@@ -1,5 +1,7 @@
 package com.sinergitec.yacattm.repos.seg;
 
+import com.sinergitec.yacattm.model.ct.SessionUsu;
+
 public interface LoginRep {
 	
 	/**
@@ -14,10 +16,8 @@ public interface LoginRep {
 	
 	public boolean islResultado();
 	
-	public void setlResultado(boolean lResultado);
-	
 	public String getcMensaje();
 	
-	public void setcMensaje(String cMensaje);
+	public SessionUsu getUsuario();	
 	
 }
