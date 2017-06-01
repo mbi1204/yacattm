@@ -41,6 +41,8 @@ public class LoginCtrl {
 		
 		loginRep.getAcceso(cCompania, cUsuario, cPassword);
 		
+		model.addAttribute("Usuario",loginRep.getUsuario());
+		
 		if(loginRep.islResultado()){
 			model.addAttribute("error", loginRep.getcMensaje());
 			return "segloginV";
