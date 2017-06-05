@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.sinergitec.yacattm.repos.seg.LoginRep;
 
@@ -52,8 +53,8 @@ public class LoginCtrl {
 	}
 	
 	@GetMapping("/segCerrarSesion")
-	public String cerrarSesion() {
-				
+	public String cerrarSesion(SessionStatus status) {
+		status.setComplete();		
 		return "segloginV";
 	}
 
