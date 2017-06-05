@@ -4,6 +4,12 @@
  * Descripcion: Se encarga de acciones antes de contactar al servidor
  */
 
+function validarUsuario(e){
+	if (e.keyCode == 13) {
+		segValidaForm();
+    }
+}
+
 function segValidaForm(){
 	
 	//Recupera los valores de las cajas de texto
