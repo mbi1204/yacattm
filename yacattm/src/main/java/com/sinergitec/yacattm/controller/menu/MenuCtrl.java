@@ -31,6 +31,7 @@ public class MenuCtrl {
 	public ModelAndView inicio(@ModelAttribute("Usuario") SessionUsu objUsuario){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("contenido", "/segInicioV");
+		mav.addObject("titulo", "Inicio");
 		mav.setViewName("plantilla");
 		 return mav;
 	}
