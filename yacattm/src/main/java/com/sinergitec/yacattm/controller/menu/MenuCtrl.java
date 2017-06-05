@@ -30,7 +30,7 @@ public class MenuCtrl {
 	@GetMapping("/inicio")
 	public ModelAndView inicio(@ModelAttribute("Usuario") SessionUsu objUsuario){
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("contenido", "");
+		mav.addObject("contenido", "/segInicioV");
 		mav.setViewName("plantilla");
 		 return mav;
 	}
