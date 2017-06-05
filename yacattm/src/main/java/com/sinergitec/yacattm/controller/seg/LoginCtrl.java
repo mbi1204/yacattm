@@ -50,5 +50,11 @@ public class LoginCtrl {
 
 		return "redirect:/menu/inicio";
 	}
+	
+	@GetMapping("/segCerrarSesion")
+	public String cerrarSesion() {
+				
+		return "segloginV";
+	}
 
 }
