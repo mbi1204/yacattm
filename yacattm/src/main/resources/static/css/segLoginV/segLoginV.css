@@ -1,3 +1,14 @@
-body{
-	background-image: url("/imagen/jpg/motor.jpg");
-}
+/*
+ * Autor: Aestrada
+ * Fecha: 06 de junio de 2017
+ * Descripcion: Reglas de Visualizacion para el login
+ *
+ */
+ 
+/*body {
+	background: url("/imagen/jpg/motor.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}*/
