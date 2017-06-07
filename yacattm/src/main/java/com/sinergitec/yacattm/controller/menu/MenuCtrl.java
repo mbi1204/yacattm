@@ -9,13 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sinergitec.yacattm.model.ct.SessionUsu;
 
-/*
+/**
  * Autor: Aestrada
  * Fecha: 15 de mayo de 2017
  * Descripcion: Gestiona las peticiones hechas a la 
  * aplicacion unicamente del modulo de seguridad
  * 
- */
+ **/
 
 @Controller
 @SessionAttributes("Usuario")

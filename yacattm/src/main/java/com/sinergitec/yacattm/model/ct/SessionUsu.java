@@ -1,5 +1,12 @@
 package com.sinergitec.yacattm.model.ct;
 
+/**
+ * Autor: Aestrada
+ * Fecha: 15 de mayo de 2017
+ * Descripcion: Modelo de la tabla ctUsuario 
+ * 
+ **/
+
 public class SessionUsu {
 	
 	private String compania;
