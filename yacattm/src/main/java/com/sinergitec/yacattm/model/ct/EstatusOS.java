@@ -1,5 +1,7 @@
 package com.sinergitec.yacattm.model.ct;
 
+import java.util.Vector;
+
 /**
  * Autor: Aestrada
  * Fecha: 07 de junio de 2017
@@ -9,33 +11,58 @@ package com.sinergitec.yacattm.model.ct;
 
 public class EstatusOS {
 	
-	private String cCveCia;
-	private String cEstatus;
-	private String cObs;
-	private String lActivo;
+	private String compania;
+	private String estatus;
+	private String obs;
+	private Boolean activo;
+	private byte[] rowid;
 	
-	public String getcCveCia() {
-		return cCveCia;
+	public String getCompania() {
+		return compania;
 	}
-	public void setcCveCia(String cCveCia) {
-		this.cCveCia = cCveCia;
+	public void setCompania(String compania) {
+		this.compania = compania;
 	}
-	public String getcEstatus() {
-		return cEstatus;
+	public String getEstatus() {
+		return estatus;
 	}
-	public void setcEstatus(String cEstatus) {
-		this.cEstatus = cEstatus;
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
-	public String getcObs() {
-		return cObs;
+	public String getObs() {
+		return obs;
 	}
-	public void setcObs(String cObs) {
-		this.cObs = cObs;
+	public void setObs(String obs) {
+		this.obs = obs;
 	}
-	public String getlActivo() {
-		return lActivo;
+	public Boolean getActivo() {
+		return activo;
 	}
-	public void setlActivo(String lActivo) {
-		this.lActivo = lActivo;
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
+	public byte[] getRowid() {
+		return rowid;
+	}
+	public void setRowid(byte[] rowid) {
+		this.rowid = rowid;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public Vector getLista(){
+		Vector vector = new Vector();
+		vector.add(this.getCompania());
+		vector.add(this.getEstatus());
+		vector.add(this.getObs());
+		vector.add(this.getActivo());
+		vector.add(this.getRowid());
+		return vector;		
+	}	
+	
 }

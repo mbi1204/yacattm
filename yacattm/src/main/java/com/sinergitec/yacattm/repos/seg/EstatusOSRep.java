@@ -16,8 +16,8 @@ public interface EstatusOSRep {
 	public void agregar(String cUsuario, EstatusOS nuevos);
 	public void eliminar(String cUsuario,EstatusOS viejos);
 	public void actulizar(String cUsuario,EstatusOS viejos , EstatusOS nuevos);
-	public EstatusOS getColorAuto(int iModo, String cQuery);
-	public List<EstatusOS> ListaColorAuto(int iModo, String cQuery);
+	public EstatusOS getEstatusOS(int iModo, String cQuery);
+	public List<EstatusOS> listaEstatusOS(int iModo, String cQuery);
 	public Boolean getResultado();
 	public String  getMensaje();
 
