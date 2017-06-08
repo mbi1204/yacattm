@@ -1,0 +1,41 @@
+<div class="container">
+	<h2>Cat&aacute;logo Estatus Orden de Servicio</h2>
+	<!-- Trigger the modal with a button -->
+
+
+	<a href="#" th:href="@{/ope/ctColorAuto/nuevo}">
+		<button type="button" class="btn btn-lg btn-primary btn-block">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true">
+				Nuevo</span>
+		</button>
+	</a>
+
+
+
+
+	<table class="table table-striped" id="Lista">
+		<thead class="thead-inverse">
+			<tr>
+				<th>Compania</th>
+				<th>Estatus</th>
+				<th>Observaciones</th>
+				<th>Activo?</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="listaEstatusOS : ${listaEstatusOS} ">
+				<td><span th:text="${listaEstatusOS.compania}">Compania</span></td>
+				<td><span th:text="${listaEstatusOS.estatus}">Estatus </span></td>
+				<td><span th:text="${listaEstatusOS.obs}">Observaciones </span></td>
+				<td><span th:text="${listaEstatusOS.activo}? SI : NO ">
+						Activo? </span></td>
+
+				<td>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
