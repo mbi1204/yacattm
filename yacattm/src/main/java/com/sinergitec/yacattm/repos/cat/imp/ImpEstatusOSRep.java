@@ -1,4 +1,4 @@
-package com.sinergitec.yacattm.repos.seg.imp;
+package com.sinergitec.yacattm.repos.cat.imp;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ import com.progress.open4gl.javaproxy.Connection;
 import com.sinergitec.yacattm.model.ct.EstatusOS;
 import com.sinergitec.yacattm.progress.ConexionApp;
 import com.sinergitec.yacattm.progress.VectorResultSet;
-import com.sinergitec.yacattm.repos.seg.EstatusOSRep;
+import com.sinergitec.yacattm.repos.cat.EstatusOSRep;
 
 import yacattm.app;
 

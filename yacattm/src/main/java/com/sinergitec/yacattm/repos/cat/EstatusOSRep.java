@@ -1,4 +1,4 @@
-package com.sinergitec.yacattm.repos.seg;
+package com.sinergitec.yacattm.repos.cat;
 
 import java.util.List;
 
