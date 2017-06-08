@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Engomados</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.4/sweetalert2.min.css"></link>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.4/sweetalert2.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container">
+		<h2>Catalogo Engomados</h2>
+		
+			
+		<a href="#" th:href="@{/ope/ctEngomado/nuevo}">
+		  <button type="button" class="btn btn-lg btn-primary btn-block">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true">
+					Nuevo</span>
+			</button>
+		</a>
+		
+
+
+		<table class="table table-striped">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Compañia</th>
+					<th>Engomado</th>
+					<th>Placas</th>
+					<th>Periodo 1</th>
+					<th>Periodo 2</th>
+					<th>Activo</th>
+					<th>Dias</th>
+					<th>Orden</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="engomado : ${lista}">
+					<td><span th:text="${engomado.compania}">Compania</span></td>
+					<td><span th:text="${engomado.engomado}">Engomado</span></td>
+					<td><span th:text="${engomado.placas}">Placas</span></td>
+					<td><span th:text="${engomado.periodo1}">Periodo 1</span></td>
+					<td><span th:text="${engomado.periodo2}">Periodo 2</span></td>
+					<td><span th:text="${engomado.activo}">Activo?</span></td>
+					<td><span th:text="${engomado.dia}">Dia</span></td>
+					<td><span th:text="${engomado.orden}">Orden</span></td>
+					
+					<td>
+						<a href="#"
+						th:href="@{/ope/ctEngomado/getEngomado?cEngomado=__${engomado.engomado}__}">
+							<button type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</button>
+					</a>
+					</td>
+
+
+				</tr>
+
+			</tbody>
+
+
+		</table>
+	</div>
+
+
+
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Oops...',document.getElementById("message").innerHTML,'error');
+		document.getElementById("message").innerHTML = "";
+	}
+	
+	</script>
+
+</body>
+</html>

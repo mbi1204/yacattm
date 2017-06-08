@@ -1,34 +1,41 @@
+import java.util.ArrayList;
+import java.util.List;
 
-import java.awt.Color;
-
-import com.sinergitec.yacattm.model.ct.ColorAuto;
-import com.sinergitec.yacattm.repos.seg.imp.ImpLoginRep;
-import com.sinergitec.yacattm.repos.seg.imp.ImpColorAutoRep;
+import com.sinergitec.yacattm.model.ct.Engomado;
+import com.sinergitec.yacattm.repos.cat.EngomadoRep;
+import com.sinergitec.yacattm.repos.cat.imp.ImpEmgomado;
 
 public class Ejecuta {
 	
 	public static void main(String [] args){
-		/*ImpLogin obj = new ImpLogin();
 		
-		obj.getAcceso("AUTOTEC", "SISIM", "SISIMB");
+	/*Engomado obj1 = new Engomado();
+	
+	obj1.setCompania("sinergitec");
+	obj1.setEmgomado("azul");
+	obj1.setPlacas("5y6");
+	
+	System.out.println("compañia->" + obj1.getCompania());
+	System.out.println("emgomado->" + obj1.getEmgomado());
+	System.out.println("placas->" + obj1.getPlacas());
+	System.out.println("Dia->" + obj1.getDia());*/
 		
-		System.out.println(obj.islResultado()  + " " +    obj.getcMensaje() );
-		*/
+		EngomadoRep obj = new ImpEmgomado();
+		List<Engomado> lista = new ArrayList<Engomado>();
 		
-		ImpColorAutoRep obj = new ImpColorAutoRep();
+		lista = obj.Lista(0, "FOR EACH ctEngomado where ctEngomado.cCveCia = 'AUTOTEC' NO-LOCK");
 		
-		ColorAuto colorauto = new ColorAuto();
+		for (Engomado row : lista){
+			System.out.println(row.toString());
+			
+			
+		}
 		
-		colorauto.setActivo(false);
-		colorauto.setColor("achul");
-		colorauto.setCompania("SINER");
-		colorauto.setRowid(null);
+		System.out.println("elementos->" +  lista.size());
 		
+		System.out.println("Mensaje" +  obj.getMensaje());
+		System.out.println("Eror "   +  obj.getResultado());
 		
-	//	obj.AgregarColorAuto("SISIMB", colorauto);
-	//	System.out.println("-error------>" + " " + obj.getcMensaje());		
-		
-		/*obj.getColorAuto("autotec", false);*/
 		
 		
 		

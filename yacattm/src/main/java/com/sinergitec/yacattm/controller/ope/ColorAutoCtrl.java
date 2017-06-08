@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.sinergitec.yacattm.model.ct.ColorAuto;
-import com.sinergitec.yacattm.repos.seg.ColorAutoRep;
+import com.sinergitec.yacattm.repos.cat.ColorAutoRep;
 
 /**
  * 

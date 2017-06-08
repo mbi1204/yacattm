@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Agregar engomado</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.4/sweetalert2.min.css"></link>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.4/sweetalert2.min.js"></script>
+
+
+
+</head>
+<body>
+
+
+
+
+	<form action="#" th:action="@{/ope/ctEngomado/agregar}"
+		th:object="${engomado}" method="post">
+		
+		<div class="modal-body">
+			 <div class="form-group">
+			 
+				<label for="compania" class="form-control-label">compania:</label> 
+				<input type="text" readonly="true" class="form-control" 
+				         id="compania" th:field="*{compania}" th:value="${compania}" /> 
+			
+				<label for="engomado" class="form-control-label">engomado:</label> 
+				<input type="text" class="form-control" id="engomado" 
+		    		   th:field="*{engomado}" th:value="${engomado}" /> 
+		       
+				<label for="placas" class="form-control-label">placas:</label> 
+				<input type="text" class="form-control" id="placas" 
+			    	     th:field="*{placas}" th:value="${placas}" /> 
+		         
+				<label for="periodo1"  class="form-control-label">periodo1:</label> 
+				<input type="text" class="form-control" id="periodo1" 
+		    		   th:field="*{periodo1}" th:value="${periodo1}" /> 
+		       
+				<label for="periodo2" class="form-control-label">periodo2:</label> 
+				<input type="text" class="form-control" id="periodo2" 
+			    	   th:field="*{periodo2}" th:value="${periodo2}" /> 
+		       
+				<label for="activo" class="form-control-label">activo:</label> 
+				<input type="checkbox" 	class="form-control" id="activo" 
+		    		   th:field="*{activo}" th:value="${activo}" />
+		       
+				<label for="dia" class="form-control-label">dia:</label> 
+				<input type="text" class="form-control" id="dia" 
+		    		   th:field="*{dia}" th:value="${dia}" />      
+		       
+				<label for="Orden" class="form-control-label">Orden:</label> 
+				<input type="text" class="form-control" id="Orden" 
+		    		   th:field="*{Orden}" th:value="${Orden}" />   
+		   
+		    </div>
+	  </div>    
+		       
+	 <div class="modal-footer">
+	 	<a href="#" th:href="@{/ope/ctEngomado/lista}">
+	 		<button type="button"  class="btn btn-danger">Cancelar</button>
+	    </a>
+	    
+		<button type="submit" class="btn btn-primary">Guardar</button>
+	</div>   
+		         
+
+	</form>
+	
+	
+	
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Error', document.getElementById("message").innerHTML,'error');
+	}
+	
+	</script>
+	
+	
+	
+</body>
+</html>
