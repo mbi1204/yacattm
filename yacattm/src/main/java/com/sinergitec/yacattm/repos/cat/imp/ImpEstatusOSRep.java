@@ -225,8 +225,6 @@ public class ImpEstatusOSRep implements EstatusOSRep {
 
 	@Override
 	public List<EstatusOS> listaEstatusOS(int iModo, String cQuery) {
-
-		System.out.println(cQuery);
 		
 		Connection conexion = null;
 		ArrayList<EstatusOS> lista = new ArrayList<EstatusOS>();

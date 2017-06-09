@@ -1,7 +1,6 @@
 <div class="container">
-	<h2>Cat&aacute;logo Estatus Orden de Servicio</h2>
-	<!-- Trigger the modal with a button -->
 
+	<h2>Cat&aacute;logo Estatus Orden de Servicio</h2>
 
 	<a href="#" th:href="@{/ope/ctColorAuto/nuevo}">
 		<button type="button" class="btn btn-lg btn-primary btn-block">
@@ -10,29 +9,34 @@
 		</button>
 	</a>
 
-
-
-
-	<table class="table table-striped" id="Lista">
-		<thead class="thead-inverse">
+	<table class="table table-striped table-hover" id="Lista">
+		<thead>
 			<tr>
-				<th>Compania</th>
-				<th>Estatus</th>
-				<th>Observaciones</th>
-				<th>Activo?</th>
+				<th style="text-align: center;">Compania</th>
+				<th style="text-align: center;">Estatus</th>
+				<th style="text-align: center;">Observaciones</th>
+				<th style="text-align: center;">Activo?</th>
 			</tr>
 		</thead>
 		<tbody>
 
 			<tr th:each="listaEstatusOS : ${listaEstatusOS} ">
-				<td><span th:text="${listaEstatusOS.compania}">Compania</span></td>
-				<td><span th:text="${listaEstatusOS.estatus}">Estatus </span></td>
-				<td><span th:text="${listaEstatusOS.obs}">Observaciones </span></td>
-				<td><span th:text="${listaEstatusOS.activo}? SI : NO ">
-						Activo? </span></td>
+				<td style="text-align: center;"><span class="align-middle"
+					th:text="${listaEstatusOS.compania}">Compania</span></td>
+				<td style="text-align: center;"><span class="align-middle"
+					th:text="${listaEstatusOS.estatus}">Estatus </span></td>
+				<td style="text-align: center;"><span class="align-middle"
+					th:text="${listaEstatusOS.obs}">Observaciones </span></td>
+				<td style="text-align: center;"><span class="align-middle"
+					th:text="${listaEstatusOS.activo}? SI : NO ">Activo? </span></td>
 
 				<td>
-
+					<a href="#"
+						th:href="@{/ope/ctEstatusOS/getEstatusOS?cEstatus=__${listaEstatusOS.estatus}__}">
+						<input type="image" th:src="@{/imagen/svg/settings.svg}" />							
+					</a>
+					
+					<input onclick="#" type="image" th:src="@{/imagen/svg/close.svg}" />
 				</td>
 			</tr>
 		</tbody>
