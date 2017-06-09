@@ -25,7 +25,8 @@ import com.sinergitec.yacattm.repos.cat.ColorAutoRep;
 @RequestMapping("/ope/ctColorAuto")
 
 public class ColorAutoCtrl {
-
+	
+	private static final String TPT = "/plantilla";
 	static final String VIEW = "/ope/cat/ctColorAutoV";
 	static final String FORM_ADD = "/ope/cat/ctColorAutoAddF";
 	static final String FORM_UPD = "/ope/cat/ctColorAutoUpdF";
@@ -44,7 +45,10 @@ public class ColorAutoCtrl {
 
 	@GetMapping("/lista")
 	public ModelAndView ListAllColorAuto() {
-		ModelAndView mav = new ModelAndView(VIEW);
+		//ModelAndView mav = new ModelAndView(VIEW);
+		ModelAndView mav = new ModelAndView(TPT);
+		mav.addObject("titulo", "Engomados");
+		mav.addObject("contenido", VIEW);
 
 		mav.addObject("colorAuto", new ColorAuto());
 		mav.addObject("ListColorAuto",

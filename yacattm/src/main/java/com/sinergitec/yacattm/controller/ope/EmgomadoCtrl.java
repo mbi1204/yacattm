@@ -17,6 +17,8 @@ import com.sinergitec.yacattm.repos.cat.EngomadoRep;
 @RequestMapping("/ope/ctEngomado")
 public class EmgomadoCtrl {
 	
+	private static final String TPT = "/plantilla";
+	
 	private String cError;
 	
 	@Autowired
@@ -29,7 +31,12 @@ public class EmgomadoCtrl {
 	
 	@GetMapping("/lista")
 	public ModelAndView lista (){
-		ModelAndView mav = new ModelAndView("/ope/cat/ctEngomadoV");		
+		//ModelAndView mav = new ModelAndView("/ope/cat/ctEngomadoV");
+		
+		ModelAndView mav = new ModelAndView(TPT);
+		mav.addObject("titulo", "Engomados");
+		mav.addObject("contenido","/ope/cat/ctEngomadoV");
+		
 		mav.addObject("lista", engomadoRep.Lista(0, "FOR EACH ctEngomado WHERE ctEngomado.cCveCia = 'AUTOTEC' NO-LOCK BY ctEngomado.iOrden:"));
 		
 		if (engomadoRep.getResultado()) {
