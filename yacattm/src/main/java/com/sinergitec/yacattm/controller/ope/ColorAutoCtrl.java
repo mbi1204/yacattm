@@ -26,7 +26,7 @@ import com.sinergitec.yacattm.repos.cat.ColorAutoRep;
 
 public class ColorAutoCtrl {
 	
-	private static final String TPT = "/plantilla";
+	
 	static final String VIEW = "/ope/cat/ctColorAutoV";
 	static final String FORM_ADD = "/ope/cat/ctColorAutoAddF";
 	static final String FORM_UPD = "/ope/cat/ctColorAutoUpdF";
@@ -34,7 +34,7 @@ public class ColorAutoCtrl {
 	private String cError;
 	
 	
-
+	
 	@Autowired
 	private ColorAutoRep colorAutoRep;
 
@@ -45,14 +45,10 @@ public class ColorAutoCtrl {
 
 	@GetMapping("/lista")
 	public ModelAndView ListAllColorAuto() {
-		//ModelAndView mav = new ModelAndView(VIEW);
-		ModelAndView mav = new ModelAndView(TPT);
-		mav.addObject("titulo", "Engomados");
-		mav.addObject("contenido", VIEW);
-
+		
+		ModelAndView mav = new ModelAndView(VIEW);
 		mav.addObject("colorAuto", new ColorAuto());
-		mav.addObject("ListColorAuto",
-				colorAutoRep.ListaColorAuto(0, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' NO-LOCK:"));
+		mav.addObject("ListColorAuto", 	colorAutoRep.ListaColorAuto(0, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' NO-LOCK:"));
 		
 		if (colorAutoRep.getResultado()) {
 			cError = colorAutoRep.getMensaje();
@@ -71,7 +67,7 @@ public class ColorAutoCtrl {
 		colorAuto.setCompania("AUTOTEC");
 		colorAuto.setActivo(true);
 		colorAuto.setRowid(null);
-		ModelAndView mav = new ModelAndView(FORM_ADD);
+		ModelAndView mav = new ModelAndView(FORM_ADD);		
 		mav.addObject("colorAuto", colorAuto);
 
 		return mav;
@@ -99,7 +95,7 @@ public class ColorAutoCtrl {
 	public ModelAndView actualizar(@ModelAttribute("colorAuto") ColorAuto colorAuto) {
 		ColorAuto viejo = new ColorAuto();
 		viejo = this.colorAutoRep.getColorAuto(2, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = '"
-				+ colorAuto.getCompania() + "' AND ctColorAuto.cColor = '" + colorAuto.getColor() + "' NO-LOCK:");
+				+ colorAuto.getCompania() + "' AND ctColorAuto.cColor = '" + colorAuto.getColor() + " ' NO-LOCK:");
 
 		if (this.colorAutoRep.getResultado()) { // error
 			ModelAndView mav = new ModelAndView(FORM_UPD);
@@ -169,6 +165,7 @@ public class ColorAutoCtrl {
 			cError = this.colorAutoRep.getMensaje();
 			return mav;
 		} else {
+			
 			ModelAndView mav = new ModelAndView(FORM_UPD);
 			mav.addObject("colorAuto", colorAuto);
 			mav.addObject("error", this.colorAutoRep.getMensaje());

@@ -2,9 +2,6 @@
  * 
  */
 
-$(document).ready(function() {
-
-});
 
 function eliminar(cColor) {
 
@@ -20,7 +17,7 @@ function eliminar(cColor) {
 			  confirmButtonText: 'SI',
 			  cancelButtonText:  'NO' 
 				  
-		}).then(function() {
+		},function() {
 
 			$.ajax({
 				url : '/ope/ctColorAuto/eliminar',
