@@ -22,7 +22,7 @@ import com.sinergitec.yacattm.model.ct.SessionUsu;
 @RequestMapping("/menu")
 public class MenuCtrl {
 	
-	public static final String VIEW = "plantilla";
+	public static final String VIEW = "/segInicioV";
 	
 	@GetMapping("")
 	public String redireccion(){
@@ -31,10 +31,8 @@ public class MenuCtrl {
 	
 	@GetMapping("/inicio")
 	public ModelAndView inicio(@ModelAttribute("Usuario") SessionUsu objUsuario){
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("contenido", "/segInicioV");
+		ModelAndView mav = new ModelAndView(VIEW);
 		mav.addObject("titulo", "Inicio");
-		mav.setViewName(VIEW);
 		 return mav;
 	}
 	

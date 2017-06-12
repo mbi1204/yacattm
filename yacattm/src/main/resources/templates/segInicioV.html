@@ -1,26 +1,45 @@
-<div id="carouselExampleSlidesOnly" class="carousel slide"
-	data-ride="carousel">
-	<div class="carousel-inner" role="listbox">
-		<div class="carousel-item">
-			<img class="d-block img-fluid" src="#" th:src="@{/imagen/jpg/motor.jpg}" alt="First slide" />
-			<div class="carousel-caption d-none d-md-block">
-				<h3>Prueba</h3>
-				<p>Prueba 1</p>
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<head th:replace="fragments/headTag :: headTag">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+	<div th:replace="fragments/header :: header"></div>
+	
+	<br/>
+
+	<div id="carouselExampleSlidesOnly" class="carousel slide"
+		data-ride="carousel">
+		<div class="carousel-inner" role="listbox">
+			<div class="carousel-item">
+				<img class="d-block img-fluid" src="#"
+					th:src="@{/imagen/jpg/motor.jpg}" alt="First slide" />
+				<div class="carousel-caption d-none d-md-block">
+					<h3>Prueba</h3>
+					<p>Prueba 1</p>
+				</div>
 			</div>
-		</div>
-		<div class="carousel-item">
-			<img class="d-block img-fluid" src="#" th:src="@{/imagen/jpg/motor.jpg}" alt="Second slide" />
-			<div class="carousel-caption d-none d-md-block">
-				<h3>Prueba</h3>
-				<p>Prueba 2</p>
+			<div class="carousel-item">
+				<img class="d-block img-fluid" src="#"
+					th:src="@{/imagen/jpg/motor.jpg}" alt="Second slide" />
+				<div class="carousel-caption d-none d-md-block">
+					<h3>Prueba</h3>
+					<p>Prueba 2</p>
+				</div>
 			</div>
-		</div>
-		<div class="carousel-item">
-			<img class="d-block img-fluid" src="#" th:src="@{/imagen/jpg/motor.jpg}" alt="Third slide" />
-			<div class="carousel-caption d-none d-md-block">
-				<h3>Prueba</h3>
-				<p>Prueba 3</p>
+			<div class="carousel-item">
+				<img class="d-block img-fluid" src="#"
+					th:src="@{/imagen/jpg/motor.jpg}" alt="Third slide" />
+				<div class="carousel-caption d-none d-md-block">
+					<h3>Prueba</h3>
+					<p>Prueba 3</p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+
+<body>
+</body>
+</html>
