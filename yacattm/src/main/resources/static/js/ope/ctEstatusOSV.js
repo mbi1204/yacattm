@@ -18,7 +18,7 @@ function eliminar(cEstatus){
 			  confirmButtonText: 'SI',
 			  cancelButtonText:  'NO' 
 				  
-		}).then(function() {
+		},function() {
 
 			$.ajax({
 				url : '/ope/ctEstatusOS/eliminar',
