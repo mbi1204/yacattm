@@ -185,7 +185,7 @@ public class ImpEstatusOSRep implements EstatusOSRep {
 			StringHolder chTexto = new StringHolder();
 			app app = new app(conexion);
 
-			app.as_ctEngomado_Carga(iModo, cQuery, tt_EstatusOS, lhResultado, chTexto);
+			app.as_ctEstatusOS_Carga(iModo, cQuery, tt_EstatusOS, lhResultado, chTexto);
 
 			ResultSet rs_EstatusOS = tt_EstatusOS.getResultSetValue();
 
