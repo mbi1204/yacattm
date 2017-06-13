@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <meta charset="UTF-8" />
 <title th:text="${titulo}"></title>
 <head th:replace="fragments/headTag :: headTag">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
+
 <body>
 
 	<div th:replace="fragments/header :: header"></div>
 
 	<br />
 
-	<form action="#" th:action="@{/ope/ctEstatusOS/agregar}"
-		th:object="${estatusOS}" method="POST">
+	<form action="#" th:action="@{/ope/ctSisCombAuto/actualizar}"
+		th:object="${combustion}" method="POST">
 
 		<div class="modal-body">
 
@@ -25,18 +26,10 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="estatus" class="col-2 col-form-label">Estatus:</label>
+				<label for="estatus" class="col-2 col-form-label">Sistema:</label>
 				<div class="col-10">
 					<input class="form-control" type="text" id="estatus"
-						th:field="*{estatus}" th:value="${estatus}" />
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="obs" class="col-2 col-form-label">Observaciones:</label>
-				<div class="col-10">
-					<input class="form-control" type="text" id="obs" th:field="*{obs}"
-						th:value="${obs}" />
+						th:field="*{sistema}" th:value="${sistema}" readonly="true" />
 				</div>
 			</div>
 
@@ -54,7 +47,7 @@
 		</div>
 
 		<div class="modal-footer">
-			<a href="#" th:href="@{/ope/ctEstatusOS/lista}">
+			<a href="#" th:href="@{/ope/ctSisCombAuto/lista}">
 				<button type="button" class="btn btn-danger">Cancelar</button>
 			</a>
 			<button type="submit" class="btn btn-primary">Guardar</button>
@@ -65,13 +58,13 @@
 	<div class="col-12" style="display: none;">
 		<span id="message" th:text="${error}"></span>
 	</div>
-
+	
 	<script type="text/javascript">
-	
-	if(document.getElementById("message").innerHTML != ""){
-		swal('Error', document.getElementById("message").innerHTML,'error');
-	}
-	
+		if (document.getElementById("message").innerHTML != "") {
+			swal('Oops...', document.getElementById("message").innerHTML,
+					'error');
+			document.getElementById("message").innerHTML = "";
+		}
 	</script>
 
 </body>

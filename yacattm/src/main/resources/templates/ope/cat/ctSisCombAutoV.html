@@ -16,7 +16,7 @@
 
 		<h2>Cat&aacute;logo Sistema de Combusti&oacute;n</h2>
 
-		<a href="#" th:href="@{/ope/ctEstatusOS/nuevo}">
+		<a href="#" th:href="@{/ope/ctSisCombAuto/nuevo}">
 			<button type="button" class="btn btn-lg btn-primary btn-block">
 				<span class="fa fa-plus-circle" aria-hidden="true">
 					Nuevo</span>
@@ -42,7 +42,7 @@
 						th:text="${listaSisComb.activo}? SI : NO ">Activo? </span></td>
 
 					<td>
-						<a href="#" th:href="@{/ope/ctEstatusOS/getEstatusOS?cSistema=__${listaEstatusOS.sistema}__}">
+						<a href="#" th:href="@{/ope/ctSisCombAuto/getCombustion?cSistema=__${listaSisComb.sistema}__}">
 							<button type="button" class="btn btn-info">
 								<span class="fa fa-pencil" aria-hidden="true"></span>
 
@@ -61,7 +61,19 @@
 	<br/>
 	
 	<script type="text/javascript" src="#"
-		th:src="@{/js/ope/ctEstatusOSV.js}"></script>
+		th:src="@{/js/ope/ctSisCombAutoV.js}"></script>
+		
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Error', document.getElementById("message").innerHTML,'error');
+	}
+	
+	</script>	
 
 </body>
 </html>

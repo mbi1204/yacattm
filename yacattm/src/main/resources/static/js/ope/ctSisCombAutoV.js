@@ -1,10 +1,10 @@
 /**
  * Autor: Aestrada 
- * Fecha: 12 de junio de 2017 
- * Descripcion: Script para pantalla de Estatus Orden de Servicio
+ * Fecha: 13 de junio de 2017 
+ * Descripcion: Script para pantalla de Sistemas de Combustion
  */
 
-function eliminar(cEstatus){
+function eliminar(cSistema){
 	
 	$("#Lista").on('click', '#btnEliminar', function() {
 		var row = $(this).closest('tr');
@@ -21,9 +21,9 @@ function eliminar(cEstatus){
 		},function() {
 
 			$.ajax({
-				url : '/ope/ctEstatusOS/eliminar',
+				url : '/ope/ctSisCombAuto/eliminar',
 				data : {
-					cEstatus : cEstatus
+					cSistema : cSistema
 				},
 				type : 'GET',
 				success : function(data) {
