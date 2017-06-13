@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.sinergitec.yacattm.model.ct.ColorAuto;
+import com.sinergitec.yacattm.model.ct.SessionUsu;
 import com.sinergitec.yacattm.repos.cat.ColorAutoRep;
 
 /**
@@ -23,6 +25,7 @@ import com.sinergitec.yacattm.repos.cat.ColorAutoRep;
 
 @Controller
 @RequestMapping("/ope/ctColorAuto")
+@SessionAttributes("Usuario")
 
 public class ColorAutoCtrl {
 	
@@ -44,11 +47,11 @@ public class ColorAutoCtrl {
 	}
 
 	@GetMapping("/lista")
-	public ModelAndView ListAllColorAuto() {
+	public ModelAndView ListAllColorAuto(@ModelAttribute("Usuario") SessionUsu objUsuario) {
 		
 		ModelAndView mav = new ModelAndView(VIEW);
 		mav.addObject("colorAuto", new ColorAuto());
-		mav.addObject("ListColorAuto", 	colorAutoRep.ListaColorAuto(0, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' NO-LOCK:"));
+		mav.addObject("ListColorAuto", 	colorAutoRep.ListaColorAuto(0, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = '" +objUsuario.getCompania() + "' NO-LOCK:"));
 		
 		if (colorAutoRep.getResultado()) {
 			cError = colorAutoRep.getMensaje();
@@ -62,9 +65,9 @@ public class ColorAutoCtrl {
 	}
 
 	@GetMapping("/nuevo")
-	public ModelAndView nuevo() {
+	public ModelAndView nuevo( @ModelAttribute("Usuario") SessionUsu objUsuario) {
 		ColorAuto colorAuto = new ColorAuto();
-		colorAuto.setCompania("AUTOTEC");
+		colorAuto.setCompania(objUsuario.getCompania());
 		colorAuto.setActivo(true);
 		colorAuto.setRowid(null);
 		ModelAndView mav = new ModelAndView(FORM_ADD);		
@@ -74,8 +77,8 @@ public class ColorAutoCtrl {
 	}
 
 	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
-	public ModelAndView agregar(@ModelAttribute("colorAuto") ColorAuto colorAuto) {
-		this.colorAutoRep.agregar("SISIMB", colorAuto);
+	public ModelAndView agregar(@ModelAttribute("colorAuto") ColorAuto colorAuto , @ModelAttribute("Usuario") SessionUsu objUsuario) {
+		this.colorAutoRep.agregar(objUsuario.getUsuario(), colorAuto);
 
 		if (this.colorAutoRep.getResultado()) { // error
 			ModelAndView mav = new ModelAndView(FORM_ADD);
@@ -92,7 +95,7 @@ public class ColorAutoCtrl {
 	}
 
 	@RequestMapping(value = "/actualizar", method = RequestMethod.POST)
-	public ModelAndView actualizar(@ModelAttribute("colorAuto") ColorAuto colorAuto) {
+	public ModelAndView actualizar(@ModelAttribute("colorAuto") ColorAuto colorAuto ,@ModelAttribute("Usuario") SessionUsu objUsuario) {
 		ColorAuto viejo = new ColorAuto();
 		viejo = this.colorAutoRep.getColorAuto(2, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = '"
 				+ colorAuto.getCompania() + "' AND ctColorAuto.cColor = '" + colorAuto.getColor() + " ' NO-LOCK:");
@@ -104,7 +107,7 @@ public class ColorAutoCtrl {
 			return mav;
 		}
 
-		this.colorAutoRep.actulizar("SISIMB", viejo, colorAuto);
+		this.colorAutoRep.actulizar(objUsuario.getUsuario(), viejo, colorAuto);
 
 		if (this.colorAutoRep.getResultado()) { // error
 			ModelAndView mav = new ModelAndView(FORM_UPD);
@@ -121,20 +124,20 @@ public class ColorAutoCtrl {
 	}
 
 	@GetMapping("/eliminar")
-	public @ResponseBody String eliminar(@RequestParam(name = "cColor", required = true) String cColor) {
+	public @ResponseBody String eliminar(@RequestParam(name = "cColor", required = true) String cColor, @ModelAttribute("Usuario") SessionUsu objUsuario) {
 
 		String cMensaje = null;
 		ColorAuto colorAuto = new ColorAuto();
 
 		colorAuto = this.colorAutoRep.getColorAuto(1,
-				"FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' AND ctColorAuto.cColor = '" + cColor
+				"FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = '" + objUsuario.getCompania() +"' AND ctColorAuto.cColor = '" + cColor
 						+ "' NO-LOCK:");
 
 		if (this.colorAutoRep.getResultado()) { // error
 			cMensaje = this.colorAutoRep.getMensaje();
 		} else {
 
-			this.colorAutoRep.eliminar("SISIMB", colorAuto);
+			this.colorAutoRep.eliminar(objUsuario.getUsuario(), colorAuto);
 
 			if (this.colorAutoRep.getResultado()) { // error
 				cMensaje = this.colorAutoRep.getMensaje();
@@ -153,11 +156,11 @@ public class ColorAutoCtrl {
 	}
 
 	@GetMapping("/getColorAuto")
-	public ModelAndView getColorAuto(@RequestParam(name = "cColor", required = true) String cColor) {
+	public ModelAndView getColorAuto(@RequestParam(name = "cColor", required = true) String cColor , @ModelAttribute("Usuario") SessionUsu objUsuario) {
 		ColorAuto colorAuto = new ColorAuto();
 
 		colorAuto = this.colorAutoRep.getColorAuto(1,
-				"FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = 'AUTOTEC' AND ctColorAuto.cColor = '" + cColor
+				"FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = '"  + objUsuario.getCompania() + "' AND ctColorAuto.cColor = '" + cColor
 						+ "' NO-LOCK:");
 
 		if (this.colorAutoRep.getResultado()) { // error
