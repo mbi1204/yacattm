@@ -31,7 +31,7 @@ public class CombustionCtrl {
 	private static final String FORM_UPD = "/ope/cat/ctSisCombAutoUpdF";
 	private static final String REDIRECT = "redirect:/ope/ctSisCombAuto/lista";
 	
-	private String cError;
+	private String cError; 
 	
 	@Autowired
 	private CombustionRep combustionRep;
