@@ -44,7 +44,8 @@ public class CombustionCtrl {
 	@GetMapping("/lista")
 	public ModelAndView lista(@ModelAttribute("Usuario") SessionUsu objUsuario){
 		
-		ModelAndView mav = new ModelAndView(VIEW);
+		ModelAndView mav = new ModelAndView();		
+		mav.setViewName(VIEW);
 		mav.addObject("titulo", "Sistema de Combustión");
 		mav.addObject("listaSisComb", combustionRep.listaCombustion(0,
 				"FOR EACH ctSisCombAuto WHERE ctSisCombAuto.cCveCia = '" + objUsuario.getCompania() + "' NO-LOCK:"));
