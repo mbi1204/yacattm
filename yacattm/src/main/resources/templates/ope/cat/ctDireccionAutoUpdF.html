@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/headTag :: headTag">
+<title>Crear</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</head>
+<body>
+
+
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form action="#" th:action="@{/ope/ctDireccionAuto/agregar}"
+			th:object="${direccionAuto}" method="post">
+
+
+
+			<div class="modal-body">
+
+				<div class="form-group">
+
+					<label for="compania" class="form-control-label">compania:</label>
+					<input type="text" readonly="true" class="form-control" id="compania" th:field="*{compania}" th:value="${compania}" /> 
+					<label for="Direccion" class="form-control-label">Direccion:</label> 
+					<input type="text" class="form-control" id="Direccion" th:field="*{Direccion}" th:value="${Direccion}" /> 
+					<label for="activo" class="form-control-label">activo:</label> 
+					<input type="checkbox"	class="form-control" id="activo" th:field="*{activo}" th:value="${activo}" /> 
+					<input type="hidden" class="form-control" id="rowid" th:field="*{rowid}" />
+
+				</div>
+
+			</div>
+
+
+
+			<div class="modal-footer">
+				<a href="#" th:href="@{/ope/ctDireccionAuto/lista}">
+					<button type="button" class="btn btn-danger">Cancelar</button>
+				</a>
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</div>
+
+		</form>
+	</div>
+
+</body>
+</html>
+
+
