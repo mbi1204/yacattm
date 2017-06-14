@@ -3,20 +3,12 @@ package com.sinergitec.yacattm.model.ct;
 import java.util.Arrays;
 import java.util.Vector;
 
-/**
- * Autor: Aestrada
- * Fecha: 07 de junio de 2017
- * Descripcion: Modelo de la tabla ctEstatusOS 
- * 
- **/
-
-public class EstatusOS {
+public class TipoAuto {
 	
 	private String compania;
-	private String estatus;
-	private String obs;
+	private String tipo;
 	private Boolean activo;
-	private byte[] rowid;
+	private byte[]  rowid;
 	
 	public String getCompania() {
 		return compania;
@@ -24,17 +16,11 @@ public class EstatusOS {
 	public void setCompania(String compania) {
 		this.compania = compania;
 	}
-	public String getEstatus() {
-		return estatus;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setEstatus(String estatus) {
-		this.estatus = estatus;
-	}
-	public String getObs() {
-		return obs;
-	}
-	public void setObs(String obs) {
-		this.obs = obs;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	public Boolean getActivo() {
 		return activo;
@@ -51,20 +37,18 @@ public class EstatusOS {
 	
 	@Override
 	public String toString() {
-		return "EstatusOS [compania=" + compania + ", estatus=" + estatus + ", obs=" + obs + ", activo=" + activo
-				+ ", rowid=" + Arrays.toString(rowid) + "]";
+		return "TipoAuto [compania=" + compania + ", tipo=" + tipo + ", activo=" + activo + ", rowid="
+				+ Arrays.toString(rowid) + "]";
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Vector getLista(){
 		Vector vector = new Vector();
 		vector.add(this.getCompania());
-		vector.add(this.getEstatus());
-		vector.add(this.getObs());
+		vector.add(this.getTipo());
 		vector.add(this.getActivo());
 		vector.add(this.getRowid());
 		return vector;		
-	}	
-	
-}
+	}
 
+}
