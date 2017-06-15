@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="fragments/headTag :: headTag">
-<title>Crear</title>
+<title>Modificar</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -12,9 +12,9 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<form action="#" th:action="@{/ope/ctDireccionAuto/agregar}"
+		<form action="#" th:action="@{/ope/ctDireccionAuto/actualizar}"
 			th:object="${direccionAuto}" method="post">
-
+                         direccionAuto
 
 
 			<div class="modal-body">
@@ -23,7 +23,7 @@
 
 					<label for="compania" class="form-control-label">compania:</label>
 					<input type="text" readonly="true" class="form-control" id="compania" th:field="*{compania}" th:value="${compania}" /> 
-					<label for="Direccion" class="form-control-label">Direccion:</label> 
+					<label for="Direccion"  readonly="true" class="form-control-label">Direccion:</label> 
 					<input type="text" class="form-control" id="Direccion" th:field="*{Direccion}" th:value="${Direccion}" /> 
 					<label for="activo" class="form-control-label">activo:</label> 
 					<input type="checkbox"	class="form-control" id="activo" th:field="*{activo}" th:value="${activo}" /> 
@@ -44,6 +44,18 @@
 
 		</form>
 	</div>
+	
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Error', document.getElementById("message").innerHTML,'error');
+	}
+	
+	</script>
 
 </body>
 </html>

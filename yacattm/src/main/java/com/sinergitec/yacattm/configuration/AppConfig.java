@@ -5,13 +5,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.sinergitec.yacattm.interceptor.RequestInterceptor;
+import com.sinergitec.yacattm.component.RequestInterceptor;
 
 @Configuration
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
-	RequestInterceptor requestInterceptor;
+	private RequestInterceptor requestInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {

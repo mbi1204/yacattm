@@ -48,6 +48,18 @@
 
 		</form>
 	</div>
+	
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Error', document.getElementById("message").innerHTML,'error');
+	}
+	
+	</script>
 
 </body>
 </html>

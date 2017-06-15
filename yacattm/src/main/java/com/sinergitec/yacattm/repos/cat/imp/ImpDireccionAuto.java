@@ -180,7 +180,7 @@ public class ImpDireccionAuto implements DireccionAutoRep {
 	public DireccionAuto getDireccionAuto(int iModo, String cQuery) {
 		// TODO Auto-generated method stub
 		Connection conexion = null;
-		DireccionAuto direccionAuto = new DireccionAuto();
+		DireccionAuto obj = new DireccionAuto();
 
 		try {
 
@@ -191,18 +191,21 @@ public class ImpDireccionAuto implements DireccionAutoRep {
 			StringHolder chTexto = new StringHolder();
 			app app = new app(conexion);
 
-			app.as_ctEngomado_Carga(iModo, cQuery, tt_DireccionAuto, lhResultado, chTexto);
+			app.as_ctDireccionAuto_Carga(iModo, cQuery, tt_DireccionAuto, lhResultado, chTexto);
+			
 
-			ResultSet rs_DireccionAuto = tt_DireccionAuto.getResultSetValue();
+			ResultSet rs_DireccionAuto = tt_DireccionAuto.getResultSetValue();			
 
 			if (rs_DireccionAuto.next()) {
-				DireccionAuto obj = new DireccionAuto();
+			
 				obj.setCompania(rs_DireccionAuto.getString("cCveCia"));
 				obj.setDireccion(rs_DireccionAuto.getString("cDireccion"));
 				obj.setActivo(rs_DireccionAuto.getBoolean("lActivo"));
 				obj.setRowid(rs_DireccionAuto.getBytes("Id"));
 
 			}
+			
+		
 
 			this.setResultado(lhResultado.getBooleanValue());
 			this.setMensaje(chTexto.getStringValue());
@@ -227,7 +230,7 @@ public class ImpDireccionAuto implements DireccionAutoRep {
 			}
 		}
 
-		return direccionAuto;
+		return obj;
 	}
 
 	public Boolean getResultado() {

@@ -42,7 +42,7 @@
 					<td style="text-align: center;"><span class="align-middle"
 						th:text="${row.activo}? SI : NO ">Activo? </span></td>
 					<td>
-						<a href="#" th:href="@{/ope/ctEstatusOS/getEstatusOS?cEstatus=__${row.direccion}__}">
+						<a href="#" th:href="@{/ope/ctDireccionAuto/getDireccionAuto?cDireccion=__${row.direccion}__}">
 							<button type="button" class="btn btn-info">
 								<span class="fa fa-pencil" aria-hidden="true"></span>
 
@@ -59,6 +59,18 @@
 	</div>
 	
 	<br/>
+	
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Error', document.getElementById("message").innerHTML,'error');
+	}
+	
+	</script>
 	
 	<script type="text/javascript" src="#"
 		th:src="@{/js/ope/ctEstatusOSV.js}"></script>
