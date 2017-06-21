@@ -9,7 +9,7 @@ import java.util.Vector;
  * 
  **/
 
-public class UsosVeh {
+public class UsoVeh {
 	
 	private String compania;
 	private String uso;

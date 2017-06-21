@@ -12,7 +12,7 @@ import com.progress.open4gl.Open4GLException;
 import com.progress.open4gl.ResultSetHolder;
 import com.progress.open4gl.StringHolder;
 import com.progress.open4gl.javaproxy.Connection;
-import com.sinergitec.yacattm.model.ct.UsosVeh;
+import com.sinergitec.yacattm.model.ct.UsoVeh;
 import com.sinergitec.yacattm.progress.ConexionApp;
 import com.sinergitec.yacattm.progress.VectorResultSet;
 import com.sinergitec.yacattm.repos.cat.UsosVehRep;
@@ -26,7 +26,7 @@ public class ImpUsosVehRep implements UsosVehRep {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void agregar(String cUsuario, UsosVeh nuevos) {
+	public void agregar(String cUsuario, UsoVeh nuevos) {
 		
 		Connection conexion = null;
 		try {
@@ -70,7 +70,7 @@ public class ImpUsosVehRep implements UsosVehRep {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void eliminar(String cUsuario, UsosVeh viejos) {
+	public void eliminar(String cUsuario, UsoVeh viejos) {
 
 		Connection conexion = null;
 
@@ -116,7 +116,7 @@ public class ImpUsosVehRep implements UsosVehRep {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void actulizar(String cUsuario, UsosVeh viejos, UsosVeh nuevos) {
+	public void actulizar(String cUsuario, UsoVeh viejos, UsoVeh nuevos) {
 
 		Connection conexion = null;
 
@@ -165,10 +165,10 @@ public class ImpUsosVehRep implements UsosVehRep {
 	}
 
 	@Override
-	public UsosVeh getUsoVehiculo(int iModo, String cQuery) {
+	public UsoVeh getUsoVehiculo(int iModo, String cQuery) {
 
 		Connection conexion = null;
-		UsosVeh usoVehiculo = new UsosVeh();
+		UsoVeh usoVehiculo = new UsoVeh();
 
 		try {
 
@@ -217,10 +217,10 @@ public class ImpUsosVehRep implements UsosVehRep {
 	}
 
 	@Override
-	public List<UsosVeh> listaUsosVehiculo(int iModo, String cQuery) {
+	public List<UsoVeh> listaUsosVehiculo(int iModo, String cQuery) {
 
 		Connection conexion = null;
-		ArrayList<UsosVeh> lista = new ArrayList<UsosVeh>();
+		ArrayList<UsoVeh> lista = new ArrayList<UsoVeh>();
 
 		try {
 
@@ -237,7 +237,7 @@ public class ImpUsosVehRep implements UsosVehRep {
 
 			while (rs_UsoVehiculo.next()) {
 
-				UsosVeh usoVehiculo = new UsosVeh();
+				UsoVeh usoVehiculo = new UsoVeh();
 				usoVehiculo.setCompania(rs_UsoVehiculo.getString("cCveCia"));
 				usoVehiculo.setUso(rs_UsoVehiculo.getString("cUso"));
 				usoVehiculo.setActivo(rs_UsoVehiculo.getBoolean("lActivo"));
