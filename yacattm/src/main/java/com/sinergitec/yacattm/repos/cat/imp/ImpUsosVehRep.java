@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import org.springframework.stereotype.Repository;
+
 import com.progress.open4gl.BooleanHolder;
 import com.progress.open4gl.Open4GLException;
 import com.progress.open4gl.ResultSetHolder;
@@ -19,6 +21,7 @@ import com.sinergitec.yacattm.repos.cat.UsosVehRep;
 
 import yacattm.app;
 
+@Repository
 public class ImpUsosVehRep implements UsosVehRep {
 	
 	private Boolean Resultado;
