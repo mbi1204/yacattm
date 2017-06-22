@@ -45,7 +45,7 @@ public class TransmisionCtrl {
 	public ModelAndView listaAllTransmisiones(@ModelAttribute("Usuario") SessionUsu objUsuario) {
 
 		ModelAndView mav = new ModelAndView(VIEW);
-		mav.addObject("titulo", "Tipo de Vehículo");
+		mav.addObject("titulo", "Tipo de Transmisión");
 		mav.addObject("listaTrans", transmisionRep.listaTransmision(0,
 				"FOR EACH ctTrasmAuto WHERE ctTrasmAuto.cCveCia = '" + objUsuario.getCompania() + "' NO-LOCK:"));
 
