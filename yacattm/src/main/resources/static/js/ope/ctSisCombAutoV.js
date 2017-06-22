@@ -16,8 +16,8 @@ function eliminar(cSistema){
 			  confirmButtonColor: '#3085d6',
 			  cancelButtonColor: '#d33',
 			  confirmButtonText: 'SI',
-			  cancelButtonText:  'NO' 
-				  
+			  cancelButtonText:  'NO',
+			  closeOnConfirm : false				  
 		},function() {
 
 			$.ajax({
