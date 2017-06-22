@@ -66,7 +66,7 @@ public class UsosVehCtrl {
 		usoVeh.setCompania(objUsuario.getCompania());
 		usoVeh.setActivo(true);
 		usoVeh.setRowid(null);
-		mav.addObject("usosVeh", usoVeh);
+		mav.addObject("usoVeh", usoVeh);
 
 		return mav;
 	}
