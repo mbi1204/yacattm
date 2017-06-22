@@ -154,6 +154,7 @@ public class UsosVehCtrl {
 		usoVeh = this.usosVehRep.getUsoVehiculo(1, "FOR EACH ctUsoAuto WHERE ctUsoAuto.cCveCia = '"
 				+ objUsuario.getCompania() + "' AND ctUsoAuto.cUso = '" + cUso + "' NO-LOCK:");
 
+		
 		if (this.usosVehRep.getResultado()) {
 			cMensaje = this.usosVehRep.getMensaje();
 		} else {
