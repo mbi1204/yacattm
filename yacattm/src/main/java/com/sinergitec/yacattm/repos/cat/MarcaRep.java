@@ -2,6 +2,8 @@ package com.sinergitec.yacattm.repos.cat;
 
 import java.util.List;
 
+import com.sinergitec.yacattm.model.ct.MarcaAuto;
+
 
 /**
  * Autor: Aestrada
@@ -10,14 +12,14 @@ import java.util.List;
  * 
  **/
 
-public interface MarcasRep {
+public interface MarcaRep {
 
-	/*public void agregar(String cUsuario, UsoVeh nuevos);
-	public void eliminar(String cUsuario,UsoVeh viejos);
-	public void actulizar(String cUsuario,UsoVeh viejos , UsoVeh nuevos);
-	public UsoVeh getUsoVehiculo(int iModo, String cQuery);
-	public List<UsoVeh> listaUsosVehiculo(int iModo, String cQuery);
+	public void agregar(String cUsuario, MarcaAuto nuevos);
+	public void eliminar(String cUsuario,MarcaAuto viejos);
+	public void actulizar(String cUsuario,MarcaAuto viejos , MarcaAuto nuevos);
+	public MarcaAuto getMarcaAuto(int iModo, String cQuery);
+	public List<MarcaAuto> listaMarcasAuto(int iModo, String cQuery);
 	public Boolean getResultado();
-	public String  getMensaje();*/
+	public String  getMensaje();
 	
 }
