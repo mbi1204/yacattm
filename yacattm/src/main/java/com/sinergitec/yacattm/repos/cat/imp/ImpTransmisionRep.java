@@ -21,6 +21,12 @@ import com.sinergitec.yacattm.repos.cat.TransmisionRep;
 
 import yacattm.app;
 
+/**
+ * Autor: Aestrada Fecha: 07 de junio de 2017 Descripcion: Implementacion de la
+ * interfaz de transmision
+ * 
+ **/
+
 @Repository
 public class ImpTransmisionRep implements TransmisionRep {
 

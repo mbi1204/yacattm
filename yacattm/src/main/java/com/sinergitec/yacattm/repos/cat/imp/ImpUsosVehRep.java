@@ -21,6 +21,12 @@ import com.sinergitec.yacattm.repos.cat.UsosVehRep;
 
 import yacattm.app;
 
+/**
+ * Autor: Aestrada Fecha: 22 de junio de 2017 Descripcion: Implementacion de la
+ * interfaz de Usos Vehiculo
+ * 
+ **/
+
 @Repository
 public class ImpUsosVehRep implements UsosVehRep {
 	

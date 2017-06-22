@@ -12,7 +12,7 @@ import com.sinergitec.yacattm.model.ct.MarcaAuto;
  * 
  **/
 
-public interface MarcaRep {
+public interface MarcaAutoRep {
 
 	public void agregar(String cUsuario, MarcaAuto nuevos);
 	public void eliminar(String cUsuario,MarcaAuto viejos);

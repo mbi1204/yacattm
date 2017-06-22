@@ -21,6 +21,12 @@ import com.sinergitec.yacattm.repos.cat.TipoAutoRep;
 
 import yacattm.app;
 
+/**
+ * Autor: Aestrada Fecha: 07 de junio de 2017 Descripcion: Implementacion de la
+ * interfaz de Tipo de auto
+ * 
+ **/
+
 @Repository
 public class ImpTipoAutoRep implements TipoAutoRep {
 
