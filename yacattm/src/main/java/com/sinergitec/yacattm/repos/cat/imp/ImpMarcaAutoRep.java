@@ -42,17 +42,25 @@ public class ImpMarcaAutoRep implements MarcaAutoRep {
 
 		return null;
 	}
-
+	
 	@Override
 	public Boolean getResultado() {
 
-		return null;
+		return Resultado;
+	}
+
+	public void setResultado(Boolean resultado) {
+		Resultado = resultado;
 	}
 
 	@Override
 	public String getMensaje() {
 
-		return null;
+		return Mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		Mensaje = mensaje;
 	}
 
 }
