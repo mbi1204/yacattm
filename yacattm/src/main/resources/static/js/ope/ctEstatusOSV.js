@@ -30,6 +30,7 @@ function eliminar(cEstatus){
 
 					if (data == "success") {
 						row.remove();
+						swal.close();
 					} else {
 						swal('Error!', data, 'error');
 					}
