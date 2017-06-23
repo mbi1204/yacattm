@@ -159,12 +159,14 @@ public class DireccionAutoCtrl {
 	@GetMapping("/eliminar")
 	public @ResponseBody String eliminar(@RequestParam(name = "cDireccion", required = true) String cDireccion,
 			@ModelAttribute("Usuario") SessionUsu sessionUsu) {
+		
+		
 
 		String cMensaje = null;
 		DireccionAuto direccionAuto = new DireccionAuto();
 
-		direccionAuto = this.direccionAutoRep.getDireccionAuto(1, "FOR EACH ctColorAuto WHERE ctColorAuto.cCveCia = '"
-				+ sessionUsu.getCompania() + "' AND ctColorAuto.cColor = '" + cDireccion + "' NO-LOCK:");
+		direccionAuto = this.direccionAutoRep.getDireccionAuto(1, "FOR EACH ctDireccionAuto WHERE ctDireccionAuto.cCveCia = '"
+				+ sessionUsu.getCompania() + "' AND ctDireccionAuto.cDireccion = '" + cDireccion + "' NO-LOCK:");
 
 		if (this.direccionAutoRep.getResultado()) { // error
 			cMensaje = this.direccionAutoRep.getMensaje();
@@ -178,9 +180,12 @@ public class DireccionAutoCtrl {
 			}
 
 		}
+		
+		System.out.println("error"  + cMensaje);
 
-		if (cMensaje == null || cMensaje == "")
+		if (cMensaje == null || cMensaje == ""){
 			cMensaje = "success";
+		}
 
 		return cMensaje;
 

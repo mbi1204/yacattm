@@ -51,6 +51,7 @@ public class EmgomadoCtrl {
 		engomado.setCompania("AUTOTEC");
 		engomado.setActivo(true);
 		engomado.setRowid(null);
+		engomado.setOrden(0);
 		mav.addObject("engomado", engomado);
 
 		return mav;
@@ -109,10 +110,7 @@ public class EmgomadoCtrl {
 		viejo = engomadoRep.getEngomado(1,
 				"FOR EACH ctEngomado WHERE ctEngomado.cCveCia = 'AUTOTEC' AND ctEngomado.cEngomado = '"
 						+ engomado.getEngomado() + "' NO-LOCK:");
-
-		System.out.println("Viejo -> " + viejo.toString());
-
-		System.out.println("Nuevo -> " + engomado.toString());
+	
 
 		if (this.engomadoRep.getResultado()) { // error
 			ModelAndView mav = new ModelAndView("/ope/cat/ctEngomadoUpdF");

@@ -15,7 +15,8 @@ function eliminar(cColor) {
 			  confirmButtonColor: '#3085d6',
 			  cancelButtonColor: '#d33',
 			  confirmButtonText: 'SI',
-			  cancelButtonText:  'NO' 
+			  cancelButtonText:  'NO',
+			  closeOnConfirm : false
 				  
 		},function() {
 
@@ -29,6 +30,7 @@ function eliminar(cColor) {
 
 					if (data == "success") {
 						row.remove();
+						swal.close();
 					} else {
 						swal('Error!', data, 'error');
 					}
