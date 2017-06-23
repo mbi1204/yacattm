@@ -26,7 +26,7 @@ import com.sinergitec.yacattm.repos.cat.MarcaAutoRep;
 @RequestMapping("/ope/ctMarcaVehiculo")
 public class MarcaAutoCtrl {
 
-	private static final String VIEW = "/ope/cat/ctMarcaAutoV";
+	private static final String VIEW = "/ope/cat/ctMarcaModeloV";
 	private static final String FORM_ADD = "/ope/cat/ctMarcaAutoAddF";
 	private static final String FORM_UPD = "/ope/cat/ctMarcaAutoUpdF";
 	private static final String REDIRECT = "redirect:/ope/ctMarcaVehiculo/lista";
