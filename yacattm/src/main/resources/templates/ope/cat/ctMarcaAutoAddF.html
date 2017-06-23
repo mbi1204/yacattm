@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<head th:replace="fragments/headTag :: headTag">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+
+	<br />
+
+	<form action="#" th:action="@{/ope/ctMarcaVehiculo/agregar}"
+		th:object="${marcaAuto}" method="POST">
+
+		<div class="modal-body">
+
+			<div class="form-group row">
+				<label for="compania" class="col-2 col-form-label">Compa&ntilde;ia</label>
+				<div class="col-10">
+					<input class="form-control" type="text" id="compania"
+						th:field="*{compania}" th:value="${compania}" readonly="true" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="uso" class="col-2 col-form-label">Marca de Veh&iacute;culo:</label>
+				<div class="col-10">
+					<input class="form-control" type="text" id="transmision"
+						th:field="*{marca}" th:value="${marca}" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="activo" class="col-2 col-form-label">Activo:</label>
+				<div class="col-10">
+					<input type="checkbox" class="form-control" id="activo"
+						th:field="*{activo}" th:value="${activo}" />
+				</div>
+			</div>
+
+			<input type="hidden" class="form-control" id="rowid"
+				th:field="*{rowid}" />
+
+		</div>
+
+		<div class="modal-footer">
+			<a href="#" th:href="@{/ope/ctMarcaVehiculo/lista}">
+				<button type="button" class="btn btn-danger">Cancelar</button>
+			</a>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</div>
+
+	</form>
+	
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Error', document.getElementById("message").innerHTML,'error');
+	}
+	
+	</script>
+
+</body>
+</html>

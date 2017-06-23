@@ -50,8 +50,8 @@ public class MarcaAuto {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Vector getLista(){
 		Vector vector = new Vector();
-		vector.add(this.getCompania());
 		vector.add(this.getMarca());
+		vector.add(this.getCompania());
 		vector.add(this.getActivo());
 		vector.add(this.getRowid());
 		return vector;		
