@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head th:replace="fragments/headTag :: headTag">
 <meta charset="ISO-8859-1" />
 <title>Actualiza engomado</title>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.4/sweetalert2.min.css"></link>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.4/sweetalert2.min.js"></script>
-
-
-
 </head>
 <body>
 
 
 
+<div th:replace="fragments/header :: header"></div>
 
 	<form action="#" th:action="@{/ope/ctEngomado/actualizar}"
 		th:object="${engomado}" method="post">
@@ -84,14 +71,18 @@
 	</div>
 
 	<script type="text/javascript">
-	
-	if(document.getElementById("message").innerHTML != ""){
-		swal('Error', document.getElementById("message").innerHTML,'error');
-	}
-	
+		$(document).ready(function() {
+
+			$("#Orden").mask("99");
+
+		});
+
+		if (document.getElementById("message").innerHTML != "") {
+			swal('Error', document.getElementById("message").innerHTML, 'error');
+		}
 	</script>
-	
-	
-	
+
+
+
 </body>
 </html>

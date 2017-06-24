@@ -2,9 +2,13 @@
  * 
  */
 
+/**
+ * 
+ */
 
-
-function eliminar(cEngomado) {
+function eliminar(cDireccion) {
+	
+	console.log("entro al vento "  +  cDireccion);
 	$("#Lista").on('click', '#btnEliminar', function() {
 		var row = $(this).closest('tr');
 
@@ -18,28 +22,28 @@ function eliminar(cEngomado) {
 			confirmButtonText : 'SI',
 			cancelButtonText : 'NO',
 			closeOnConfirm : false
+			
 
 		}, function() {
 			$.ajax({
-				url : '/ope/ctEngomado/eliminar',
+				url : '/ope/ctDireccionAuto/eliminar',
 				data : {
-					cEngomado : cEngomado
+					cDireccion : cDireccion
 				},
 				type : 'GET',
 				success : function(data) {
+					
+					console.log(data);
 
 					if (data == "success") {
 						row.remove();
 						swal.close();
-					} else {
-						swal('Error!', data, 'error');
+					} else {						
+						swal('Error!', data, 'error');					
 					}
-
 				},
 				error : function(xhr, status) {
-
 					alert(xhr);
-
 				},
 				complete : function(xhr, status) {
 
