@@ -183,7 +183,7 @@ public class ImpModeloAutoRep implements ModeloAutoRep {
 			StringHolder chTexto = new StringHolder();
 			app app = new app(conexion);
 
-			app.as_ctUsoAuto_Carga(iModo, cQuery, tt_ModeloAuto, lhResultado, chTexto);
+			app.as_ctAutoModelo_Carga(iModo, cQuery, tt_ModeloAuto, lhResultado, chTexto);
 
 			ResultSet rs_ModeloAuto = tt_ModeloAuto.getResultSetValue();
 
@@ -237,7 +237,7 @@ public class ImpModeloAutoRep implements ModeloAutoRep {
 			StringHolder chTexto = new StringHolder();
 			app app = new app(conexion);
 
-			app.as_ctUsoAuto_Carga(iModo, cQuery, tt_ModeloAuto, lhResultado, chTexto);
+			app.as_ctAutoModelo_Carga(iModo, cQuery, tt_ModeloAuto, lhResultado, chTexto);
 
 			ResultSet rs_ModeloAuto = tt_ModeloAuto.getResultSetValue();
 

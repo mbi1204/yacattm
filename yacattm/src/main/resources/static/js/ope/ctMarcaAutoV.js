@@ -5,10 +5,6 @@
  */
 
 function eliminar(cMarca) {
-	var row;
-	$("#Lista").on('click', '#btnEliminar', function() {
-		row = $(this).closest('tr');
-	});
 
 	swal({
 		title : "Eliminar",
@@ -31,7 +27,7 @@ function eliminar(cMarca) {
 			success : function(data) {
 
 				if (data == "success") {
-					row.remove();
+					$("#marcaSelect option[value='"+cMarca+"']").remove();
 					swal.close();
 				} else {
 					swal('Error!', data, 'error');
@@ -49,3 +45,14 @@ function eliminar(cMarca) {
 
 	});
 }
+
+function getValue(){
+	
+	$("#edit").attr('href','/ope/ctMarcaVehiculo/getMarcaVehiculo?cMarca='+ $( "#marcaSelect" ).val() + '');
+	$("#btnEliminar").attr('onclick','eliminar(\''+ $( "#marcaSelect" ).val() + '\')');
+	$("#edit").attr('style','display:block');
+	$("#btnEliminar").attr('style','display:block');
+	
+	cargaLista($( "#marcaSelect" ).val());
+}
+
