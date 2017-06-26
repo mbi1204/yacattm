@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<head th:replace="fragments/headTag :: headTag">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" />
+
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+
+	<br />
+
+	<div class="container">
+
+		<div class="col-12">
+		</div>
+		
+		<div class="row">
+			<div class="col-12 col-md-10">
+				<div class="row">
+					<div class="col-12 col-md-2">
+						<a href="#"><span class="fa fa-user-circle" aria-hidden="true">Selecciona Cliente-Veh&iacute;culo</span></a>
+					</div>
+					<div class="col-12 col-md-10">
+						
+						<div class='col-md-2'>
+							<div class="form-group">
+								<div class='input-group date' id='datetimepicker2'>
+									<input type='text' class="form-control" /> <span
+										class="input-group-addon"> <span
+										class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+						
+						<div></div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-md-2">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-12 col-md-3"></div>
+			<div class="col-12 col-md-3"></div>
+			<div class="col-12 col-md-3"></div>
+			<div class="col-12 col-md-3"></div>		
+		</div>
+		
+		<div class="row">
+			<button class="btn btn-primary btn-lg">Guardar</button>
+		</div>
+		
+	</div>
+
+	<br />
+
+	<script type="text/javascript" src="#"
+		th:src="@{/js/ope/ctUsosVehV.js}"></script>
+
+	<script type="text/javascript" src="#"
+		th:src="@{/bootstrap-datepicker/js/moment-with-locales.min.js}"></script>
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>	
+		
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+	
+	if(document.getElementById("message").innerHTML != ""){
+		swal('Error', document.getElementById("message").innerHTML,'error');
+	}
+	
+	$(function () {
+        $('#datetimepicker2').datetimepicker({
+            locale: 'es'
+        });
+    });
+	
+	</script>
+
+</body>
+</html>
