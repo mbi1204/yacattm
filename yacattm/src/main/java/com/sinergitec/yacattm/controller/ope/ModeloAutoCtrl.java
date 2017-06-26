@@ -27,20 +27,20 @@ import com.sinergitec.yacattm.repos.cat.ModeloAutoRep;
 @RequestMapping("/ope/ctModeloVehiculo")
 public class ModeloAutoCtrl {
 
-	private static final String FORM_ADD = "/ope/cat/ctMarcaAutoAddF";
-	private static final String FORM_UPD = "/ope/cat/ctMarcaAutoUpdF";
-	private static final String REDIRECT = "redirect:/ope/ctModeloVehiculo/lista";
+	private static final String FORM_ADD = "/ope/cat/ctModeloAutoAddF";
+	private static final String FORM_UPD = "/ope/cat/ctModeloAutoUpdF";
+	private static final String REDIRECT = "redirect:/ope/ctMarcaVehiculo/lista";
 
 	private String cError;
-	
+
 	@Autowired
 	private ModeloAutoRep modeloAutoRep;
-	
+
 	@GetMapping("")
 	public String redireccion() {
 		return REDIRECT;
 	}
-	
+
 	@GetMapping("/lista")
 	public @ResponseBody String lista(@ModelAttribute("Usuario") SessionUsu objUsuario,
 			@RequestParam(name = "cMarca", required = true) String cMarca) {
@@ -50,26 +50,28 @@ public class ModeloAutoCtrl {
 		cMensaje = new Gson()
 				.toJson(this.modeloAutoRep.listaModeloAuto(0, "FOR EACH ctAutoModelo WHERE ctAutoModelo.cCveCia = '"
 						+ objUsuario.getCompania() + "'" + "AND ctAutoModelo.cMarca = '" + cMarca + "' NO-LOCK:"));
-		
-		if(this.modeloAutoRep.getResultado()){
+
+		if (this.modeloAutoRep.getResultado()) {
 			cMensaje = new Gson().toJson(this.modeloAutoRep.getMensaje());
 		}
 
 		return cMensaje;
 	}
-	
+
 	@GetMapping("/nuevo")
-	public ModelAndView nuevo(@ModelAttribute("Usuario") SessionUsu objUsuario) {
+	public ModelAndView nuevo(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@RequestParam(name = "cMarca", required = true) String cMarca) {
 		ModelAndView mav = new ModelAndView(FORM_ADD);
 		ModeloAuto modeloAuto = new ModeloAuto();
 		modeloAuto.setCompania(objUsuario.getCompania());
+		modeloAuto.setMarca(cMarca);
 		modeloAuto.setActivo(true);
 		modeloAuto.setRowid(null);
 		mav.addObject("modeloAuto", modeloAuto);
 
 		return mav;
 	}
-	
+
 	@PostMapping("/agregar")
 	public ModelAndView agregar(@ModelAttribute("Usuario") SessionUsu objUsuario,
 			@ModelAttribute("modeloAuto") ModeloAuto modeloAuto) {
@@ -88,5 +90,91 @@ public class ModeloAutoCtrl {
 
 		return mav;
 	}
-	
+
+	@GetMapping("/getModeloVehiculo")
+	public ModelAndView getModeloVehiculo(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@RequestParam(name = "cMarca", required = true) String cMarca,
+			@RequestParam(name = "cModelo", required = true) String cModelo) {
+
+		ModelAndView mav = new ModelAndView();
+		ModeloAuto modeloAuto = new ModeloAuto(); 
+
+		modeloAuto = this.modeloAutoRep.getModeloAuto(1,
+				"FOR EACH ctAutoModelo WHERE ctAutoModelo.cCveCia = '" + objUsuario.getCompania()
+						+ "' AND ctAutoModelo.cMarca = '" + cMarca + "' AND ctAutoModelo.cModelo = '" + cModelo
+						+ "' NO-LOCK:");
+
+		if (this.modeloAutoRep.getResultado()) {
+
+			mav.setViewName(REDIRECT);
+			cError = this.modeloAutoRep.getMensaje();
+			return mav;
+
+		} else {
+			mav.setViewName(FORM_UPD);
+			mav.addObject("modeloAuto", modeloAuto);
+			mav.addObject("error", this.modeloAutoRep.getMensaje());
+			cError = null;
+			return mav;
+		}
+	}
+
+	@PostMapping("/actualizar")
+	public ModelAndView actualizar(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@ModelAttribute("modeloAuto") ModeloAuto modeloAuto) {
+
+		ModelAndView mav = new ModelAndView();
+		ModeloAuto viejo = new ModeloAuto();
+		viejo = this.modeloAutoRep.getModeloAuto(1,
+				"FOR EACH ctAutoModelo WHERE ctAutoModelo.cCveCia = '" + objUsuario.getCompania()
+						+ "' AND ctAutoModelo.cMarca = '" + modeloAuto.getMarca() + "' AND ctAutoModelo.cModelo = '"
+						+ modeloAuto.getModelo() + "' NO-LOCK:");
+
+		if (this.modeloAutoRep.getResultado()) {
+			mav.setViewName(FORM_UPD);
+			mav.addObject("error", this.modeloAutoRep.getMensaje());
+			mav.addObject("modeloAuto", modeloAuto);
+		}
+
+		this.modeloAutoRep.actulizar(objUsuario.getUsuario(), viejo, modeloAuto);
+
+		if (this.modeloAutoRep.getResultado()) {
+			mav.setViewName(FORM_UPD);
+			mav.addObject("error", this.modeloAutoRep.getMensaje());
+			mav.addObject("modeloAuto", modeloAuto);
+		} else {
+			mav.setViewName(REDIRECT);
+		}
+
+		return mav;
+	}
+
+	@GetMapping("/eliminar")
+	public @ResponseBody String eliminar(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@RequestParam(name = "cMarca", required = true) String cMarca,
+			@RequestParam(name = "cModelo", required = true) String cModelo) {
+
+		String cMensaje = null;
+		ModeloAuto modeloAuto = new ModeloAuto();
+
+		modeloAuto = this.modeloAutoRep.getModeloAuto(1,
+				"FOR EACH ctAutoModelo WHERE ctAutoModelo.cCveCia = '" + objUsuario.getCompania()
+						+ "' AND ctAutoModelo.cMarca = '" + cMarca + "' AND ctAutoModelo.cModelo = '" + cModelo
+						+ "' NO-LOCK:");
+
+		if (this.modeloAutoRep.getResultado()) {
+			cMensaje = this.modeloAutoRep.getMensaje();
+		} else {
+			this.modeloAutoRep.eliminar(objUsuario.getUsuario(), modeloAuto);
+			if (this.modeloAutoRep.getResultado()) {
+				cMensaje = this.modeloAutoRep.getMensaje();
+			}
+		}
+
+		if (cMensaje == null || cMensaje == "")
+			cMensaje = "success";
+
+		return cMensaje;
+	}
+
 }

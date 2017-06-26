@@ -53,6 +53,8 @@ function getValue(){
 	$("#edit").attr('style','display:block');
 	$("#btnEliminar").attr('style','display:block');
 	
+	$("#nuevoModelo").attr('href','/ope/ctModeloVehiculo/nuevo?cMarca='+ $( "#marcaSelect" ).val() + '');
+	
 	cargaLista($( "#marcaSelect" ).val());
 }
 
