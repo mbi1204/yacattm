@@ -4,9 +4,6 @@
 <title th:text="${titulo}"></title>
 <head th:replace="fragments/headTag :: headTag">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<link rel="stylesheet" type="text/css" th:href="@{/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" />
-
 </head>
 
 <body>
@@ -28,12 +25,12 @@
 					</div>
 					<div class="col-12 col-md-10">
 						
-						<div class='col-md-2'>
+						<div class='col-md-4'>
 							<div class="form-group">
-								<div class='input-group date' id='datetimepicker2'>
-									<input type='text' class="form-control" /> <span
-										class="input-group-addon"> <span
-										class="glyphicon glyphicon-calendar"></span>
+								<div class='input-group date' id='datetimepicker'>
+									<input type='text' class="form-control" /> 
+									<span class="input-group-addon"> 
+										<span class="fa fa-calendar" aria-hidden="true"></span>
 									</span>
 								</div>
 							</div>
@@ -70,7 +67,11 @@
 		th:src="@{/bootstrap-datepicker/js/moment-with-locales.min.js}"></script>
 		
 	<script type="text/javascript" src="#"
-		th:src="@{/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>	
+		th:src="@{/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js}"></script>
+
 		
 	<div class="col-12" style="display: none;">
 		<span id="message" th:text="${error}"></span>
@@ -82,11 +83,9 @@
 		swal('Error', document.getElementById("message").innerHTML,'error');
 	}
 	
-	$(function () {
-        $('#datetimepicker2').datetimepicker({
-            locale: 'es'
-        });
-    });
+	 $('#datetimepicker').datepicker({
+		 language: 'es'
+     });
 	
 	</script>
 
