@@ -60,16 +60,18 @@ public class ImpOrdenServRep implements OrdenServRep {
 			String cModelo, String cColor) {
 
 		Connection conexion = null;
+		
 		ArrayList<AutosCliente> lista = new ArrayList<AutosCliente>();
 		ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
 		ArrayList<Vehiculo> listaVehiculo = new ArrayList<Vehiculo>();
+		
+		ResultSetHolder tt_VehiCliente = new ResultSetHolder();
+		ResultSetHolder tt_ctCliente = new ResultSetHolder();
+		ResultSetHolder tt_ctVehiculo = new ResultSetHolder();
 
 		try {
 
 			conexion = ConexionApp.iniConexion();
-			ResultSetHolder tt_VehiCliente = new ResultSetHolder();
-			ResultSetHolder tt_ctCliente = new ResultSetHolder();
-			ResultSetHolder tt_ctVehiculo = new ResultSetHolder();
 
 			BooleanHolder lhResultado = new BooleanHolder();
 			StringHolder chTexto = new StringHolder();
@@ -77,11 +79,73 @@ public class ImpOrdenServRep implements OrdenServRep {
 
 			app.as_vehiculosCliente_Carga(cCompania, cNombre, cMatricula, cMarca, cModelo, cColor, tt_VehiCliente,
 					tt_ctCliente, tt_ctVehiculo, lhResultado, chTexto);
-
-			ResultSet rs_VehiCliente = tt_VehiCliente.getResultSetValue();
+			
 			ResultSet rs_ctCliente = tt_ctCliente.getResultSetValue();
 			ResultSet rs_ctVehiculo = tt_ctVehiculo.getResultSetValue();
+			ResultSet rs_VehiCliente = tt_VehiCliente.getResultSetValue();
+			
+			/*while (rs_ctCliente.next()) {
 
+				System.out.println("Llego hasta aqui clie");
+				Cliente cliente = new Cliente();
+				cliente.setCompania(rs_ctCliente.getString("cCveCia"));
+				cliente.setRfc(rs_ctCliente.getString("cRFC"));
+				cliente.setCalle(rs_ctCliente.getString("cCalle"));
+				cliente.setNumExterior(rs_ctCliente.getString("cNExterior"));
+				cliente.setNumInterior(rs_ctCliente.getString("cNInterior"));
+				cliente.setColonia(rs_ctCliente.getString("cColonia"));
+				cliente.setMpioDeleg(rs_ctCliente.getString("cMpioDeleg"));
+				cliente.setCp(rs_ctCliente.getInt("iCP"));
+				cliente.setCiudad(rs_ctCliente.getString("cCiudad"));
+				cliente.setEstado(rs_ctCliente.getString("cEstado"));
+				cliente.setTelefono1(rs_ctCliente.getString("cTelefono1"));
+				cliente.setEmail(rs_ctCliente.getString("cEmail"));
+				cliente.setContacto(rs_ctCliente.getString("cContacto"));
+				cliente.setPais(rs_ctCliente.getString("cPais"));
+				cliente.setActivo(rs_ctCliente.getBoolean("lActivo"));
+				cliente.setCliente(rs_ctCliente.getInt("iCliente"));
+				cliente.setNombre(rs_ctCliente.getString("cNombre"));
+				cliente.setTelefono2(rs_ctCliente.getString("cTelefono2"));
+				cliente.setObs(rs_ctCliente.getString("cObs"));
+				cliente.setFecha(rs_ctCliente.getTimestamp("dtFecha").toString());
+				cliente.setRowid(rs_ctCliente.getBytes("Id"));
+
+				listaCliente.add(cliente);
+
+			}*/
+
+			/*while (rs_ctVehiculo.next()) {
+
+				System.out.println("Llego hasta aqui veh");
+				Vehiculo vehiculo = new Vehiculo();
+				vehiculo.setCompania(rs_ctVehiculo.getString("cCveCia"));
+				vehiculo.setVehiculo(rs_ctVehiculo.getInt("iVehiculo"));
+				vehiculo.setMatricula(rs_ctVehiculo.getString("cMatricula"));
+				vehiculo.setModelo(rs_ctVehiculo.getString("cModelo"));
+				vehiculo.setMarca(rs_ctVehiculo.getString("cMarca"));
+				vehiculo.setAnio(rs_ctVehiculo.getInt("iAnio"));
+				vehiculo.setMotor(rs_ctVehiculo.getString("cMotor"));
+				vehiculo.setNumSerie(rs_ctVehiculo.getString("cNumeroSerie"));
+				vehiculo.setObs(rs_ctVehiculo.getString("cObservaciones"));
+				vehiculo.setEngomado(rs_ctVehiculo.getString("cEngomado"));
+				vehiculo.setCalcomaniaI(rs_ctVehiculo.getInt("iCalcomania"));
+				vehiculo.setUso(rs_ctVehiculo.getString("cUso"));
+				vehiculo.setDireccion(rs_ctVehiculo.getString("cDireccion"));
+				vehiculo.setTransmision(rs_ctVehiculo.getString("cTrasmision"));
+				vehiculo.setSistema(rs_ctVehiculo.getString("cSistema"));
+				vehiculo.setTipo(rs_ctVehiculo.getString("cTipo"));
+				vehiculo.setColor(rs_ctVehiculo.getString("cColor"));
+				vehiculo.setPais(rs_ctVehiculo.getString("cPais"));
+				vehiculo.setAireAC(rs_ctVehiculo.getBoolean("lAireAc"));
+				vehiculo.setActivo(rs_ctVehiculo.getBoolean("lActivo"));
+				vehiculo.setFecha(rs_ctVehiculo.getTimestamp("dtFecha").toString());
+				vehiculo.setCliente(rs_ctVehiculo.getInt("iCliente"));
+				vehiculo.setCalcomaniaC(rs_ctVehiculo.getString("cCalcomania"));
+
+				listaVehiculo.add(vehiculo);
+
+			}*/
+			
 			while (rs_VehiCliente.next()) {
 
 				AutosCliente autosCliente = new AutosCliente();
@@ -91,77 +155,13 @@ public class ImpOrdenServRep implements OrdenServRep {
 				autosCliente.setMatricula(rs_VehiCliente.getString("cMatricula"));
 				autosCliente.setMarca(rs_VehiCliente.getString("cMarca"));
 				autosCliente.setModelo(rs_VehiCliente.getString("cModelo"));
-				autosCliente.setColor(rs_VehiCliente.getString("cColor"));
-				autosCliente.setMotor(rs_VehiCliente.getString("cMotor"));
 				autosCliente.setAnio(rs_VehiCliente.getInt("iAnio"));
-
-				while (rs_ctCliente.next()) {
-
-					Cliente cliente = new Cliente();
-					cliente.setCompania(rs_ctCliente.getString("cCveCia"));
-					cliente.setRfc(rs_ctCliente.getString("cRFC"));
-					cliente.setCalle(rs_ctCliente.getString("cCalle"));
-					cliente.setNumExterior(rs_ctCliente.getString("cNExterior"));
-					cliente.setNumInterior(rs_ctCliente.getString("cNInterior"));
-					cliente.setColonia(rs_ctCliente.getString("cColonia"));
-					cliente.setMpioDeleg(rs_ctCliente.getString("cMpioDeleg"));
-					cliente.setCp(rs_ctCliente.getInt("iCP"));
-					cliente.setCiudad(rs_ctCliente.getString("cCiudad"));
-					cliente.setEstado(rs_ctCliente.getString("cEstado"));
-					cliente.setTelefono1(rs_ctCliente.getString("cTelefono1"));
-					cliente.setEmail(rs_ctCliente.getString("cEmail"));
-					cliente.setContacto(rs_ctCliente.getString("cContacto"));
-					cliente.setPais(rs_ctCliente.getString("cPais"));
-					cliente.setActivo(rs_ctCliente.getBoolean("lActivo"));
-					cliente.setCliente(rs_ctCliente.getInt("iCliente"));
-					cliente.setNombre(rs_ctCliente.getString("cNombre"));
-					cliente.setTelefono2(rs_ctCliente.getString("cTelefono2"));
-					cliente.setObs(rs_ctCliente.getString("cObs"));
-					cliente.setFecha(rs_ctCliente.getTimestamp("dtFecha").toString());
-					cliente.setRowid(rs_ctCliente.getBytes("Id"));
-
-					listaCliente.add(cliente);
-
-				}
-
+				autosCliente.setMotor(rs_VehiCliente.getString("cMotor"));
+				autosCliente.setColor(rs_VehiCliente.getString("cColor"));
 				autosCliente.setListCliente(listaCliente);
-
-				while (rs_ctVehiculo.next()) {
-
-					Vehiculo vehiculo = new Vehiculo();
-					vehiculo.setCompania(rs_ctVehiculo.getString("cCveCia"));
-					vehiculo.setVehiculo(rs_ctVehiculo.getInt("iVehiculo"));
-					vehiculo.setMatricula(rs_ctVehiculo.getString("cMatricula"));
-					vehiculo.setModelo(rs_ctVehiculo.getString("cModelo"));
-					vehiculo.setMarca(rs_ctVehiculo.getString("cMarca"));
-					vehiculo.setAnio(rs_ctVehiculo.getInt("iAnio"));
-					vehiculo.setMotor(rs_ctVehiculo.getString("cMotor"));
-					vehiculo.setNumSerie(rs_ctVehiculo.getString("cNumeroSerie"));
-					vehiculo.setObs(rs_ctVehiculo.getString("cObservaciones"));
-					vehiculo.setEngomado(rs_ctVehiculo.getString("cEngomado"));
-					vehiculo.setCalcomaniaI(rs_ctVehiculo.getInt("iCalcomania"));
-					vehiculo.setUso(rs_ctVehiculo.getString("cUso"));
-					vehiculo.setDireccion(rs_ctVehiculo.getString("cDireccion"));
-					vehiculo.setTransmision(rs_ctVehiculo.getString("cTrasmision"));
-					vehiculo.setSistema(rs_ctVehiculo.getString("cSistema"));
-					vehiculo.setTipo(rs_ctVehiculo.getString("cTipo"));
-					vehiculo.setColor(rs_ctVehiculo.getString("cColor"));
-					vehiculo.setPais(rs_ctVehiculo.getString("cPais"));
-					vehiculo.setAireAC(rs_ctVehiculo.getBoolean("lAireAc"));
-					vehiculo.setActivo(rs_ctVehiculo.getBoolean("lActivo"));
-					vehiculo.setFecha(rs_ctVehiculo.getTimestamp("dtFecha").toString());
-					vehiculo.setCliente(rs_ctVehiculo.getInt("iCliente"));
-					vehiculo.setCalcomaniaC(rs_ctVehiculo.getString("cCalcomania"));
-
-					listaVehiculo.add(vehiculo);
-
-				}
-
 				autosCliente.setListVehiculo(listaVehiculo);
-				// autosCliente.setRowid(rs_VehiCliente.getBytes("id"));
-
-				lista.add(autosCliente);
-
+				
+				lista.add(autosCliente);				
 			}
 
 			this.setResultado(lhResultado.getBooleanValue());

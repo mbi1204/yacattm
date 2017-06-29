@@ -25,7 +25,7 @@
 			<div id="gridSystemModal" class="modal fade" tabindex="-1"
 				role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"
 				style="display: none;">
-				<div class="modal-dialog" role="document">
+				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h4 class="modal-title" id="myLargeModalLabel">B&uacute;squeda
@@ -81,7 +81,7 @@
 									</div>
 
 									<div class="row">
-										<button type="button" class="btn btn-primary">Buscar</button>
+										<button type="button" class="btn btn-primary" onclick="busqueda();">Buscar</button>
 									</div>
 
 								</form>
@@ -170,7 +170,7 @@
 	<br />
 
 	<script type="text/javascript" src="#"
-		th:src="@{/js/ope/ctUsosVehV.js}"></script>
+		th:src="@{/js/ope/gen/opeAltaOSV.js}"></script>
 		
 	<script type="text/javascript" src="#"
 		th:src="@{/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
@@ -205,6 +205,14 @@
 	 
 	 $(document).ready(function(){
 		 $('.money').mask('000,000,000,000,000', {reverse: true});
+		 $('.close').on('click', function() {
+			 $('#nombreCliente').val("");
+			 $('#matricula').val("");
+			 $('#marca').val("");
+			 $('#modelo').val("");
+			 $('#color').val("");
+			 $("#Lista > tbody").empty();
+         });   
 	 });
 	 
 	</script>
