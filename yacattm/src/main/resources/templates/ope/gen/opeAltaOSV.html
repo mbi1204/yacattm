@@ -13,50 +13,159 @@
 	<br />
 
 	<div class="container">
-		
-		<div class="row">
-		
-			<div>
-				<a href="#"><span class="fa fa-user-circle" aria-hidden="true">Selecciona Cliente-Veh&iacute;culo</span></a>
+
+		<div class="row"> <!-- Inicio Modal -->
+
+			<button class="btn btn-primary btn-lg" data-toggle="modal"
+				data-target="#gridSystemModal">
+				<span class="fa fa-user-circle" aria-hidden="true">Selecciona
+					Cliente-Veh&iacute;culo</span>
+			</button>
+
+			<div id="gridSystemModal" class="modal fade" tabindex="-1"
+				role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"
+				style="display: none;">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myLargeModalLabel">B&uacute;squeda
+								de Veh&iacute;culos</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span class="fa fa-times" aria-hidden="true"></span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid bd-example-row">
+
+								<form>
+
+									<div class="form-group row">
+										<label for="nombreCliente" class="col-sm-2 col-form-label">Cliente:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="nombreCliente"
+												placeholder="Nombre" />
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="matricula" class="col-sm-2 col-form-label">Matr&iacute;cula:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="matricula"
+												placeholder="Matr&iacute;cula" />
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="marca" class="col-sm-2 col-form-label">Marca:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="marca"
+												placeholder="Marca" />
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="modelo" class="col-sm-2 col-form-label">Modelo:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="modelo"
+												placeholder="Modelo" />
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="color" class="col-sm-2 col-form-label">Color:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="color"
+												placeholder="Color" />
+										</div>
+									</div>
+
+									<div class="row">
+										<button type="button" class="btn btn-primary">Buscar</button>
+									</div>
+
+								</form>
+								
+								<br />
+
+								<table class="table table-responsive" id="Lista">
+									<thead>
+										<tr>
+											<th style="text-align: center;">Nombre</th>
+											<th style="text-align: center;">Matr&iacute;cula</th>
+											<th style="text-align: center;">Marca</th>
+											<th style="text-align: center;">Modelo</th>
+											<th style="text-align: center;">A&ntilde;o</th>
+											<th style="text-align: center;">Color</th>
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cerrar</button>
+							<button type="button" class="btn btn-primary">Seleccionar</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			
+		</div> <!-- Fin Modal -->
+
+		<div class="row"><br/></div>
+		
+		<div class="row">	
+
 			<div class="form-inline">
 			
-				<div class='input-group date' id='datetimepicker'>
+				<div class='input-group date mb-2 mr-sm-2 mb-sm-0' id='datetimepicker'>
 					<span class="input-group-addon"> 
 						<span class="fa fa-calendar" aria-hidden="true"></span>
 					</span>
-					<input id="fecha" type='text' class="form-control mb-2 mr-sm-2 mb-sm-0" /> 
+					<input id="fecha" type='text' class="form-control" /> 
 				</div>				
 							
-				<div class="input-group">
+				<div class="input-group mb-2 mr-sm-2 mb-sm-0">
 					<span class="input-group-addon" id="basic-addon1">Referencia:</span>
-					<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Referencia" aria-describedby="basic-addon1" />
+					<input type="text" class="form-control" placeholder="Referencia" aria-describedby="basic-addon1" />
 				</div>
 						
-				<div class="input-group">
+				<div class="input-group mb-2 mr-sm-2 mb-sm-0">
 					<span class="input-group-addon" id="basic-addon1">Kilometraje:</span>
-					<input type="text" class="form-control money mb-2 mr-sm-2 mb-sm-0" placeholder="Kilometraje" aria-describedby="basic-addon1" />
+					<input type="text" class="form-control money" placeholder="Kilometraje" aria-describedby="basic-addon1" />
 				</div>
 
 			</div>
 					
-				</div>
-				
-			</div>
+		</div>
 		
 		<div class="row">
-			<div class="col-12 col-md-3"></div>
-			<div class="col-12 col-md-3"></div>
-			<div class="col-12 col-md-3"></div>
-			<div class="col-12 col-md-3"></div>		
+			<div class="col-12 col-md-3">
+				
+			</div>
+			<div class="col-12 col-md-3">
+				
+			</div>
+			<div class="col-12 col-md-3">
+				
+			</div>
+			<div class="col-12 col-md-3">
+				
+			</div>		
 		</div>
+		
+		<div class="row"><br/></div>
 		
 		<div class="row">
 			<button class="btn btn-primary btn-lg">Guardar</button>
 		</div>
-		
-	
+				
+	</div>
 
 	<br />
 
@@ -68,7 +177,6 @@
 		
 	<script type="text/javascript" src="#"
 		th:src="@{/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js}"></script>
-
 		
 	<div class="col-12" style="display: none;">
 		<span id="message" th:text="${error}"></span>

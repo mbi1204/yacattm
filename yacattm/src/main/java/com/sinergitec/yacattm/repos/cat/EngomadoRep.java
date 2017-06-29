@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.sinergitec.yacattm.model.ct.Engomado;
 
+/**
+ * 
+ * @author mendoza
+ *
+ */
 public interface EngomadoRep {
 	public List<Engomado> Lista (int iModo, String cQuery);
 	public void agregar(String cUsuario , Engomado nuevos);

@@ -5,6 +5,11 @@ import java.util.List;
 import com.sinergitec.yacattm.model.ct.DireccionAuto;
 import com.sinergitec.yacattm.model.ct.EstatusOS;
 
+/**
+ * 
+ * @author mendoza
+ *
+ */
 public interface DireccionAutoRep {
 	
 	public List<DireccionAuto> Lista (int iModo, String cQuery);
