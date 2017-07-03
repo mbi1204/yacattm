@@ -88,7 +88,7 @@
 								
 								<br />
 
-								<table class="table table-responsive" id="Lista">
+								<table class="table table-responsive table-hover" id="Lista">
 									<thead>
 										<tr>
 											<th style="text-align: center;">Nombre</th>
@@ -117,49 +117,144 @@
 			
 		</div> <!-- Fin Modal -->
 
-		<div class="row"><br/></div>
+		<div class="row"><br></br></div>
+		
+		<!-- Datos de la Orden de Servicio -->
 		
 		<div class="row">	
 
 			<div class="form-inline">
 			
-				<div class='input-group date mb-2 mr-sm-2 mb-sm-0' id='datetimepicker'>
+				<div class='input-group date col-md-3 mb-1 mb-sm-0' id='datetimepicker'>
 					<span class="input-group-addon"> 
 						<span class="fa fa-calendar" aria-hidden="true"></span>
 					</span>
 					<input id="fecha" type='text' class="form-control" /> 
 				</div>				
 							
-				<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-					<span class="input-group-addon" id="basic-addon1">Referencia:</span>
+				<div class="input-group col-md-3 mb-1 mb-sm-0">
+					<span class="input-group-addon fa fa-pencil-square-o" aria-hidden="true" id="basic-addon1"></span>
 					<input type="text" class="form-control" placeholder="Referencia" aria-describedby="basic-addon1" />
 				</div>
 						
-				<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-					<span class="input-group-addon" id="basic-addon1">Kilometraje:</span>
+				<div class="input-group col-md-3 mb-1 mb-sm-0">
+					<span class="input-group-addon fa fa-car" aria-hidden="true" id="basic-addon1"></span>
 					<input type="text" class="form-control money" placeholder="Kilometraje" aria-describedby="basic-addon1" />
+				</div>
+				
+				<div class="input-group col-md-3 mb-1 mb-sm-0">
+
+					<input id="ex13" type="text"
+						data-slider-ticks="[0, 25, 50, 75, 100]"
+						data-slider-ticks-snap-bounds="25"
+						data-slider-ticks-labels='["E", "1/4", "1/2", "3/4", "F"]'
+						style="display:none;" />
+
 				</div>
 
 			</div>
 					
 		</div>
 		
+		<!-- Fin Datos de la Orden de Servicio -->
+		
+		<div class="row"><br></br></div>
+		
+		<!-- Datos del Vehiculo -->
+
 		<div class="row">
-			<div class="col-12 col-md-3">
-				
+			<h4>Datos del Veh&iacute;culo</h4>
+			<span class="fa fa-info-circle" onclick="alert('Hola')"
+				data-toggle="tooltip" data-placement="right"
+				title="Detalle del Veh&iacute;culo" aria-hidden="true"></span>
+		</div>
+
+		<div class="row">
+		
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon" aria-hidden="true" id="basic-addon1">Matr&iacute;cula:</span>
+				<input type="text" class="form-control" readonly="true" placeholder="Matr&iacute;cula" aria-describedby="basic-addon1" />
 			</div>
-			<div class="col-12 col-md-3">
-				
+			
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon" aria-hidden="true" id="basic-addon1">Marca:</span>
+				<input type="text" class="form-control" readonly="true" placeholder="Marca" aria-describedby="basic-addon1" />
 			</div>
-			<div class="col-12 col-md-3">
-				
+			
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon" aria-hidden="true" id="basic-addon1">Modelo:</span>
+				<input type="text" class="form-control" readonly="true" placeholder="Modelo" aria-describedby="basic-addon1" />
 			</div>
-			<div class="col-12 col-md-3">
+			
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon" aria-hidden="true" id="basic-addon1">A&ntilde;o:</span>
+				<input type="text" class="form-control" readonly="true" placeholder="A&ntilde;o" aria-describedby="basic-addon1" />
+			</div>
 				
-			</div>		
+		</div>		
+		
+		
+		<!-- Fin Datos del Vehiculo -->
+		
+		<div class="row"><br></br></div>
+		
+		<!-- Datos del Cliente -->
+		
+		<div class="row">
+			<h4>Datos del Cliente</h4>
+			<span class="fa fa-info-circle" onclick="alert('Hola')"
+				data-toggle="tooltip" data-placement="right"
+				title="Detalle del Cliente" aria-hidden="true"></span>
 		</div>
 		
-		<div class="row"><br/></div>
+		<div class="row">
+			<div class="input-group col-md-6 mb-1 mb-sm-0">
+				<span class="input-group-addon fa fa-user" aria-hidden="true" id="basic-addon1"></span>
+				<input type="text" class="form-control" readonly="true" placeholder="Cliente" aria-describedby="basic-addon1" />
+			</div>
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon fa fa-phone" aria-hidden="true" id="basic-addon1"></span>
+				<input type="text" class="form-control" readonly="true" placeholder="Tel&eacute;fono" aria-describedby="basic-addon1" />
+			</div>
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon fa fa-phone" aria-hidden="true" id="basic-addon1"></span>
+				<input type="text" class="form-control" readonly="true" placeholder="Tel&eacute;fono Secundario" aria-describedby="basic-addon1" />
+			</div>				
+		</div>
+		
+		<!-- Fin Datos del Cliente -->
+
+		<div class="row"><br></br></div>
+		
+		<!-- Text Box Orden de Servicio -->
+		
+		<div class="row">
+			
+			<div class="form-group col-md-3 mb-1 mb-sm-0">
+				<label class="text-center" for="falla">Falla</label>
+			    <textarea class="form-control" id="falla" rows="4"></textarea>
+			</div>
+			
+			<div class="form-group col-md-3 mb-1 mb-sm-0">
+				<label class="text-center" for="diagnostico">Diagn&oacute;stico</label>
+			    <textarea class="form-control" id="diagnostico" rows="4"></textarea>
+			</div>
+			
+			<div class="form-group col-md-3 mb-1 mb-sm-0">
+				<label class="text-center" for="observacion">Observaciones</label>
+			    <textarea class="form-control" id="observacion" rows="4"></textarea>
+			</div>
+			
+			<div class="form-group col-md-3 mb-1 mb-sm-0">
+				<label class="text-center" for="reparacion">Reparaci&oacute;n</label>
+			    <textarea class="form-control" id="reparacion" rows="4"></textarea>
+			</div>
+		
+		</div>
+		
+		<!-- Fin Text Box Orden de Servicio -->
+		
+		<div class="row"><br></br></div>
 		
 		<div class="row">
 			<button class="btn btn-primary btn-lg">Guardar</button>
@@ -177,6 +272,9 @@
 		
 	<script type="text/javascript" src="#"
 		th:src="@{/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js}"></script>
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/bootstrap-slider/js/bootstrap-slider.min.js}"></script>	
 		
 	<div class="col-12" style="display: none;">
 		<span id="message" th:text="${error}"></span>
@@ -196,14 +294,20 @@
 	    $('#fecha').val(curr_date+'/'+'0'+curr_month+'/'+curr_year);
 	}
 	
-	
-	 $('#datetimepicker').datepicker({
+	$('#datetimepicker').datepicker({
 		 language: 'es',
 		 todayHighlight: true,
 		 defaultViewDate: today()
-     });
+    });
+	
+	var slider = new Slider("#ex13", {
+	    ticks: [0, 25, 50, 75, 100],
+	    ticks_labels: ['E', '1/4', '1/2', '3/4', 'F'],
+	    ticks_snap_bounds: 25,
+	    value: 50
+	});
 	 
-	 $(document).ready(function(){
+	$(document).ready(function(){
 		 $('.money').mask('000,000,000,000,000', {reverse: true});
 		 $('.close').on('click', function() {
 			 $('#nombreCliente').val("");
@@ -212,8 +316,9 @@
 			 $('#modelo').val("");
 			 $('#color').val("");
 			 $("#Lista > tbody").empty();
-         });   
-	 });
+         });
+		 $('[data-toggle="tooltip"]').tooltip();
+	});
 	 
 	</script>
 
