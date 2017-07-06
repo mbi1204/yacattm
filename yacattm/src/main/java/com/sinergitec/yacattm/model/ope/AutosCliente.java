@@ -1,10 +1,6 @@
 package com.sinergitec.yacattm.model.ope;
 
-import java.util.List;
 import java.util.Vector;
-
-import com.sinergitec.yacattm.model.ct.Cliente;
-import com.sinergitec.yacattm.model.ct.Vehiculo;
 
 public class AutosCliente {
 	
@@ -18,8 +14,6 @@ public class AutosCliente {
 	private String  motor;
 	private Integer anio;
 	private byte[]  rowid;
-	private List<Cliente> listCliente;
-	private List<Vehiculo> listVehiculo;
 	
 	public Integer getCliente() {
 		return cliente;
@@ -80,18 +74,6 @@ public class AutosCliente {
 	}
 	public void setRowid(byte[] rowid) {
 		this.rowid = rowid;
-	}
-	public List<Cliente> getListCliente() {
-		return listCliente;
-	}
-	public void setListCliente(List<Cliente> listCliente) {
-		this.listCliente = listCliente;
-	}
-	public List<Vehiculo> getListVehiculo() {
-		return listVehiculo;
-	}
-	public void setListVehiculo(List<Vehiculo> listVehiculo) {
-		this.listVehiculo = listVehiculo;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

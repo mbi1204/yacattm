@@ -2,7 +2,7 @@ package com.sinergitec.yacattm.repos.ope;
 
 import java.util.List;
 
-import com.sinergitec.yacattm.model.ope.AutosCliente;
+import com.sinergitec.yacattm.model.ope.OrdenServList;
 import com.sinergitec.yacattm.model.ope.OrdenServicio;
 
 public interface OrdenServRep {
@@ -14,7 +14,7 @@ public interface OrdenServRep {
 	public List<OrdenServicio> listaOrdenServ(int iModo, String cQuery);
 	public Boolean getResultado();
 	public String getMensaje();
-	public List<AutosCliente> listaAutosCliente(String cCompania, String cNombre, String cMatricula, String cMarca,
+	public OrdenServList listaAutosCliente(String cCompania, String cNombre, String cMatricula, String cMarca,
 			String cModelo, String cColor);
 
 }

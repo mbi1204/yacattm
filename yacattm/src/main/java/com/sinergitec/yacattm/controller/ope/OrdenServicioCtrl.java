@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.sinergitec.yacattm.model.ct.SessionUsu;
+import com.sinergitec.yacattm.model.ope.OrdenServicio;
 import com.sinergitec.yacattm.repos.ope.OrdenServRep;
 
 /**
@@ -26,7 +28,7 @@ import com.sinergitec.yacattm.repos.ope.OrdenServRep;
 public class OrdenServicioCtrl {
 
 	private static final String VIEW = "/ope/gen/opeAltaOSV";
-	private static final String FORM_ADD = "/ope/cat/ctUsosVehVAddF";
+	private static final String FORM_ADD = "/ope/gen/opeAltaOSV";
 	private static final String FORM_UPD = "/ope/cat/ctUsosVehVUpdF";
 	private static final String REDIRECT = "redirect:/ope/gnOrdenServicio/ordenservicio";
 
@@ -44,7 +46,11 @@ public class OrdenServicioCtrl {
 	public ModelAndView listaAllUsosVehiculos(@ModelAttribute("Usuario") SessionUsu objUsuario) {
 
 		ModelAndView mav = new ModelAndView(VIEW);
+		OrdenServicio ordenServicio = new OrdenServicio();
+		ordenServicio.setCompania(objUsuario.getCompania());
+		ordenServicio.setRowid(null);
 		mav.addObject("titulo", "Orden de Servicio");
+		mav.addObject("ordenServicio", ordenServicio);
 		mav.addObject("error", cError);
 		cError = "";
 
@@ -63,8 +69,31 @@ public class OrdenServicioCtrl {
 		
 		retorno = new Gson().toJson(
 				ordenServRep.listaAutosCliente(objUsuario.getCompania(), cNombre, cMatricula, cMarca, cModelo, cColor));
+		
+		if(ordenServRep.getResultado()){
+			retorno = new Gson().toJson(ordenServRep.getMensaje());
+		}
 
 		return retorno;
+	}
+	
+	@PostMapping("/agregar")
+	public ModelAndView agregar(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@ModelAttribute("ordenServicio") OrdenServicio ordenServicio) {
+
+		ModelAndView mav = new ModelAndView();
+
+		this.ordenServRep.agregar(objUsuario.getUsuario(), ordenServicio);
+
+		if (this.ordenServRep.getResultado()) {
+			mav.setViewName(REDIRECT);
+			mav.addObject("ordenServicio", ordenServicio);
+			mav.addObject("error", this.ordenServRep.getMensaje());
+		} else {
+			mav.setViewName(REDIRECT);
+		}
+
+		return mav;
 	}
 
 }
