@@ -34,10 +34,12 @@ public class ClienteCtrl {
 	
 	@GetMapping("/lista")
 	public ModelAndView ListAllColorAuto(@ModelAttribute("Usuario") SessionUsu sessionUsu) {
+
+	
 		
 		ModelAndView mav = new ModelAndView(VIEW);
 		mav.addObject("cliente" , new Cliente());
-		mav.addObject("Lista" , clienteRep.Lista(0, "FOR EACH ctCliente WEHERE ctCliente.cCveCia =  '" + sessionUsu.getCompania() +   "'") );
+		mav.addObject("Lista" , clienteRep.Lista(0, "FOR EACH ctCliente WHERE ctCliente.cCveCia =  '" + sessionUsu.getCompania() +   "' NO-LOCK:") );
 		if (clienteRep.getResultado()){
 			this.setError(clienteRep.getMensaje());			
 		}
