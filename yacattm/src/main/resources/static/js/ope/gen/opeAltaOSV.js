@@ -202,31 +202,39 @@ function validaOS(){
 	
 	//Realiza validacion de datos, si pasa filtros realiza submit
 	
+	var bandera = true;
+	
 	if($('#fecha').val() == "" || $('#fecha').val() == null){
-		return false;
+		 $('#fecha').addClass('alert alert-danger');
+		bandera = false;
 	}
 	
 	if($('#referenciaV').val() == "" || $('#referenciaV').val() == null){
-		return false;
+		$('#referenciaV').addClass('alert alert-danger');
+		bandera = false;
 	}
 	
 	if($('#kilometrajeV').val() == "" || $('#kilometrajeV').val() == null){
-		return false;
-	}
-	
-	if($('#ex13').val() == "" || $('#ex13').val() == null){
-		return false;
+		$('#kilometrajeV').addClass('alert alert-danger');
+		bandera = false;
 	}
 	
 	if($('#IDVehiculoV').val() == "" || $('#IDVehiculoV').val() == null){
-		return false;
+		swal('Error!!!','Selecciona un cliente','error');
+		bandera = false;
 	}
 	
 	if($('#IDClienteV').val() == "" || $('#IDClienteV').val() == null){
-		return false;
+		swal('Error!!!','Selecciona un cliente','error');
+		bandera = false;
 	}
 	
-	return true;
+	if($('#falla').val() == "" || $('#falla').val() == null){
+		$('#falla').addClass('alert alert-danger');
+		bandera = false;
+	}
+	
+	return bandera;
 	
 }
 
@@ -265,7 +273,23 @@ function language(){
 	});
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 $(document).ready(function() {
+	
+	var ordenServ = getParameterByName("iOrdenServ");
+	if(ordenServ != "" && ordenServ != null){
+		swal('N° Orden de Servicio', ordenServ, 'success');
+	}
+	
 	$('.money').mask('000,000,000,000,000', {
 		reverse : true
 	});
@@ -285,6 +309,23 @@ $(document).ready(function() {
 		selecciona($(this));
         
     } );
-
+	
+	$('#referenciaV').focusout(function(){
+		if($('#referenciaV').val().length > 0){
+			$('#referenciaV').removeClass('alert alert-danger');
+		}	
+	});
+	
+	$('#kilometrajeV').focusout(function(){
+		if($('#kilometrajeV').val().length > 0){
+			$('#kilometrajeV').removeClass('alert alert-danger');
+		}	
+	});
+	
+	$('#falla').focusout(function(){
+		if($('#falla').val().length > 0){
+			$('#falla').removeClass('alert alert-danger');
+		}	
+	});
 	
 });

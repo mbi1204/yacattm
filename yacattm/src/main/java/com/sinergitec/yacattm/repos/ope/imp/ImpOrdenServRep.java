@@ -33,7 +33,9 @@ public class ImpOrdenServRep implements OrdenServRep {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void agregar(String cUsuario, OrdenServicio nuevos) {
+	public OrdenServicio agregar(String cUsuario, OrdenServicio nuevos) {
+		
+		OrdenServicio ordenServicio = new OrdenServicio();
 		
 		Connection conexion = null;
 		try {
@@ -57,15 +59,20 @@ public class ImpOrdenServRep implements OrdenServRep {
 			app.as_OpeOrdenSer_Inserta2(cUsuario, tt_Nuevos, tt_NuevosInvVeh, lhResultado, chTexto);
 			this.setResultado(lhResultado.getBooleanValue());
 			this.setMensaje(chTexto.getStringValue());
+			
+			ResultSet rs_Nuevos = tt_Nuevos.getResultSetValue();
+			if(rs_Nuevos.next()){
+				ordenServicio.setOrden(rs_Nuevos.getInt("iOrden"));
+			}
 
 			app._release();
 
-		} catch (Open4GLException | IOException e) {
+		} catch (Open4GLException | IOException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 			this.setResultado(true);
-			this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+			this.setMensaje("error" + " " + "Open4GLException | IOException e | SQLException " + " "
 					+ this.getClass().getEnclosingMethod().getName());
 
 		} finally {
@@ -81,6 +88,8 @@ public class ImpOrdenServRep implements OrdenServRep {
 			}
 
 		}
+		
+		return ordenServicio;
 
 	}
 

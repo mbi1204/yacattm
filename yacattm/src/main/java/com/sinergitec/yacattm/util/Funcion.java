@@ -33,4 +33,13 @@ public class Funcion {
 		return timestamp;
 	}
 	
+	public Integer strConvertInt(String kilometraje){
+		
+		kilometraje = kilometraje.replace(",",""); 
+
+		kilometraje = kilometraje.trim();
+		
+		return Integer.parseInt(kilometraje);
+	}
+	
 }

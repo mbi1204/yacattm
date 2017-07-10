@@ -7,7 +7,7 @@ import com.sinergitec.yacattm.model.ope.OrdenServicio;
 
 public interface OrdenServRep {
 
-	public void agregar(String cUsuario, OrdenServicio nuevos);
+	public OrdenServicio agregar(String cUsuario, OrdenServicio nuevos);
 	public void eliminar(String cUsuario, OrdenServicio viejos);
 	public void actulizar(String cUsuario, OrdenServicio viejos, OrdenServicio nuevos);
 	public OrdenServicio getOrdenServ(int iModo, String cQuery);

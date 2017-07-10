@@ -83,7 +83,7 @@ public class OrdenServicioCtrl {
 
 		ModelAndView mav = new ModelAndView();
 
-		this.ordenServRep.agregar(objUsuario.getUsuario(), ordenServicio);
+		ordenServicio = this.ordenServRep.agregar(objUsuario.getUsuario(), ordenServicio);
 
 		if (this.ordenServRep.getResultado()) {
 			mav.setViewName(VIEW);
@@ -91,6 +91,7 @@ public class OrdenServicioCtrl {
 			mav.addObject("error", this.ordenServRep.getMensaje());
 		} else {
 			mav.setViewName(REDIRECT);
+			mav.addObject("iOrdenServ", ordenServicio.getOrden());
 		}
 
 		return mav;

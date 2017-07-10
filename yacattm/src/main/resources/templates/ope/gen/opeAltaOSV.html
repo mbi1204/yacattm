@@ -566,7 +566,7 @@
 		<div class="row"><br></br></div>
 		
 		<div class="row">
-			<button type="submit" class="btn btn-primary btn-lg" onsubmit="return validaOS();">Guardar</button>
+			<button type="submit" class="btn btn-primary btn-lg" onclick="return validaOS();">Guardar</button>
 		</div>
 		
 		</form> <!-- Fin Form Orden Servicio -->
@@ -596,10 +596,18 @@
 	<div class="col-12" style="display: none;">
 		<span id="message" th:text="${error}"></span>
 	</div>
+	
+	<div class="col-12" style="display: none;">
+		<span id="orden" th:text="${iOrdenServ}"></span>
+	</div>
 
 	<script type="text/javascript">
 		if (document.getElementById("message").innerHTML != "") {
 			swal('Error', document.getElementById("message").innerHTML, 'error');
+		}
+		
+		if (document.getElementById("orden").innerHTML != "") {
+			swal('N° Orden de Servicio', document.getElementById("orden").innerHTML, 'success');
 		}
 
 		function today() {
