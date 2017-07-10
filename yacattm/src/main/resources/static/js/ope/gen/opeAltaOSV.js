@@ -1,131 +1,145 @@
 /**
- * Autor: Aestrada 
- * Fecha: 29 de junio de 2017 
- * Descripcion: Script para pantalla de Alta de Orden de Servicio
+ * Autor: Aestrada Fecha: 29 de junio de 2017 Descripcion: Script para pantalla
+ * de Alta de Orden de Servicio
  */
 
 var listCliente;
 var listVehiculo;
 var listAutosCliente;
 
-function busqueda(){
-	
-	table = $('#Lista').DataTable( {
-	    retrieve: true,
-	    paging: false
-	} );
-	
+function busqueda() {
+
+	table = $('#Lista').DataTable({
+		retrieve : true,
+		paging : false
+	});
+
 	table.destroy();
-	
-	var cNombre    = $('#nombreCliente').val();
+
+	var cNombre = $('#nombreCliente').val();
 	var cMatricula = $('#matricula').val();
-	var cMarca     = $('#marca').val();
-	var cModelo    = $('#modelo').val();
-	var cColor     = $('#color').val();
-	
-	
+	var cMarca = $('#marca').val();
+	var cModelo = $('#modelo').val();
+	var cColor = $('#color').val();
+
 	$.ajax({
- 		url : '/ope/gnOrdenServicio/consulta',
- 		dataType : "json",
- 		contentType : "application/json",
- 		data : {
- 			cNombre    : cNombre,
- 			cMatricula : cMatricula,
- 			cMarca     : cMarca,
- 			cModelo    : cModelo,
- 			cColor     : cColor
- 		},
- 		type : 'GET',
- 		success : function(data) {
- 			listCliente = data.listCliente;
- 			listVehiculo = data.listVehiculo;
- 			construyeTabla(data.listAutosCliente);
- 		},
- 		error : function(xhr, status) {
- 			swal('Disculpe, existió un problema');
- 		}
+		url : '/ope/gnOrdenServicio/consulta',
+		dataType : "json",
+		contentType : "application/json",
+		data : {
+			cNombre : cNombre,
+			cMatricula : cMatricula,
+			cMarca : cMarca,
+			cModelo : cModelo,
+			cColor : cColor
+		},
+		type : 'GET',
+		success : function(data) {
+			listCliente = data.listCliente;
+			listVehiculo = data.listVehiculo;
+			construyeTabla(data.listAutosCliente);
+		},
+		error : function(xhr, status) {
+			swal('Disculpe, existió un problema');
+		}
 
- 	});
-	
-}
-	
-function construyeTabla(dataSet){
-	$('#Lista').DataTable( {
-        data: dataSet,
-        "columns" : [
-			{ "data" : "nombre" },
-            { "data" : "matricula" },
-            { "data" : "marca" },
-            { "data" : "modelo" },
-            { "data" : "anio" },
-            { "data" : "color" },
-            { "data" : "cliente" },
-			{ "data" : "vehiculo" }
-		],
-		"pageLength": 5,
-		 "lengthMenu": [ 5 , 10 ],
-	
-		 "language": {
+	});
 
-				"sProcessing":     "Procesando...",
-				"sLengthMenu":     "Mostrar _MENU_ registros",
-				"sZeroRecords":    "No se encontraron resultados",
-				"sEmptyTable":     "Ningún dato disponible en esta tabla",
-				"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-				"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-				"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-				"sInfoPostFix":    "",
-				"sSearch":         "Buscar:",
-				"sUrl":            "",
-				"sInfoThousands":  ",",
-				"sLoadingRecords": "Cargando...",
-				"oPaginate": {
-					"sFirst":    "Primero",
-					"sLast":     "Último",
-					"sNext":     "Siguiente",
-					"sPrevious": "Anterior"
-				},
-				"oAria": {
-					"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-				}
-		 }
-    } );	
+	// Limpieza de campos de busqueda
+	$('#nombreCliente').val("");
+	$('#matricula').val("");
+	$('#marca').val("");
+	$('#modelo').val("");
+	$('#color').val("");
+
 }
 
-function selecciona(registro){
+function construyeTabla(dataSet) {
+	$('#Lista')
+			.DataTable(
+					{
+						data : dataSet,
+						"columns" : [ {
+							"data" : "nombre"
+						}, {
+							"data" : "matricula"
+						}, {
+							"data" : "marca"
+						}, {
+							"data" : "modelo"
+						}, {
+							"data" : "anio"
+						}, {
+							"data" : "color"
+						}, {
+							"data" : "cliente"
+						}, {
+							"data" : "vehiculo"
+						} ],
+						"pageLength" : 5,
+						"lengthMenu" : [ 5, 10 ],
 
-	/*Lectura y Acomodo de la informacion*/
-	
-	//Busqueda de la informacion del cliente
-	for (var item in listCliente) {
-		if(registro["0"].cells[6].innerHTML == listCliente[item].cliente){
+						"language" : {
+
+							"sProcessing" : "Procesando...",
+							"sLengthMenu" : "Mostrar _MENU_ registros",
+							"sZeroRecords" : "No se encontraron resultados",
+							"sEmptyTable" : "Ningún dato disponible en esta tabla",
+							"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+							"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
+							"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
+							"sInfoPostFix" : "",
+							"sSearch" : "Buscar:",
+							"sUrl" : "",
+							"sInfoThousands" : ",",
+							"sLoadingRecords" : "Cargando...",
+							"oPaginate" : {
+								"sFirst" : "Primero",
+								"sLast" : "Último",
+								"sNext" : "Siguiente",
+								"sPrevious" : "Anterior"
+							},
+							"oAria" : {
+								"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
+								"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
+							}
+						}
+					});
+}
+
+function selecciona(registro) {
+
+	/* Lectura y Acomodo de la informacion */
+
+	// Busqueda de la informacion del cliente
+	for ( var item in listCliente) {
+		if (registro["0"].cells[6].innerHTML == listCliente[item].cliente) {
 			llenaCliente(listCliente[item]);
 		}
 	}
-	
-	//Busqueda de la informacion del vehiculo
-	for (var item in listVehiculo) {
-		if(registro["0"].cells[6].innerHTML == listVehiculo[item].cliente
-				&& registro["0"].cells[7].innerHTML == listVehiculo[item].vehiculo){
+
+	// Busqueda de la informacion del vehiculo
+	for ( var item in listVehiculo) {
+		if (registro["0"].cells[6].innerHTML == listVehiculo[item].cliente
+				&& registro["0"].cells[7].innerHTML == listVehiculo[item].vehiculo) {
 			llenaVehiculo(listVehiculo[item]);
 		}
 	}
 
 	$('#gridSystemModal').modal('hide');
 	limpieza();
-	
+
 }
 
-function llenaCliente(cliente){
-	
-	//Datos del Cliente en la vista
+function llenaCliente(cliente) {
+
+	// Datos del Cliente en la vista
 	$('#IDClienteV').val(cliente.cliente);
 	$('#clienteV').val(cliente.nombre);
 	$('#telefono1V').val(cliente.telefono1);
 	$('#telefono2V').val(cliente.telefono2);
-	
-	//Detalle del Cliente
+
+	// Detalle del Cliente
 	$('#IDCliente').val(cliente.cliente);
 	$('#nombreF').val(cliente.nombre);
 	$('#emailF').val(cliente.email);
@@ -144,16 +158,16 @@ function llenaCliente(cliente){
 
 }
 
-function llenaVehiculo(vehiculo){
-	
-	//Datos del Vehiculo en la vista
+function llenaVehiculo(vehiculo) {
+
+	// Datos del Vehiculo en la vista
 	$('#IDVehiculoV').val(vehiculo.vehiculo);
 	$('#matriculaV').val(vehiculo.matricula);
 	$('#marcaV').val(vehiculo.marca);
 	$('#modeloV').val(vehiculo.modelo);
 	$('#anioV').val(vehiculo.anio);
-	
-	//Detalle del Vehiculo
+
+	// Detalle del Vehiculo
 	$('#IDVehiculo').val(vehiculo.vehiculo);
 	$('#matriculaF').val(vehiculo.matricula);
 	$('#marcaF').val(vehiculo.marca);
@@ -171,125 +185,127 @@ function llenaVehiculo(vehiculo){
 	$('#tipoF').val(vehiculo.tipo);
 	$('#transmisionF').val(vehiculo.transmision);
 	$('#usoF').val(vehiculo.uso);
-	
-	
+
 }
 
-function abreModal(cModal){
-	$(cModal).modal('show');	
+function abreModal(cModal) {
+	$(cModal).modal('show');
 }
 
-function limpieza(){
-	table
-    .clear();
+function limpieza() {
+	table.clear();
 	$('#nombreCliente').val("");
 	$('#matricula').val("");
 	$('#marca').val("");
 	$('#modelo').val("");
 	$('#color').val("");
-	table = $('#Lista').DataTable( {
-	    retrieve: true,
-	    paging: false
-	} );	
+	table = $('#Lista').DataTable({
+		retrieve : true,
+		paging : false
+	});
 	table.destroy();
 
 	$("#Lista > tbody").empty();
 }
 
-function validaOS(){
-	
+function validaOS() {
+
 	console.log("Valida Orden de Servicio");
-	
-	//Realiza validacion de datos, si pasa filtros realiza submit
-	
+
+	// Realiza validacion de datos, si pasa filtros realiza submit
+
 	var bandera = true;
-	
-	if($('#fecha').val() == "" || $('#fecha').val() == null){
-		 $('#fecha').addClass('alert alert-danger');
+
+	if ($('#fecha').val() == "" || $('#fecha').val() == null) {
+		$('#fecha').addClass('alert alert-danger');
 		bandera = false;
 	}
-	
-	if($('#referenciaV').val() == "" || $('#referenciaV').val() == null){
+
+	if ($('#referenciaV').val() == "" || $('#referenciaV').val() == null) {
 		$('#referenciaV').addClass('alert alert-danger');
 		bandera = false;
 	}
-	
-	if($('#kilometrajeV').val() == "" || $('#kilometrajeV').val() == null){
+
+	if ($('#kilometrajeV').val() == "" || $('#kilometrajeV').val() == null) {
 		$('#kilometrajeV').addClass('alert alert-danger');
 		bandera = false;
 	}
-	
-	if($('#IDVehiculoV').val() == "" || $('#IDVehiculoV').val() == null){
-		swal('Error!!!','Selecciona un cliente','error');
+
+	if ($('#IDVehiculoV').val() == "" || $('#IDVehiculoV').val() == null) {
+		swal('Error!!!', 'Selecciona un cliente', 'error');
 		bandera = false;
 	}
-	
-	if($('#IDClienteV').val() == "" || $('#IDClienteV').val() == null){
-		swal('Error!!!','Selecciona un cliente','error');
+
+	if ($('#IDClienteV').val() == "" || $('#IDClienteV').val() == null) {
+		swal('Error!!!', 'Selecciona un cliente', 'error');
 		bandera = false;
 	}
-	
-	if($('#falla').val() == "" || $('#falla').val() == null){
+
+	if ($('#falla').val() == "" || $('#falla').val() == null) {
 		$('#falla').addClass('alert alert-danger');
 		bandera = false;
 	}
-	
+
 	return bandera;
-	
+
 }
 
-function language(){
-	table = $('#Lista').DataTable({
-		 "pageLength": 5,
-		 "lengthMenu": [ 5 , 10 ],
-	
-		 "language": {
+function language() {
+	table = $('#Lista')
+			.DataTable(
+					{
+						"pageLength" : 5,
+						"lengthMenu" : [ 5, 10 ],
 
-				"sProcessing":     "Procesando...",
-				"sLengthMenu":     "Mostrar _MENU_ registros",
-				"sZeroRecords":    "No se encontraron resultados",
-				"sEmptyTable":     "Ningún dato disponible en esta tabla",
-				"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-				"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-				"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-				"sInfoPostFix":    "",
-				"sSearch":         "Buscar:",
-				"sUrl":            "",
-				"sInfoThousands":  ",",
-				"sLoadingRecords": "Cargando...",
-				"oPaginate": {
-					"sFirst":    "Primero",
-					"sLast":     "Último",
-					"sNext":     "Siguiente",
-					"sPrevious": "Anterior"
-				},
-				"oAria": {
-					"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-				}
-		 }
-		
-		    			
-	});
+						"language" : {
+
+							"sProcessing" : "Procesando...",
+							"sLengthMenu" : "Mostrar _MENU_ registros",
+							"sZeroRecords" : "No se encontraron resultados",
+							"sEmptyTable" : "Ningún dato disponible en esta tabla",
+							"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+							"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
+							"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
+							"sInfoPostFix" : "",
+							"sSearch" : "Buscar:",
+							"sUrl" : "",
+							"sInfoThousands" : ",",
+							"sLoadingRecords" : "Cargando...",
+							"oPaginate" : {
+								"sFirst" : "Primero",
+								"sLast" : "Último",
+								"sNext" : "Siguiente",
+								"sPrevious" : "Anterior"
+							},
+							"oAria" : {
+								"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
+								"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
+							}
+						}
+
+					});
 }
 
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	if (!url)
+		url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex
+			.exec(url);
+	if (!results)
+		return null;
+	if (!results[2])
+		return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 $(document).ready(function() {
-	
+
 	var ordenServ = getParameterByName("iOrdenServ");
-	if(ordenServ != "" && ordenServ != null){
+	if (ordenServ != "" && ordenServ != null) {
 		swal('N° Orden de Servicio', ordenServ, 'success');
 	}
-	
+
 	$('.money').mask('000,000,000,000,000', {
 		reverse : true
 	});
@@ -302,30 +318,30 @@ $(document).ready(function() {
 		}
 	});
 	$('[data-toggle="tooltip"]').tooltip();
-	
+
 	language();
-	
-	$('#Lista > tbody').on( 'dblclick', 'tr', function () {
+
+	$('#Lista > tbody').on('dblclick', 'tr', function() {
 		selecciona($(this));
-        
-    } );
-	
-	$('#referenciaV').focusout(function(){
-		if($('#referenciaV').val().length > 0){
+
+	});
+
+	$('#referenciaV').focusout(function() {
+		if ($('#referenciaV').val().length > 0) {
 			$('#referenciaV').removeClass('alert alert-danger');
-		}	
+		}
 	});
-	
-	$('#kilometrajeV').focusout(function(){
-		if($('#kilometrajeV').val().length > 0){
+
+	$('#kilometrajeV').focusout(function() {
+		if ($('#kilometrajeV').val().length > 0) {
 			$('#kilometrajeV').removeClass('alert alert-danger');
-		}	
+		}
 	});
-	
-	$('#falla').focusout(function(){
-		if($('#falla').val().length > 0){
+
+	$('#falla').focusout(function() {
+		if ($('#falla').val().length > 0) {
 			$('#falla').removeClass('alert alert-danger');
-		}	
+		}
 	});
-	
+
 });

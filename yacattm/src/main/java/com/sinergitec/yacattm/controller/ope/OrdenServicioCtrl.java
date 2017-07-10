@@ -96,5 +96,12 @@ public class OrdenServicioCtrl {
 
 		return mav;
 	}
+	
+	@GetMapping("/consultaOS")
+	public ModelAndView consultaOS(@ModelAttribute("Usuario") SessionUsu objUsuario){
+		
+		
+		return null;
+	}
 
 }
