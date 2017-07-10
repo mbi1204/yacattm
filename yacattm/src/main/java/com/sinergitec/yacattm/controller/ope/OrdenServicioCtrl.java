@@ -101,6 +101,7 @@ public class OrdenServicioCtrl {
 	public ModelAndView consultaOS(@ModelAttribute("Usuario") SessionUsu objUsuario){
 		
 		
+		
 		return null;
 	}
 
