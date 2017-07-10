@@ -86,7 +86,7 @@ public class OrdenServicioCtrl {
 		this.ordenServRep.agregar(objUsuario.getUsuario(), ordenServicio);
 
 		if (this.ordenServRep.getResultado()) {
-			mav.setViewName(REDIRECT);
+			mav.setViewName(VIEW);
 			mav.addObject("ordenServicio", ordenServicio);
 			mav.addObject("error", this.ordenServRep.getMensaje());
 		} else {

@@ -6,6 +6,7 @@
 
 var listCliente;
 var listVehiculo;
+var listAutosCliente;
 
 function busqueda(){
 	
@@ -22,26 +23,44 @@ function busqueda(){
 	var cModelo    = $('#modelo').val();
 	var cColor     = $('#color').val();
 	
-	$('#Lista').DataTable({
-		"ajax":{
-			method :"GET",
-			url : "/ope/gnOrdenServicio/consulta",
-			data : {
-				cNombre: cNombre,
-				cMatricula: cMatricula,
-				cMarca: cMarca,
-				cModelo: cModelo,
-				cColor: cColor
-			},
-			"dataSrc": "listAutosCliente"
-		},
-		"columns" : [
+	
+	$.ajax({
+ 		url : '/ope/gnOrdenServicio/consulta',
+ 		dataType : "json",
+ 		contentType : "application/json",
+ 		data : {
+ 			cNombre    : cNombre,
+ 			cMatricula : cMatricula,
+ 			cMarca     : cMarca,
+ 			cModelo    : cModelo,
+ 			cColor     : cColor
+ 		},
+ 		type : 'GET',
+ 		success : function(data) {
+ 			listCliente = data.listCliente;
+ 			listVehiculo = data.listVehiculo;
+ 			construyeTabla(data.listAutosCliente);
+ 		},
+ 		error : function(xhr, status) {
+ 			swal('Disculpe, existió un problema');
+ 		}
+
+ 	});
+	
+}
+	
+function construyeTabla(dataSet){
+	$('#Lista').DataTable( {
+        data: dataSet,
+        "columns" : [
 			{ "data" : "nombre" },
             { "data" : "matricula" },
             { "data" : "marca" },
             { "data" : "modelo" },
             { "data" : "anio" },
-            { "data" : "color" }
+            { "data" : "color" },
+            { "data" : "cliente" },
+			{ "data" : "vehiculo" }
 		],
 		"pageLength": 5,
 		 "lengthMenu": [ 5 , 10 ],
@@ -71,85 +90,24 @@ function busqueda(){
 					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 				}
 		 }
-	});
-	
-	
-	/*$.ajax({
-		url : '/ope/gnOrdenServicio/consulta',
-		dataType : "json",
-		contentType : "application/json",
-		data : {
-			cNombre    : cNombre,
-			cMatricula : cMatricula,
-			cMarca     : cMarca,
-			cModelo    : cModelo,
-			cColor     : cColor
-		},
-		type : 'GET',
-		success : function(data) {
-
-			listCliente = data.listCliente;
-			listVehiculo = data.listVehiculo;
-
-			if(data.listAutosCliente.length <= 0){
-				swal('No se encontraron registros!', data, 'info');
-			}else {
-				//$("#Lista > tbody").empty();
-				
-				$('#Lista').DataTable( {
-				    paging: false,
-				    searching: false
-				} );
-				
-				for ( var item in data.listAutosCliente) {
-					var activo = data.listAutosCliente[item].activo ? 'SI' : 'NO';
-
-					$('#Lista > tbody')
-							.append(
-									'<tr class="text-center" ondblclick="selecciona('+item+');" id="registro">'
-											+ '<td class="text-center" style="display:none;" >' + data.listAutosCliente[item].cliente    + '</td>'
-											+ '<td class="text-center">' + data.listAutosCliente[item].nombre    + '</td>'
-											+ '<td class="text-center">' + data.listAutosCliente[item].matricula + '</td>'
-											+ '<td class="text-center">' + data.listAutosCliente[item].marca     + '</td>'
-											+ '<td class="text-center">' + data.listAutosCliente[item].modelo    + '</td>'
-											+ '<td class="text-center">' + data.listAutosCliente[item].anio      + '</td>'
-											+ '<td class="text-center">' + data.listAutosCliente[item].color     + '</td>'
-											+ '<td class="text-center" style="display:none;" >' + data.listAutosCliente[item].vehiculo    + '</td>'
-									+ '</tr>');
-				}
-			}			
-			
-		},
-		error : function(xhr, status) {
-			swal('Disculpe, existió un problema');
-		},
-		// código a ejecutar sin importar si la petición
-		// falló o no
-		complete : function(xhr, status) {
-			//alert('Petición realizada');
-		}
-	});*/
-	
+    } );	
 }
 
-function selecciona(fila){
-	
-	//Recupera la fila seleccionada
-	var value = $("#Lista tr:eq('"+ Number(fila+1) +"')");
-	
+function selecciona(registro){
+
 	/*Lectura y Acomodo de la informacion*/
 	
 	//Busqueda de la informacion del cliente
 	for (var item in listCliente) {
-		if(value["0"].cells["0"].innerHTML == listCliente[item].cliente){
+		if(registro["0"].cells[6].innerHTML == listCliente[item].cliente){
 			llenaCliente(listCliente[item]);
 		}
 	}
 	
 	//Busqueda de la informacion del vehiculo
 	for (var item in listVehiculo) {
-		if(value["0"].cells["0"].innerHTML == listVehiculo[item].cliente
-				&& value["0"].cells[7].innerHTML == listVehiculo[item].vehiculo){
+		if(registro["0"].cells[6].innerHTML == listVehiculo[item].cliente
+				&& registro["0"].cells[7].innerHTML == listVehiculo[item].vehiculo){
 			llenaVehiculo(listVehiculo[item]);
 		}
 	}
@@ -234,16 +192,41 @@ function limpieza(){
 	    paging: false
 	} );	
 	table.destroy();
+
 	$("#Lista > tbody").empty();
 }
 
-function guardar(){
+function validaOS(){
 	
-	//Guardar
-	$('#fecha').val();
-	$('#referenciaV').val();
-	$('#kilometrajeV').val();
-	$('#ex13').val();
+	console.log("Valida Orden de Servicio");
+	
+	//Realiza validacion de datos, si pasa filtros realiza submit
+	
+	if($('#fecha').val() == "" || $('#fecha').val() == null){
+		return false;
+	}
+	
+	if($('#referenciaV').val() == "" || $('#referenciaV').val() == null){
+		return false;
+	}
+	
+	if($('#kilometrajeV').val() == "" || $('#kilometrajeV').val() == null){
+		return false;
+	}
+	
+	if($('#ex13').val() == "" || $('#ex13').val() == null){
+		return false;
+	}
+	
+	if($('#IDVehiculoV').val() == "" || $('#IDVehiculoV').val() == null){
+		return false;
+	}
+	
+	if($('#IDClienteV').val() == "" || $('#IDClienteV').val() == null){
+		return false;
+	}
+	
+	return true;
 	
 }
 
@@ -297,5 +280,11 @@ $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 	
 	language();
+	
+	$('#Lista > tbody').on( 'dblclick', 'tr', function () {
+		selecciona($(this));
+        
+    } );
+
 	
 });
