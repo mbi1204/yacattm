@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/headTag :: headTag">
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+	
+	<div th:replace="fragments/header :: header"></div>
+
+	<br />
+	
+	<div class="container">
+	
+		
+	
+		<!-- Modal Inicio de Busqueda -->
+		
+		<div id="gridSystemModal" class="modal fade" tabindex="-1"
+				role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"
+				style="display: none;">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+					
+						<!-- Encabezado -->
+						<div class="modal-header">
+							<h4 class="modal-title" id="myLargeModalLabel">B&uacute;squeda
+								de Orden de Servicio</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span class="fa fa-times" aria-hidden="true"></span>
+							</button>
+						</div>
+						<!-- Fin Encabezado -->
+						
+						<!-- Cuerpo -->
+						<div class="modal-body">
+							<div class="container-fluid bd-example-row">
+
+								<div class="d-flex justify-content-center">
+								
+									<label class="custom-control custom-checkbox ">
+										<input id="fecha" name="fecha" type="checkbox" class="custom-control-input" />
+										<span class="custom-control-indicator"></span>
+										<span class="custom-control-description">Fecha</span>
+									</label>
+								
+									<label class="custom-control custom-checkbox">
+										<input id="matricula" name="matricula" type="checkbox" class="custom-control-input" />
+										<span class="custom-control-indicator"></span>
+										<span class="custom-control-description">Matr&iacute;cula</span>
+									</label>
+									
+									<label class="custom-control custom-checkbox">
+										<input id="nombre" name="nombre" type="checkbox" class="custom-control-input" />
+										<span class="custom-control-indicator"></span>
+										<span class="custom-control-description">Nombre</span>
+									</label>
+									
+									<label class="custom-control custom-checkbox">
+										<input id="referencia" name="referencia" type="checkbox" class="custom-control-input" />
+										<span class="custom-control-indicator"></span>
+										<span class="custom-control-description">Referencia</span>
+									</label>
+								
+								</div>
+								
+								<br />
+								
+								<div id="pmtsBus" class="d-flex justify-content-center">
+									
+								</div>
+								
+								<br />
+								
+								<div class="d-flex justify-content-end">
+									<button type="button" id="buscar" class="btn btn-primary">Buscar</button>
+								</div>
+								
+								<br />
+
+								<div class="d-flex justify-content-center">
+									
+									<table class="table table-hover table-bordered dt-responsive nowrap display" style="width:100%;" id="Lista">
+										<thead>
+											<tr>
+												<th style="text-align: center;">Orden de Servicio</th>
+												<th style="text-align: center;">Fecha</th>
+												<th style="text-align: center;">Matr&iacute;cula</th>
+												<th style="text-align: center;">Nombre</th>
+												<th style="text-align: center;">Referencia</th>
+												<th style="text-align: center;">Estatus</th>
+											</tr>
+										</thead>
+									
+									</table>
+									
+								</div>
+								
+							</div>
+						</div>
+						<!-- Fin Cuerpo -->
+						
+					</div>
+				</div>
+			</div>
+			
+			<!-- Fin Modal Inicio de Busqueda -->
+	
+	</div>
+	
+	<script type="text/javascript" src="#"
+		th:src="@{/js/ope/gen/opeConsultaOSV.js}"></script>
+
+</body>
+</html>

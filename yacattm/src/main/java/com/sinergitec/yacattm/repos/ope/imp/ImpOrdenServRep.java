@@ -110,7 +110,11 @@ public class ImpOrdenServRep implements OrdenServRep {
 	}
 
 	@Override
-	public List<OrdenServicio> listaOrdenServ(int iModo, String cQuery) {
+	public List<OrdenServicio> listaOrdenServ(String cCompania, String cParam1, String cParam2) {
+		
+		Connection conexion = null;
+		
+		
 
 		return null;
 	}

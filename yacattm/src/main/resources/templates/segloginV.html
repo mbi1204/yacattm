@@ -22,11 +22,12 @@
 				<br />
 			</div>
 
-			<form id="formLogin" th:action="@{/segValidaSesionP}" method="POST">
+			<div class="d-flex justify-content-center">
+			<form id="formLogin" th:action="@{/segValidaSesionP}" method="POST" >
 				<div id="companiaD" class="form-group row">
 					<label for="compania"
-						class="offset-md-3 col-md-2 text-center col-form-label" ><h5>Compañia:</h5></label>
-					<div class="col-md-4">
+						class="col-md-3 text-center col-form-label" ><h5>Compañia:</h5></label>
+					<div class="col-md-9">
 						<input type="text" class="form-control form-control-lg"
 							id="compania" name="compania" placeholder="Compañia" />
 						<div id="errorC" class="form-control-feedback"></div>	
@@ -35,8 +36,8 @@
 
 				<div id="usuarioD" class="form-group row">
 					<label for="usuario"
-						class="offset-md-3 col-md-2 text-center col-form-label"><h5>Usuario:</h5></label>
-					<div class="col-md-4">
+						class="col-md-3 text-center col-form-label"><h5>Usuario:</h5></label>
+					<div class="col-md-9">
 						<input type="text" class="form-control form-control-lg"
 							id="usuario" name="usuario" placeholder="Usuario" />
 						<div id="errorU" class="form-control-feedback"></div>	
@@ -45,19 +46,20 @@
 
 				<div id="passwordD" class="form-group row">
 					<label for="password"
-						class="offset-md-3 col-md-2 text-center col-form-label"><h5>Contraseña:</h5></label>
-					<div class="col-md-4">
+						class="col-md-3 text-center col-form-label"><h5>Contraseña:</h5></label>
+					<div class="col-md-9">
 						<input type="password" class="form-control form-control-lg"
 							id="password" name="password" placeholder="Contraseña" onkeypress="return validarUsuario(event)" />
 						<div id="errorP" class="form-control-feedback"></div>	
 					</div>
 				</div>
 
-				<div class="offset-5 offset-md-6">
-					<button type="button" class="btn btn-primary btn-lg" onclick="segValidaForm();">Ingresar</button>
+				<div>
+					<button type="button" class="btn btn-primary btn-lg btn-block" onclick="segValidaForm();">Ingresar</button>
 				</div>
 
 			</form>
+			</div>
 			
 			<div class="col-12" style="display:none;"><span id="message" th:text="${error}"></span></div>
 

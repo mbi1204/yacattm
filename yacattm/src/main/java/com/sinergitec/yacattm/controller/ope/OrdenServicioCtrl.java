@@ -28,8 +28,7 @@ import com.sinergitec.yacattm.repos.ope.OrdenServRep;
 public class OrdenServicioCtrl {
 
 	private static final String VIEW = "/ope/gen/opeAltaOSV";
-	private static final String FORM_ADD = "/ope/gen/opeAltaOSV";
-	private static final String FORM_UPD = "/ope/cat/ctUsosVehVUpdF";
+	private static final String FORM_UPD = "/ope/gen/opeConsultaOSV";
 	private static final String REDIRECT = "redirect:/ope/gnOrdenServicio/ordenservicio";
 
 	private String cError;
@@ -100,9 +99,22 @@ public class OrdenServicioCtrl {
 	@GetMapping("/consultaOS")
 	public ModelAndView consultaOS(@ModelAttribute("Usuario") SessionUsu objUsuario){
 		
+		ModelAndView mav = new ModelAndView(FORM_UPD);
 		
 		
-		return null;
+		return mav;
+	}
+	
+	@GetMapping("/buscaOS")
+	public @ResponseBody String buscaOS(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@RequestParam(name = "cParam1", required = true) String cParam1,
+			@RequestParam(name = "cParam2") String cParam2) {
+		
+		String retorno = "";
+		
+		
+
+		return retorno;
 	}
 
 }
