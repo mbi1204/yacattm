@@ -107,6 +107,7 @@ public class OrdenServicioCtrl {
 	
 	@GetMapping("/buscaOS")
 	public @ResponseBody String buscaOS(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@RequestParam(name = "busqueda", required = true) String cFiltro,
 			@RequestParam(name = "cParam1", required = true) String cParam1,
 			@RequestParam(name = "cParam2") String cParam2) {
 		

@@ -39,7 +39,7 @@ function muestraCampo(tipo){
 					+ "</div>"						
 				    + "</div>" );
 			
-			$('#buscar').attr("value","fecha");
+			$('#buscar').attr("value","1");
 		break;
 		
 		case "matricula":
@@ -50,7 +50,7 @@ function muestraCampo(tipo){
 					+ "<input type='text' class='form-control' id='matriculaB' placeholder='Matr&iacute;cula' aria-describedby='basic-addon1' />"
 					+ "</div>"
 					+ "</div>" );
-			$('#buscar').attr("value","#matriculaB");
+			$('#buscar').attr("value","2");
         break;
         
 		case "nombre":
@@ -61,7 +61,7 @@ function muestraCampo(tipo){
 					+ "<input type='text' class='form-control' id='nombreB' placeholder='Nombre' aria-describedby='basic-addon1' />"
 					+ "</div>"
 					+ "</div>" );
-			$('#buscar').attr("value","#nombreB");
+			$('#buscar').attr("value","3");
         break;
         
 		case "referencia":
@@ -72,7 +72,7 @@ function muestraCampo(tipo){
 					+ "<input type='text' class='form-control' id='referenciaB' placeholder='Referencia' aria-describedby='basic-addon1' />"
 					+ "</div>"
 					+ "</div>" );
-			$('#buscar').attr("value","#referenciaB");
+			$('#buscar').attr("value","4");
         break;
         
 		default:
@@ -85,7 +85,8 @@ function buscar(busqueda){
 	var cParam1;
 	var cParam2;
 	
-	if(busqueda == "fecha"){
+	switch(busqueda) {
+	case 1:
 		
 		cParam1 = $('#fechaAntes').val() ;
 		cParam2 = $('#fechaDespues').val() ;
@@ -95,9 +96,30 @@ function buscar(busqueda){
 			return;
 		}
 		
-	}else{
-		cParam1 = $(busqueda).val();
-	}
+	break;
+	
+	case 2:
+		
+		cParam1 = $('#matriculaB').val() ;
+		
+    break;
+    
+	case 3:
+		
+		cParam1 = $('#nombreB').val() ;
+		
+    break;
+    
+	case 4:
+
+		cParam1 = $('#referenciaB').val() ;
+		
+    break;
+    
+	default:
+		swal('Atención!','Ha ocurrido algo inesperado','warning');
+    
+    }
 	
 	if(cParam1 == "" || cParam1 == null){
 		swal('Atención!','No indicado un criterio de búsqueda','error');
@@ -109,8 +131,9 @@ function buscar(busqueda){
 		dataType : "json",
 		contentType : "application/json",
 		data : {
-			cParam1 : cParam1,
-			cParam2 : cParam2
+			busqueda : busqueda,
+			cParam1  : cParam1,
+			cParam2  : cParam2
 		},
 		type : 'GET',
 		success : function(data) {

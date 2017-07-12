@@ -124,7 +124,7 @@ public class OrdenServicio {
 		Vector vector = new Vector();
 		vector.add(this.getCompania());
 		vector.add(this.getOrden());
-		vector.add(funcion.dateConvertDT(this.getFecha()));
+		vector.add(funcion.strConvertDT(this.getFecha()));
 		vector.add(this.getFalla());
 		vector.add(this.getDiagnostico());
 		vector.add(this.getObs());

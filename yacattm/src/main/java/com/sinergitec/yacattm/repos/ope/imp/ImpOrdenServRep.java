@@ -22,6 +22,7 @@ import com.sinergitec.yacattm.model.ope.OrdenServicio;
 import com.sinergitec.yacattm.progress.ConexionApp;
 import com.sinergitec.yacattm.progress.VectorResultSet;
 import com.sinergitec.yacattm.repos.ope.OrdenServRep;
+import com.sinergitec.yacattm.util.Funcion;
 
 import yacattm.app;
 
@@ -110,13 +111,70 @@ public class ImpOrdenServRep implements OrdenServRep {
 	}
 
 	@Override
-	public List<OrdenServicio> listaOrdenServ(String cCompania, String cParam1, String cParam2) {
+	public OrdenServList listaOrdenServ(String cCompania, Integer iFiltro, String cParam1, String cParam2) {
 		
 		Connection conexion = null;
 		
-		//List<OrdenServicio> listOrdenServicio
+		OrdenServList ordenServList = new OrdenServList();
+		
+		ArrayList<OrdenServicio> lista = new ArrayList<OrdenServicio>();
+		ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+		ArrayList<Vehiculo> listaVehiculo = new ArrayList<Vehiculo>();
+		
+		ResultSetHolder tt_OrdenServ    = new ResultSetHolder();
+		ResultSetHolder tt_ctCliente    = new ResultSetHolder();
+		ResultSetHolder tt_ctVehiculo   = new ResultSetHolder();
+		ResultSetHolder tt_OpeOSInvVeh  = new ResultSetHolder();
+		ResultSetHolder tt_OpeOrdenFile = new ResultSetHolder();
+		
+		try{
+			
+			conexion = ConexionApp.iniConexion();
 
-		return null;
+			BooleanHolder lhResultado = new BooleanHolder();
+			StringHolder chTexto = new StringHolder();
+			app app = new app(conexion);
+			
+			Funcion funcion = new Funcion();
+			
+			app.as_OrdenServicio_Carga(cCompania, iFiltro, funcion.strConvertGC(cParam1), funcion.strConvertGC(cParam2),
+					cParam1, cParam1, cParam1, tt_OrdenServ, tt_ctCliente, tt_ctVehiculo, tt_OpeOSInvVeh,
+					tt_OpeOrdenFile, lhResultado, chTexto);
+			
+			this.setResultado(lhResultado.getBooleanValue());
+			this.setMensaje(chTexto.getStringValue());
+			
+			ResultSet rs_ctCliente  = tt_ctCliente.getResultSetValue();
+			ResultSet rs_ctVehiculo = tt_ctVehiculo.getResultSetValue();
+			ResultSet rs_OrdenServ  = tt_OrdenServ.getResultSetValue();
+			
+			while(rs_OrdenServ.next()){
+				OrdenServicio ordenServicio = new OrdenServicio();
+				ordenServicio.setCompania(rs_OrdenServ.getString("cCveCia"));
+				ordenServicio.setOrden(rs_OrdenServ.getInt("iOrden"));
+				//ordenServicio.setFecha(rs_OrdenServ.getString("dtFecha"));
+				ordenServicio.setFalla(rs_OrdenServ.getString("cFalla"));
+				ordenServicio.setDiagnostico(rs_OrdenServ.getString("cDiagnostico"));
+				ordenServicio.setObs(rs_OrdenServ.getString("cObs"));
+				ordenServicio.setReferencia(rs_OrdenServ.getString("cReferecia"));
+				ordenServicio.setEstatus(rs_OrdenServ.getString("cEstatus"));
+				ordenServicio.setKilometraje(String.valueOf(rs_OrdenServ.getInt("iKilometraje")));
+				ordenServicio.setCliente(rs_OrdenServ.getInt("iCliente"));
+			}
+			
+			app._release();
+			
+		}catch (Exception e) {
+			
+			
+			
+		}finally {
+			
+			
+			
+		}
+
+		return ordenServList;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.sinergitec.yacattm.util;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,7 +17,7 @@ import java.util.GregorianCalendar;
 
 public class Funcion {
 
-	public Timestamp dateConvertDT(String fecha) {
+	public Timestamp strConvertDT(String fecha) {
 		Timestamp timestamp = null;
 		Calendar fechaYHora = new GregorianCalendar();
 		try {
@@ -31,6 +32,22 @@ public class Funcion {
 					+ "/n" + e.getMessage());
 		}
 		return timestamp;
+	}
+	
+	public GregorianCalendar strConvertGC(String fecha){
+
+		DateFormat format = new SimpleDateFormat( "dd/MM/yyyy" );
+		Date date = new Date();
+		try {
+			date = format.parse(fecha);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+			
+		return calendar;
 	}
 	
 	public Integer strConvertInt(String kilometraje){

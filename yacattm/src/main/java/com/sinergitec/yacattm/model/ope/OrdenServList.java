@@ -10,6 +10,7 @@ public class OrdenServList {
 	private List<AutosCliente> listAutosCliente;
 	private List<Cliente> listCliente;
 	private List<Vehiculo> listVehiculo;
+	private List<OrdenServicio> listOrdenServicio;
 	
 	public List<AutosCliente> getListAutosCliente() {
 		return listAutosCliente;
@@ -29,11 +30,17 @@ public class OrdenServList {
 	public void setListVehiculo(List<Vehiculo> listVehiculo) {
 		this.listVehiculo = listVehiculo;
 	}
+	public List<OrdenServicio> getListOrdenServicio() {
+		return listOrdenServicio;
+	}
+	public void setListOrdenServicio(List<OrdenServicio> listOrdenServicio) {
+		this.listOrdenServicio = listOrdenServicio;
+	}
 	
 	@Override
 	public String toString() {
 		return "OrdenServList [listAutosCliente=" + listAutosCliente + ", listCliente=" + listCliente
-				+ ", listVehiculo=" + listVehiculo + "]";
+				+ ", listVehiculo=" + listVehiculo + ", listOrdenServicio=" + listOrdenServicio + "]";
 	}
 
 }
