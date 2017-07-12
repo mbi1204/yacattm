@@ -9,13 +9,6 @@ var listAutosCliente;
 
 function busqueda() {
 
-	table = $('#Lista').DataTable({
-		retrieve : true,
-		paging : false
-	});
-
-	table.destroy();
-
 	var cNombre = $('#nombreCliente').val();
 	var cMatricula = $('#matricula').val();
 	var cMarca = $('#marca').val();
@@ -55,56 +48,45 @@ function busqueda() {
 }
 
 function construyeTabla(dataSet) {
-	$('#Lista')
-			.DataTable(
-					{
-						data : dataSet,
-						"columns" : [ {
-							"data" : "nombre"
-						}, {
-							"data" : "matricula"
-						}, {
-							"data" : "marca"
-						}, {
-							"data" : "modelo"
-						}, {
-							"data" : "anio"
-						}, {
-							"data" : "color"
-						}, {
-							"data" : "cliente"
-						}, {
-							"data" : "vehiculo"
-						} ],
-						"pageLength" : 5,
-						"lengthMenu" : [ 5, 10 ],
-
-						"language" : {
-
-							"sProcessing" : "Procesando...",
-							"sLengthMenu" : "Mostrar _MENU_ registros",
-							"sZeroRecords" : "No se encontraron resultados",
-							"sEmptyTable" : "Ningún dato disponible en esta tabla",
-							"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-							"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
-							"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
-							"sInfoPostFix" : "",
-							"sSearch" : "Buscar:",
-							"sUrl" : "",
-							"sInfoThousands" : ",",
-							"sLoadingRecords" : "Cargando...",
-							"oPaginate" : {
-								"sFirst" : "Primero",
-								"sLast" : "Último",
-								"sNext" : "Siguiente",
-								"sPrevious" : "Anterior"
-							},
-							"oAria" : {
-								"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
-								"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
-							}
-						}
-					});
+	
+	$('#Lista')	.DataTable({
+		"destroy" : true,
+		data : dataSet,
+		"columns" : [ {"data" : "nombre"}, 
+					  {"data" : "matricula"}, 
+					  {"data" : "marca"},
+					  {"data" : "modelo"},
+					  {"data" : "anio"},
+					  {"data" : "color"},
+					  {"data" : "cliente"},
+					  {"data" : "vehiculo"} ],
+		"pageLength" : 5,
+		"lengthMenu" : [ 5, 10 ],
+		"language"   : {
+			
+			"sProcessing" : "Procesando...",
+			"sLengthMenu" : "Mostrar _MENU_ registros",
+		    "sZeroRecords" : "No se encontraron resultados",
+			"sEmptyTable" : "Ningún dato disponible en esta tabla",
+			"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix" : "",
+			"sSearch" : "Buscar:",
+			"sUrl" : "",
+			"sInfoThousands" : ",",
+			"sLoadingRecords" : "Cargando...",
+			"oPaginate" : {
+				"sFirst" : "Primero",		
+				"sLast" : "Último",
+				"sNext" : "Siguiente",
+				"sPrevious" : "Anterior"},
+			"oAria" : {
+				"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending" : ": Activar para ordenar la columna de manera descendente"}
+				}
+	});
+	
 }
 
 function selecciona(registro) {
@@ -193,7 +175,6 @@ function abreModal(cModal) {
 }
 
 function limpieza() {
-	table.clear();
 	$('#nombreCliente').val("");
 	$('#matricula').val("");
 	$('#marca').val("");
@@ -201,16 +182,15 @@ function limpieza() {
 	$('#color').val("");
 	table = $('#Lista').DataTable({
 		retrieve : true,
-		paging : false
+		paging : false,
+		destroy : true
 	});
-	table.destroy();
+	table.clear();
 
 	$("#Lista > tbody").empty();
 }
 
 function validaOS() {
-
-	console.log("Valida Orden de Servicio");
 
 	// Realiza validacion de datos, si pasa filtros realiza submit
 
@@ -251,39 +231,33 @@ function validaOS() {
 }
 
 function language() {
-	table = $('#Lista')
-			.DataTable(
-					{
-						"pageLength" : 5,
-						"lengthMenu" : [ 5, 10 ],
-
-						"language" : {
-
-							"sProcessing" : "Procesando...",
-							"sLengthMenu" : "Mostrar _MENU_ registros",
-							"sZeroRecords" : "No se encontraron resultados",
-							"sEmptyTable" : "Ningún dato disponible en esta tabla",
-							"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-							"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
-							"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
-							"sInfoPostFix" : "",
-							"sSearch" : "Buscar:",
-							"sUrl" : "",
-							"sInfoThousands" : ",",
-							"sLoadingRecords" : "Cargando...",
-							"oPaginate" : {
-								"sFirst" : "Primero",
-								"sLast" : "Último",
-								"sNext" : "Siguiente",
-								"sPrevious" : "Anterior"
-							},
-							"oAria" : {
-								"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
-								"sSortDescending" : ": Activar para ordenar la columna de manera descendente"
-							}
-						}
-
-					});
+	$('#Lista').DataTable({
+		"pageLength" : 5,
+		"lengthMenu" : [ 5, 10 ],
+		"language"   : {
+			"sProcessing" : "Procesando...",
+			"sLengthMenu" : "Mostrar _MENU_ registros",
+			"sZeroRecords" : "No se encontraron resultados",
+			"sEmptyTable" : "Ningún dato disponible en esta tabla",
+			"sInfo" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			"sInfoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"sInfoFiltered" : "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix" : "",
+			"sSearch" : "Buscar:",
+			"sUrl" : "",
+			"sInfoThousands" : ",",
+			"sLoadingRecords" : "Cargando...",
+			"oPaginate" : {
+				"sFirst" : "Primero",
+				"sLast" : "Último",
+				"sNext" : "Siguiente",
+				"sPrevious" : "Anterior"},
+				
+			"oAria" : {
+				"sSortAscending" : ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending" : ": Activar para ordenar la columna de manera descendente"}
+				}
+	});
 }
 
 function getParameterByName(name, url) {
@@ -299,27 +273,48 @@ function getParameterByName(name, url) {
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+function registro(){
+	selecciona($('#Lista > tbody > tr.selected'));
+}
+
 $(document).ready(function() {
 
 	var ordenServ = getParameterByName("iOrdenServ");
+	
 	if (ordenServ != "" && ordenServ != null) {
-		swal('N° Orden de Servicio', ordenServ, 'success');
+		//swal('N° Orden de Servicio', ordenServ, 'success');
+		swal({
+			  title: 'Orden de Servicio: ' + ordenServ ,
+			  type: 'success'
+			});
 	}
+	
 
 	$('.money').mask('000,000,000,000,000', {
 		reverse : true
 	});
+	
 	$('.close').on('click', function() {
 		limpieza();
 	});
+	
 	$(document).keyup(function(e) {
 		if (e.keyCode == 27) { // escape key maps to keycode `27`
 			limpieza();
 		}
 	});
+	
+	
 	$('[data-toggle="tooltip"]').tooltip();
 
 	language();
+	
+	$('#Lista > tbody').on( 'click', 'tr', function () {
+		
+        $('#Lista > tbody > tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+        
+    } );
 
 	$('#Lista > tbody').on('dblclick', 'tr', function() {
 		selecciona($(this));

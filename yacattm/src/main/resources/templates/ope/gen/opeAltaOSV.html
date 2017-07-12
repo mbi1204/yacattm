@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-<meta charset="UTF-8" />
-<title th:text="${titulo}"></title>
 <head th:replace="fragments/headTag :: headTag">
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<title th:text="${titulo}"></title>
 </head>
 
 <body>
@@ -108,6 +108,12 @@
 
 							</div>
 						</div>
+						
+						<div class="modal-footer">
+							<button type="button" onclick="registro();" class="btn btn-secondary"
+							data-dismiss="modal">Selecciona</button>
+						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -607,7 +613,11 @@
 		}
 		
 		if (document.getElementById("orden").innerHTML != "") {
-			swal('N° Orden de Servicio', document.getElementById("orden").innerHTML, 'success');
+			//swal(document.getElementById("orden").innerHTML, 'N° Orden de Servicio', 'success');
+			swal({
+				  title: 'N° OS ' + document.getElementById("orden").innerHTML ,
+				  type: 'success'
+				})
 		}
 
 		function today() {
