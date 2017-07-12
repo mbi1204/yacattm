@@ -166,11 +166,24 @@ public class ImpOrdenServRep implements OrdenServRep {
 			
 		}catch (Exception e) {
 			
-			
+			e.printStackTrace();
+
+			this.setResultado(true);
+			this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+					+ this.getClass().getEnclosingMethod().getName());
+
 			
 		}finally {
 			
-			
+			try {
+				ConexionApp.finConexion(conexion);
+
+			} catch (Open4GLException | IOException e) {
+				e.printStackTrace();
+				this.setResultado(true);
+				this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+						+ this.getClass().getEnclosingMethod().getName());
+			}
 			
 		}
 
