@@ -79,24 +79,21 @@
 								</div>
 								
 								<br />
-
-								<div class="d-flex justify-content-center">
 									
-									<table class="table table-hover table-bordered dt-responsive nowrap display" style="width:100%;" id="Lista">
-										<thead>
-											<tr>
-												<th style="text-align: center;">Orden de Servicio</th>
-												<th style="text-align: center;">Fecha</th>
-												<th style="text-align: center;">Matr&iacute;cula</th>
-												<th style="text-align: center;">Nombre</th>
-												<th style="text-align: center;">Referencia</th>
-												<th style="text-align: center;">Estatus</th>
-											</tr>
-										</thead>
-									
-									</table>
-									
-								</div>
+								<table class="table table-hover table-bordered dt-responsive nowrap" style="width:100%;" id="Lista">
+									<thead>
+										<tr>
+											<th style="text-align: center;">Orden de Servicio</th>
+											<th style="text-align: center;">Fecha</th>
+											<th style="text-align: center;">Matr&iacute;cula</th>
+											<th style="text-align: center;">Nombre</th>
+											<th style="text-align: center;">Referencia</th>
+											<th style="text-align: center;">Estatus</th>
+											<th style="text-align: center;">ID Cliente</th>
+											<th style="text-align: center;">ID Veh&iacute;culo</th>
+										</tr>
+									</thead>
+								</table>
 								
 							</div>
 						</div>
@@ -112,6 +109,18 @@
 	
 	<script type="text/javascript" src="#"
 		th:src="@{/js/ope/gen/opeConsultaOSV.js}"></script>
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js}"></script>
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/datatables/js/responsive.bootstrap4.min.js}"></script>
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/datatables/js/dataTables.responsive.min.js}"></script>		
 
 </body>
 </html>

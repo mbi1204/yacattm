@@ -101,19 +101,23 @@ public class OrdenServicioCtrl {
 		
 		ModelAndView mav = new ModelAndView(FORM_UPD);
 		
-		
 		return mav;
 	}
 	
 	@GetMapping("/buscaOS")
 	public @ResponseBody String buscaOS(@ModelAttribute("Usuario") SessionUsu objUsuario,
-			@RequestParam(name = "busqueda", required = true) String cFiltro,
+			@RequestParam(name = "busqueda", required = true) Integer iFiltro,
 			@RequestParam(name = "cParam1", required = true) String cParam1,
 			@RequestParam(name = "cParam2") String cParam2) {
-		
+
 		String retorno = "";
-		
-		
+
+		retorno = new Gson().toJson(
+				ordenServRep.listaOrdenServ(objUsuario.getCompania(), iFiltro, cParam1, cParam2));
+
+		if (ordenServRep.getResultado()) {
+			retorno = new Gson().toJson(ordenServRep.getMensaje());
+		}
 
 		return retorno;
 	}
