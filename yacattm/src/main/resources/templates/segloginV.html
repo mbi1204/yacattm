@@ -3,6 +3,7 @@
 <head>
 <title>Inicio de Sesión</title>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="stylesheet" href="#"
 	th:href="@{/bootstrap/css/bootstrap.min.css}" />
 <link rel="stylesheet" href="#"
@@ -15,18 +16,18 @@
 </head>
 <body style="font-family: 'Roboto', sans-serif;">
 
-	<div class="container-fluid">
+	<div class="container-fluid h-100">
 		<div class="container">
 
 			<div class="col-12">
 				<br />
 			</div>
 
-			<div class="d-flex justify-content-center">
+			<div class="d-flex justify-content-center align-items-center">
 			<form id="formLogin" th:action="@{/segValidaSesionP}" method="POST" >
-				<div id="companiaD" class="form-group row">
+				<div id="companiaD" class="form-group row align-items-center">
 					<label for="compania"
-						class="col-md-3 text-center col-form-label" ><h5>Compañia:</h5></label>
+						class="col-md-3 text-center col-form-label" ><h5 class="lead">Compañia:</h5></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control form-control-lg"
 							id="compania" name="compania" placeholder="Compañia" />
@@ -34,9 +35,9 @@
 					</div>
 				</div>
 
-				<div id="usuarioD" class="form-group row">
+				<div id="usuarioD" class="form-group row align-items-center">
 					<label for="usuario"
-						class="col-md-3 text-center col-form-label"><h5>Usuario:</h5></label>
+						class="col-md-3 text-center col-form-label"><h5 class="lead">Usuario:</h5></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control form-control-lg"
 							id="usuario" name="usuario" placeholder="Usuario" />
@@ -44,9 +45,9 @@
 					</div>
 				</div>
 
-				<div id="passwordD" class="form-group row">
+				<div id="passwordD" class="form-group row align-items-center">
 					<label for="password"
-						class="col-md-3 text-center col-form-label"><h5>Contraseña:</h5></label>
+						class="col-md-3 text-center col-form-label"><h5 class="lead">Contraseña:</h5></label>
 					<div class="col-md-9">
 						<input type="password" class="form-control form-control-lg"
 							id="password" name="password" placeholder="Contraseña" onkeypress="return validarUsuario(event)" />

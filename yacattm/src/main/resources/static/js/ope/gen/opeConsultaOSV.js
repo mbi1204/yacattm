@@ -267,6 +267,7 @@ function selecciona(registro) {
 	for ( var item in listCliente) {
 		if (registro["0"].cells[6].innerHTML == listCliente[item].cliente) {
 			alert("Entro");
+			console.log($(this));
 		}
 	}
 
@@ -275,6 +276,7 @@ function selecciona(registro) {
 		if (registro["0"].cells[6].innerHTML == listVehiculo[item].cliente
 				&& registro["0"].cells[7].innerHTML == listVehiculo[item].vehiculo) {
 			alert("Entro");
+			console.log($(this));
 		}
 	}
 
