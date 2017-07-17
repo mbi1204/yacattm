@@ -174,25 +174,34 @@ function buscar(busqueda){
 			var relacion = [];
 			
 			for ( var item in listOrdenServicio) {
-				for ( var item2 in listVehiculo) {
-					for ( var item3 in listCliente) {
-						if (listOrdenServicio[item].cliente == listCliente[item2].cliente
-								&& listOrdenServicio[item].vehiculo == listVehiculo[item3].vehiculo) {
+				for ( var item2 in listVehiculo ){
+					for ( var item3 in listCliente ){
+						
+						if (listOrdenServicio[item].cliente == listCliente[item3].cliente
+								&& listOrdenServicio[item].vehiculo == listVehiculo[item2].vehiculo) {
 							
-							relacion.push (  '[{"orden":'     + listOrdenServicio[item].orden      + '},'  +
-											 '{"fecha":'     + listOrdenServicio[item].fecha      + '},'  +
-											 '{"matricula":' + listVehiculo[item3].matricula      + '},'  +
-											 '{"nombre":'    + listCliente[item2].nombre          + '},'  +
-											 '{"referencia":'+ listOrdenServicio[item].referencia + '},'  +
-											 '{"estatus":'   + listOrdenServicio[item].estatus    + '},'  +
-											 '{"cliente":'   + listOrdenServicio[item].cliente    + '},'  +
-											 '{"vehiculo":'  + listOrdenServicio[item].vehiculo   + '}]' );
-							}
+							var elemento = {};
+							
+							elemento.orden      = listOrdenServicio[item].orden;
+							elemento.fecha      = listOrdenServicio[item].fecha;
+							elemento.matricula  = listVehiculo[item3].matricula;
+							elemento.nombre     = listCliente[item2].nombre;
+							elemento.referencia = listOrdenServicio[item].referencia;
+							elemento.estatus    = listOrdenServicio[item].estatus;
+							elemento.cliente    = listOrdenServicio[item].cliente;
+							elemento.vehiculo   = listOrdenServicio[item].vehiculo;
+
+							relacion.push(elemento);
+
+							
 						}
+						
 					}
-				} 
-			
-			console.log(relacion);
+					
+				}
+				
+			}
+
 			construyeTabla(relacion);
 			
 		},
@@ -246,13 +255,53 @@ function construyeTabla(dataSet) {
 	
 }
 
+function registro(){
+	selecciona($('#Lista > tbody > tr.selected'));
+}
 
-$(document).ready(function(){
-	$('#gridSystemModal').modal('show');
+function selecciona(registro) {
+
+	/* Lectura y Acomodo de la informacion */
+
+	// Busqueda de la informacion del cliente
+	for ( var item in listCliente) {
+		if (registro["0"].cells[6].innerHTML == listCliente[item].cliente) {
+			alert("Entro");
+		}
+	}
+
+	// Busqueda de la informacion del vehiculo
+	for ( var item in listVehiculo) {
+		if (registro["0"].cells[6].innerHTML == listVehiculo[item].cliente
+				&& registro["0"].cells[7].innerHTML == listVehiculo[item].vehiculo) {
+			alert("Entro");
+		}
+	}
+
+	$('#gridSystemModal').modal('hide');
+	//limpieza();
+
+}
+
+$(document).ready(function(){	
+	
 	$( 'input:checkbox' ).on( 'click', function() {
 	    filtro($(this));
 	});
+	
 	$( '#buscar' ).on( 'click', function() {
 	    buscar($(this)["0"].value);
 	});
+	
+	$( '#Lista > tbody' ).on('click', 'tr', function () {	
+        $('#Lista > tbody > tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+    });
+	
+	$( '#Lista > tbody' ).on('dblclick', 'tr', function() {
+		selecciona($(this));
+	});
+	
+	$( '#gridSystemModal' ).modal('show');
+	
 });
