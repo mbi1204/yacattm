@@ -86,7 +86,19 @@ public class Funcion {
 	 * @return
 	 */
 	public String dtConvertStr(Timestamp fecha){
+		if(fecha == null){
+			return "";
+		}
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaStr  = dateFormat.format(fecha);
+		return fechaStr;
+	}
+	
+	public String dtConvertStrWTime(Timestamp fecha){
+		if(fecha == null){
+			return "";
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:sss");
 		String fechaStr  = dateFormat.format(fecha);
 		return fechaStr;
 	}

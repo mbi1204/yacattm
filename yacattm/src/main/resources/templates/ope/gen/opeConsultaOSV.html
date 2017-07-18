@@ -41,7 +41,7 @@
 								<div class="d-flex justify-content-center">
 								
 									<label class="custom-control custom-checkbox ">
-										<input id="fecha" name="fecha" type="checkbox" class="custom-control-input" />
+										<input id="fechaC" name="fechaC" type="checkbox" class="custom-control-input" />
 										<span class="custom-control-indicator"></span>
 										<span class="custom-control-description">Fecha</span>
 									</label>
@@ -107,11 +107,54 @@
 						</div>
 						<!-- Fin Footer -->
 						
-					</div>
 				</div>
 			</div>
+		</div>
 			
-			<!-- Fin Modal Inicio de Busqueda -->
+		<!-- Fin Modal Inicio de Busqueda -->
+		
+		<!-- Orden de Servicio -->
+		
+		<form action="#" th:action="@{/ope/gnOrdenServicio/actualizar}"
+			th:object="${ordenServicio}" method="POST">
+			
+			<div class="row">
+			
+				<div class="col-md-6">
+					<div class="input-group d-flex justify-content-start">
+						<span class="input-group-addon fa fa-pencil-square-o"
+							aria-hidden="true" id="basic-addon1"></span> <input type="text"
+							id="ordenV" class="form-control" th:field="*{orden}"
+							placeholder="Orden de Servicio" aria-describedby="basic-addon1" />
+					</div>
+				</div>
+				
+				<div class="col-md-6">
+					<div class="input-group d-flex justify-content-end">
+						<span class="input-group-addon fa fa-pencil-square-o"
+							aria-hidden="true" id="basic-addon1"></span><select id="estatusV" class="form-control" th:field="*{estatus}"
+							aria-describedby="basic-addon1" >
+								<option th:each="option : ${listaEstatusOS}"
+										th:value="${option.estatus}"
+										th:text="${option.estatus}">Seleccione una opci&oacute;n
+								</option>
+							</select>
+					</div>				
+				</div>
+			
+			</div>
+			
+			<div class="row"><br/></div>
+		
+			<div th:replace="ope/gen/OrdenServicioF :: formOS"></div>
+			
+			<div class="row">
+				<button type="submit" class="btn btn-primary btn-lg" >Guardar</button>
+			</div>
+		
+		</form>		
+		
+		<!-- Fin Orden de Servicio -->
 	
 	</div>
 	
@@ -128,7 +171,10 @@
 		th:src="@{/datatables/js/responsive.bootstrap4.min.js}"></script>
 		
 	<script type="text/javascript" src="#"
-		th:src="@{/datatables/js/dataTables.responsive.min.js}"></script>			
+		th:src="@{/datatables/js/dataTables.responsive.min.js}"></script>	
+		
+	<script type="text/javascript" src="#"
+		th:src="@{/bootstrap-slider/js/bootstrap-slider.min.js}"></script>			
 
 </body>
 </html>

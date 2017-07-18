@@ -19,12 +19,12 @@ function today() {
 }
 
 function iniciaCalendario(){
-	$('#datetimepicker').datepicker({
+	$('#datetimepicker2').datepicker({
 		language : 'es',
 		todayHighlight : true,
 		defaultViewDate : today()
 	});
-	$('#datetimepicker2').datepicker({
+	$('#datetimepicker3').datepicker({
 		language : 'es',
 		todayHighlight : true,
 		defaultViewDate : today()
@@ -49,16 +49,16 @@ function filtro(filtro){
 function muestraCampo(tipo){
 	
 	switch(tipo) {
-		case "fecha":
+		case "fechaC":
 			$( "#pmtsBus" ).html(
 					"<div class='row'>"
-					+ "<div class='input-group date col-md-6 mb-1 mb-sm-0' id='datetimepicker'>"
+					+ "<div class='input-group date col-md-6 mb-1 mb-sm-0' id='datetimepicker2'>"
 					+ "<span class='input-group-addon'>"  
 					+ "<span class='fa fa-calendar' aria-hidden='true'></span>"
 					+ "</span>"
 					+ "<input id='fechaAntes' type='text' class='form-control' placeholder='De:' />" 
 					+ "</div>"					
-					+ "<div class='input-group date col-md-6 mb-1 mb-sm-0' id='datetimepicker2'>"
+					+ "<div class='input-group date col-md-6 mb-1 mb-sm-0' id='datetimepicker3'>"
 					+ "<span class='input-group-addon'>"  
 					+ "<span class='fa fa-calendar' aria-hidden='true'></span>"
 					+ "</span>"
@@ -132,18 +132,21 @@ function buscar(busqueda){
 	case "2":
 		
 		cParam1 = $('#matriculaB').val() ;
+		cParam2 = "";
 		
     break;
     
 	case "3":
 		
 		cParam1 = $('#nombreB').val() ;
+		cParam2 = "";
 		
     break;
     
 	case "4":
 
 		cParam1 = $('#referenciaB').val() ;
+		cParam2 = "";
 		
     break;
     
@@ -167,6 +170,7 @@ function buscar(busqueda){
 		},
 		type : 'GET',
 		success : function(data) {
+			
 			listCliente       = data.listCliente  ;
 			listVehiculo      = data.listVehiculo ;
 			listOrdenServicio = data.listOrdenServicio;
@@ -184,8 +188,8 @@ function buscar(busqueda){
 							
 							elemento.orden      = listOrdenServicio[item].orden;
 							elemento.fecha      = listOrdenServicio[item].fecha;
-							elemento.matricula  = listVehiculo[item3].matricula;
-							elemento.nombre     = listCliente[item2].nombre;
+							elemento.matricula  = listVehiculo[item2].matricula;
+							elemento.nombre     = listCliente[item3].nombre;
 							elemento.referencia = listOrdenServicio[item].referencia;
 							elemento.estatus    = listOrdenServicio[item].estatus;
 							elemento.cliente    = listOrdenServicio[item].cliente;
@@ -262,12 +266,18 @@ function registro(){
 function selecciona(registro) {
 
 	/* Lectura y Acomodo de la informacion */
+	var OS , cliente , vehiculo;
+	
+	for ( var item in listOrdenServicio ){
+		if(registro["0"].cells["0"].innerHTML == listOrdenServicio[item].orden){
+			os = listOrdenServicio[item];
+		}
+	}
 
 	// Busqueda de la informacion del cliente
 	for ( var item in listCliente) {
 		if (registro["0"].cells[6].innerHTML == listCliente[item].cliente) {
-			alert("Entro");
-			console.log($(this));
+			cliente = listCliente[item];
 		}
 	}
 
@@ -275,17 +285,115 @@ function selecciona(registro) {
 	for ( var item in listVehiculo) {
 		if (registro["0"].cells[6].innerHTML == listVehiculo[item].cliente
 				&& registro["0"].cells[7].innerHTML == listVehiculo[item].vehiculo) {
-			alert("Entro");
-			console.log($(this));
+			vehiculo = listVehiculo[item];
 		}
 	}
 
 	$('#gridSystemModal').modal('hide');
 	//limpieza();
+	llenaRegistro(os, cliente, vehiculo);
 
 }
 
-$(document).ready(function(){	
+function llenaRegistro(oServicio, clienteInfo, vehiculoInfo){
+	
+	//Orden de Servicio
+	$('#ordenV').val(oServicio.orden);
+	//$('#estatusV option:eq(2)').prop('selected', true)
+	$('#estatusV').val(oServicio.estatus);
+	$('#fecha').val(oServicio.fecha);
+	$('#datetimepicker').val(oServicio.fecha)
+	$('#referenciaV').val(oServicio.referencia);
+	$('#kilometrajeV').val(oServicio.kilometraje);
+	
+	$('#ex13').val(oServicio.nivelCombustible);
+	
+	var slider = new Slider("#ex13", {
+		ticks : [ 0, 25, 50, 75, 100 ],	
+		ticks_labels : [ 'E', '1/4', '1/2', '3/4', 'F' ],
+		ticks_snap_bounds : 25,
+		value : oServicio.nivelCombustible
+	});
+	
+	$('#falla').val(oServicio.falla);
+	$('#rowid').val(oServicio.rowid);
+	
+	// Datos del Cliente en la vista
+	$('#IDClienteV').val(clienteInfo.cliente);
+	$('#clienteV').val(clienteInfo.nombre);
+	$('#telefono1V').val(clienteInfo.telefono1);
+	$('#telefono2V').val(clienteInfo.telefono2);
+	
+	// Detalle del Cliente
+	$('#IDCliente').val(clienteInfo.cliente);
+	$('#nombreF').val(clienteInfo.nombre);
+	$('#emailF').val(clienteInfo.email);
+	$('#rfcF').val(clienteInfo.rfc);
+	$('#contactoF').val(clienteInfo.contacto);
+	$('#telefono1F').val(clienteInfo.telefono1);
+	$('#telefono2F').val(clienteInfo.telefono2);
+	$('#calleF').val(clienteInfo.calle);
+	$('#numExtF').val(clienteInfo.numExterior);
+	$('#numIntF').val(clienteInfo.numInterior);
+	$('#colF').val(clienteInfo.colonia);
+	$('#mpioDelF').val(clienteInfo.mpioDeleg);
+	$('#estadoF').val(clienteInfo.estado);
+	$('#paisF').val(clienteInfo.pais);
+	$('#cpF').val(clienteInfo.cp);
+	
+	// Datos del Vehiculo en la vista
+	$('#IDVehiculoV').val(vehiculoInfo.vehiculo);
+	$('#matriculaV').val(vehiculoInfo.matricula);
+	$('#marcaV').val(vehiculoInfo.marca);
+	$('#modeloV').val(vehiculoInfo.modelo);
+	$('#anioV').val(vehiculoInfo.anio);
+	
+	// Detalle del Vehiculo
+	$('#IDVehiculo').val(vehiculoInfo.vehiculo);
+	$('#matriculaF').val(vehiculoInfo.matricula);
+	$('#marcaF').val(vehiculoInfo.marca);
+	$('#modeloF').val(vehiculoInfo.modelo);
+	$('#anioF').val(vehiculoInfo.anio);
+	$('#paisVF').val(vehiculoInfo.pais);
+	$('#engomadoF').val(vehiculoInfo.engomado);
+	$('#calcomaniaF').val(vehiculoInfo.calcomaniaI);
+	$('#serieF').val(vehiculoInfo.numSerie);
+	$('#colorF').val(vehiculoInfo.color);
+	$('#acF').val(vehiculoInfo.aireAC);
+	$('#motorF').val(vehiculoInfo.motor);
+	$('#direccionF').val(vehiculoInfo.direccion);
+	$('#sistemaF').val(vehiculoInfo.sistema);
+	$('#tipoF').val(vehiculoInfo.tipo);
+	$('#transmisionF').val(vehiculoInfo.transmision);
+	$('#usoF').val(vehiculoInfo.uso);
+	
+}
+
+function soloLectura(){
+	$('#ordenV').attr('readonly', true);
+	$('#fecha').attr('readonly', true);
+	$('#referenciaV').attr('readonly', true);
+	$('#kilometrajeV').attr('readonly', true);
+	$('#IDVehiculoV').attr('readonly', true);
+	$('#IDClienteV').attr('readonly', true);
+	$('#falla').attr('readonly', true);
+}
+
+function abreModal(cModal) {
+	$(cModal).modal('show');
+}
+
+$(document).ready(function(){
+	
+	$('div#datetimepicker').removeAttr('id');
+	
+	soloLectura();
+	
+	$('#fecha').mask('00/00/0000');
+	
+	$('.money').mask('000,000,000,000,000', {
+		reverse : true
+	});
 	
 	$( 'input:checkbox' ).on( 'click', function() {
 	    filtro($(this));

@@ -1,0 +1,549 @@
+<div th:fragment="formOS">
+	<input type="hidden" class="form-control" th:field="*{compania}"
+		id="compania" />
+	
+	<div class="row">
+	
+		<div class="form-inline">
+	
+			<div class='input-group date col-md-3 mb-1 mb-sm-0'
+				id='datetimepicker'>
+				<span class="input-group-addon"> <span class="fa fa-calendar"
+					aria-hidden="true"></span>
+				</span> <input id="fecha" type='text' class="form-control"
+					th:field="*{fecha}" />
+			</div>
+	
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon fa fa-pencil-square-o"
+					aria-hidden="true" id="basic-addon1"></span> <input type="text"
+					id="referenciaV" class="form-control" th:field="*{referencia}"
+					placeholder="Referencia" aria-describedby="basic-addon1" />
+			</div>
+	
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+				<span class="input-group-addon fa fa-car" aria-hidden="true"
+					id="basic-addon1"></span> <input type="text" id="kilometrajeV"
+					class="form-control money" th:field="*{kilometraje}"
+					placeholder="Kilometraje" aria-describedby="basic-addon1" />
+			</div>
+	
+			<div class="input-group col-md-3 mb-1 mb-sm-0">
+	
+				<input id="ex13" type="text" data-slider-ticks="[0, 25, 50, 75, 100]"
+					data-slider-ticks-snap-bounds="25"
+					data-slider-ticks-labels='["E", "1/4", "1/2", "3/4", "F"]'
+					style="display: none;" th:field="*{nivelCombustible}" />
+	
+			</div>
+	
+		</div>
+	
+	</div>
+	
+	<!-- Fin Datos de la Orden de Servicio -->
+	
+	<div class="row">
+		<br></br>
+	</div>
+	
+	<!-- Datos del Vehiculo -->
+	
+	<!-- Modal Detalle del Vehiculo -->
+	
+	<div id="detVehModal" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="gridModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myLargeModalLabel">Detalle de
+						Veh&iacute;culo</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span class="fa fa-times" aria-hidden="true"></span>
+					</button>
+				</div>
+				<div class="modal-body">
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon fa fa-car" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="IDVehiculo" placeholder="ID Veh&iacute;culo"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row offset-3 offset-md-5">
+						<h4>Datos Generales</h4>
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="matriculaF" placeholder="Matr&iacute;cula"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="marcaF" placeholder="Marca" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="modeloF" placeholder="Modelo" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="anioF" placeholder="A&ntilde;o"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="paisVF" placeholder="Pa&iacute;s"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="engomadoF" placeholder="Engomado"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="calcomaniaF" placeholder="Calcoman&iacute;a"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="serieF" placeholder="N. Serie"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row offset-3 offset-md-5">
+						<h4>Datos Particulares</h4>
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="colorF" placeholder="Color" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<label class="custom-control custom-checkbox"> <input
+								type="checkbox" id="acF"
+								class="input-group-addon custom-control-input" /> <span
+								class="custom-control-indicator"></span> <span
+								class="custom-control-description">AC</span>
+							</label>
+						</div>
+	
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="motorF" placeholder="Motor" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="direccionF" placeholder="Direcci&oacute;n"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="sistemaF" placeholder="Sistema"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="tipoF" placeholder="Tipo" aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="transmisionF" placeholder="Transmisi&oacute;n"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0 offset-md-2">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="usoF" placeholder="Uso" aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Fin Modal Detalle del Vehiculo -->
+	
+	<div class="row">
+		<h4>Datos del Veh&iacute;culo</h4>
+		<span class="fa fa-info-circle" onclick="abreModal('#detVehModal');"
+			data-toggle="tooltip" data-placement="right"
+			title="Detalle del Veh&iacute;culo" aria-hidden="true"></span>
+	</div>
+	
+	<div class="row">
+	
+		<div style="display: none;">
+			<span class="input-group-addon fa fa-user" aria-hidden="true"
+				id="basic-addon1"></span> <input type="text" class="form-control"
+				id="IDVehiculoV" th:field="*{vehiculo}" placeholder="Cliente"
+				aria-describedby="basic-addon1" />
+		</div>
+	
+		<div class="input-group col-md-3 mb-1 mb-sm-0">
+			<span class="input-group-addon" aria-hidden="true" id="basic-addon1">Matr&iacute;cula:</span>
+			<input type="text" class="form-control" readonly="true"
+				id="matriculaV" placeholder="Matr&iacute;cula"
+				aria-describedby="basic-addon1" />
+		</div>
+	
+		<div class="input-group col-md-3 mb-1 mb-sm-0">
+			<span class="input-group-addon" aria-hidden="true" id="basic-addon1">Marca:</span>
+			<input type="text" class="form-control" readonly="true" id="marcaV"
+				placeholder="Marca" aria-describedby="basic-addon1" />
+		</div>
+	
+		<div class="input-group col-md-3 mb-1 mb-sm-0">
+			<span class="input-group-addon" aria-hidden="true" id="basic-addon1">Modelo:</span>
+			<input type="text" class="form-control" readonly="true" id="modeloV"
+				placeholder="Modelo" aria-describedby="basic-addon1" />
+		</div>
+	
+		<div class="input-group col-md-3 mb-1 mb-sm-0">
+			<span class="input-group-addon" aria-hidden="true" id="basic-addon1">A&ntilde;o:</span>
+			<input type="text" class="form-control" readonly="true" id="anioV"
+				placeholder="A&ntilde;o" aria-describedby="basic-addon1" />
+		</div>
+	
+	</div>
+	
+	
+	<!-- Fin Datos del Vehiculo -->
+	
+	<div class="row">
+		<br></br>
+	</div>
+	
+	<!-- Datos del Cliente -->
+	
+	<!-- Modal Detalle Cliente -->
+	
+	<div id="detCliModal" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="gridModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myLargeModalLabel">Detalle de
+						Cliente</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span class="fa fa-times" aria-hidden="true"></span>
+					</button>
+				</div>
+				<div class="modal-body">
+	
+					<div class="row">
+	
+						<div class="input-group col-md-3 mb-1 mb-sm-0">
+							<span class="input-group-addon fa fa-user" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="IDCliente" placeholder="ID Cliente"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row offset-3 offset-md-5">
+						<h4>Datos Generales</h4>
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="nombreF" placeholder="Nombre" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="emailF" placeholder="Email" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="rfcF" placeholder="RFC" aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row">
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="contactoF" placeholder="Contacto"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="telefono1F" placeholder="Tel&eacute;fono 1"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="telefono2F" placeholder="Tel&eacute;fono 2"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row offset-3 offset-md-5">
+						<h4>Domicilio</h4>
+					</div>
+	
+					<div class="row">
+						<div class="input-group col-md-12 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="calleF" placeholder="Calle" aria-describedby="basic-addon1" />
+						</div>
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row">
+						<div class="input-group col-md-6 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="numExtF" placeholder="Num. Exterior"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-6 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="numIntF" placeholder="Num. Interior"
+								aria-describedby="basic-addon1" />
+						</div>
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row">
+						<div class="input-group col-md-6 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="colF" placeholder="Colonia" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-6 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="mpioDelF" placeholder="Mpio-Deleg"
+								aria-describedby="basic-addon1" />
+						</div>
+					</div>
+	
+					<div class="row">
+						<br />
+					</div>
+	
+					<div class="row">
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="estadoF" placeholder="Estado" aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="paisF" placeholder="Pa&iacute;s"
+								aria-describedby="basic-addon1" />
+						</div>
+	
+						<div class="input-group col-md-4 mb-1 mb-sm-0">
+							<span class="input-group-addon" aria-hidden="true"
+								id="basic-addon1"></span> <input type="text" class="form-control"
+								id="cpF" placeholder="CP" aria-describedby="basic-addon1" />
+						</div>
+					</div>
+	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Fin Modal Detalle Cliente -->
+	
+	<div class="row">
+		<h4>Datos del Cliente</h4>
+		<span class="fa fa-info-circle" onclick="abreModal('#detCliModal')"
+			data-toggle="tooltip" data-placement="right"
+			title="Detalle del Cliente" aria-hidden="true"></span>
+	</div>
+	
+	<div class="row">
+	
+		<div style="display: none;">
+			<span class="input-group-addon fa fa-user" aria-hidden="true"
+				id="basic-addon1"></span> <input type="text" class="form-control"
+				id="IDClienteV" th:field="*{cliente}" placeholder="Cliente"
+				aria-describedby="basic-addon1" />
+		</div>
+	
+		<div class="input-group col-md-6 mb-1 mb-sm-0">
+			<span class="input-group-addon fa fa-user" aria-hidden="true"
+				id="basic-addon1"></span> <input type="text" class="form-control"
+				readonly="true" id="clienteV" placeholder="Cliente"
+				aria-describedby="basic-addon1" />
+		</div>
+		<div class="input-group col-md-3 mb-1 mb-sm-0">
+			<span class="input-group-addon fa fa-phone" aria-hidden="true"
+				id="basic-addon1"></span> <input type="text" class="form-control"
+				readonly="true" id="telefono1V" placeholder="Tel&eacute;fono"
+				aria-describedby="basic-addon1" />
+		</div>
+		<div class="input-group col-md-3 mb-1 mb-sm-0">
+			<span class="input-group-addon fa fa-phone" aria-hidden="true"
+				id="basic-addon1"></span> <input type="text" class="form-control"
+				readonly="true" id="telefono2V"
+				placeholder="Tel&eacute;fono Secundario"
+				aria-describedby="basic-addon1" />
+		</div>
+	</div>
+	
+	<!-- Fin Datos del Cliente -->
+	
+	<div class="row">
+		<br></br>
+	</div>
+	
+	<!-- Text Box Orden de Servicio -->
+	
+	<div class="row">
+	
+		<div class="form-group col-md-3 mb-1 mb-sm-0">
+			<label class="text-center" for="falla">Falla</label>
+			<textarea class="form-control" th:field="*{falla}" id="falla" rows="4"></textarea>
+		</div>
+	
+		<div class="form-group col-md-3 mb-1 mb-sm-0">
+			<label class="text-center" for="diagnostico">Diagn&oacute;stico</label>
+			<textarea class="form-control" th:field="*{diagnostico}"
+				id="diagnostico" rows="4"></textarea>
+		</div>
+	
+		<div class="form-group col-md-3 mb-1 mb-sm-0">
+			<label class="text-center" for="observacion">Observaciones</label>
+			<textarea class="form-control" th:field="*{obs}" id="observacion"
+				rows="4"></textarea>
+		</div>
+	
+		<div class="form-group col-md-3 mb-1 mb-sm-0">
+			<label class="text-center" for="reparacion">Reparaci&oacute;n</label>
+			<textarea class="form-control" th:field="*{reparacion}"
+				id="reparacion" rows="4"></textarea>
+		</div>
+	
+	</div>
+	
+	<input type="hidden" class="form-control" th:field="*{rowid}" id="rowid" />
+	
+	<!-- Fin Text Box Orden de Servicio -->
+	
+	<div class="row"><br></br></div>
+</div>
+

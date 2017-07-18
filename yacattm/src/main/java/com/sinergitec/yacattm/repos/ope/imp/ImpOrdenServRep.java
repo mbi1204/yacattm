@@ -105,6 +105,25 @@ public class ImpOrdenServRep implements OrdenServRep {
 
 	@Override
 	public OrdenServicio getOrdenServ(int iModo, String cQuery) {
+		
+		Connection conexion = null;
+		
+		OrdenServList ordenServList = new OrdenServList();
+		ResultSetHolder tt_OrdenServ    = new ResultSetHolder();
+		
+		try{
+			
+			conexion = ConexionApp.iniConexion();
+
+			BooleanHolder lhResultado = new BooleanHolder();
+			StringHolder chTexto = new StringHolder();
+			app app = new app(conexion);
+			
+		} catch(Exception e){
+			
+		} finally {
+			
+		}
 
 		return null;
 	}
@@ -136,9 +155,15 @@ public class ImpOrdenServRep implements OrdenServRep {
 			
 			Funcion funcion = new Funcion();
 			
-			app.as_OrdenServicio_Carga(cCompania, iFiltro, funcion.strConvertGC(cParam1), funcion.strConvertGC(cParam2),
-					cParam1, cParam1, cParam1, tt_OrdenServ, tt_ctCliente, tt_ctVehiculo, tt_OpeOSInvVeh,
-					tt_OpeOrdenFile, lhResultado, chTexto);
+			if(iFiltro == 1){
+				app.as_OrdenServicio_Carga(cCompania, iFiltro, funcion.strConvertGC(cParam1), funcion.strConvertGC(cParam2),
+						cParam1, cParam1, cParam1, tt_OrdenServ, tt_ctCliente, tt_ctVehiculo, tt_OpeOSInvVeh,
+						tt_OpeOrdenFile, lhResultado, chTexto);
+			} else {
+				app.as_OrdenServicio_Carga(cCompania, iFiltro, funcion.strConvertGC("00/00/0000"), funcion.strConvertGC("00/00/0000"),
+						cParam1, cParam1, cParam1, tt_OrdenServ, tt_ctCliente, tt_ctVehiculo, tt_OpeOSInvVeh,
+						tt_OpeOrdenFile, lhResultado, chTexto);
+			}
 			
 			this.setResultado(lhResultado.getBooleanValue());
 			this.setMensaje(chTexto.getStringValue());
@@ -151,7 +176,7 @@ public class ImpOrdenServRep implements OrdenServRep {
 				OrdenServicio ordenServicio = new OrdenServicio();
 				ordenServicio.setCompania(rs_OrdenServ.getString("cCveCia"));
 				ordenServicio.setOrden(rs_OrdenServ.getInt("iOrden"));
-				ordenServicio.setFecha(funcion.dtConvertStr(rs_OrdenServ.getTimestamp("dtFecha")));
+				ordenServicio.setFecha(funcion.dtConvertStrWTime(rs_OrdenServ.getTimestamp("dtFecha")));
 				ordenServicio.setFalla(rs_OrdenServ.getString("cFalla"));
 				ordenServicio.setDiagnostico(rs_OrdenServ.getString("cDiagnostico"));
 				ordenServicio.setObs(rs_OrdenServ.getString("cObs"));
@@ -162,6 +187,7 @@ public class ImpOrdenServRep implements OrdenServRep {
 				ordenServicio.setVehiculo(rs_OrdenServ.getInt("iVehiculo"));
 				ordenServicio.setNivelCombustible(rs_OrdenServ.getInt("iNivelCombustible"));
 				ordenServicio.setReparacion(rs_OrdenServ.getString("cReparacion"));
+				ordenServicio.setRowid(rs_OrdenServ.getBytes("Id"));
 				
 				lista.add(ordenServicio);
 				
@@ -222,6 +248,7 @@ public class ImpOrdenServRep implements OrdenServRep {
 				//vehiculo.setFecha(rs_ctVehiculo.getTimestamp("dtFecha").toString());
 				vehiculo.setCliente(rs_ctVehiculo.getInt("iCliente"));
 				vehiculo.setCalcomaniaC(rs_ctVehiculo.getString("cCalcomania"));
+				vehiculo.setRowid(rs_ctVehiculo.getBytes("Id"));
 
 				listaVehiculo.add(vehiculo);
 

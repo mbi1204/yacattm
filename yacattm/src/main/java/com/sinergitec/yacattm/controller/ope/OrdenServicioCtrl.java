@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.sinergitec.yacattm.model.ct.SessionUsu;
 import com.sinergitec.yacattm.model.ope.OrdenServicio;
+import com.sinergitec.yacattm.repos.cat.EstatusOSRep;
 import com.sinergitec.yacattm.repos.ope.OrdenServRep;
 
 /**
@@ -35,6 +36,9 @@ public class OrdenServicioCtrl {
 	
 	@Autowired
 	private OrdenServRep ordenServRep;
+	
+	@Autowired
+	private EstatusOSRep estatusOSRep;
 
 	@GetMapping("")
 	public String redireccion() {
@@ -100,7 +104,14 @@ public class OrdenServicioCtrl {
 	public ModelAndView consultaOS(@ModelAttribute("Usuario") SessionUsu objUsuario){
 		
 		ModelAndView mav = new ModelAndView(FORM_UPD);
-		
+		OrdenServicio ordenServicio = new OrdenServicio();
+		mav.addObject("listaEstatusOS", estatusOSRep.listaEstatusOS(0,
+				"FOR EACH ctEstatusOS WHERE ctEstatusOS.cCveCia = '" + objUsuario.getCompania() + "' NO-LOCK:"));
+		mav.addObject("titulo", "Consulta Orden de Servicio");
+		mav.addObject("ordenServicio", ordenServicio);
+		mav.addObject("error", cError);
+		cError = "";
+
 		return mav;
 	}
 	
@@ -111,7 +122,7 @@ public class OrdenServicioCtrl {
 			@RequestParam(name = "cParam2") String cParam2) {
 
 		String retorno = "";
-
+		
 		retorno = new Gson().toJson(
 				ordenServRep.listaOrdenServ(objUsuario.getCompania(), iFiltro, cParam1, cParam2));
 
@@ -120,6 +131,29 @@ public class OrdenServicioCtrl {
 		}
 
 		return retorno;
+	}
+	
+	@PostMapping("/actualizar")
+	public ModelAndView actualizar(@ModelAttribute("Usuario") SessionUsu objUsuario,
+			@ModelAttribute("ordenServicio") OrdenServicio ordenServicio) {
+
+		ModelAndView mav = new ModelAndView();
+		OrdenServicio viejo = new OrdenServicio();
+		
+		
+
+		this.ordenServRep.actulizar(objUsuario.getUsuario(), viejo, ordenServicio);
+
+		if (this.ordenServRep.getResultado()) {
+			mav.setViewName(VIEW);
+			mav.addObject("ordenServicio", ordenServicio);
+			mav.addObject("error", this.ordenServRep.getMensaje());
+		} else {
+			mav.setViewName(REDIRECT);
+			mav.addObject("iOrdenServ", ordenServicio.getOrden());
+		}
+
+		return mav;
 	}
 
 }
