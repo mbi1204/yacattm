@@ -155,8 +155,18 @@
 		</form>		
 		
 		<!-- Fin Orden de Servicio -->
+		
+		<div class="col-12" style="display: none;">
+			<span id="message" th:text="${error}"></span>
+		</div>
 	
 	</div>
+	
+	<script type="text/javascript">
+		if (document.getElementById("message").innerHTML != "") {
+			swal('Error', document.getElementById("message").innerHTML, 'error');
+		}
+	</script>
 	
 	<script type="text/javascript" src="#"
 		th:src="@{/js/ope/gen/opeConsultaOSV.js}"></script>

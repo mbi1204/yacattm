@@ -298,6 +298,8 @@ function selecciona(registro) {
 function llenaRegistro(oServicio, clienteInfo, vehiculoInfo){
 	
 	//Orden de Servicio
+	console.log(oServicio.compania);
+	$('#compania').val(oServicio.compania);
 	$('#ordenV').val(oServicio.orden);
 	//$('#estatusV option:eq(2)').prop('selected', true)
 	$('#estatusV').val(oServicio.estatus);
@@ -316,6 +318,10 @@ function llenaRegistro(oServicio, clienteInfo, vehiculoInfo){
 	});
 	
 	$('#falla').val(oServicio.falla);
+	$('#diagnostico').val(oServicio.diagnostico);
+	$('#observacion').val(oServicio.obs);
+	$('#reparacion').val(oServicio.reparacion);
+	
 	$('#rowid').val(oServicio.rowid);
 	
 	// Datos del Cliente en la vista
@@ -383,6 +389,19 @@ function abreModal(cModal) {
 	$(cModal).modal('show');
 }
 
+function getParameterByName(name, url) {
+	if (!url)
+		url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex
+			.exec(url);
+	if (!results)
+		return null;
+	if (!results[2])
+		return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 $(document).ready(function(){
 	
 	$('div#datetimepicker').removeAttr('id');
@@ -411,6 +430,16 @@ $(document).ready(function(){
 	$( '#Lista > tbody' ).on('dblclick', 'tr', function() {
 		selecciona($(this));
 	});
+	
+	var ordenServ = getParameterByName("iOrdenServ");
+	
+	if (ordenServ != "" && ordenServ != null) {
+		//swal('N° Orden de Servicio', ordenServ, 'success');
+		swal({
+			  title: 'Orden de Servicio Actualizada: ' + ordenServ ,
+			  type: 'success'
+			});
+	}
 	
 	$( '#gridSystemModal' ).modal('show');
 	

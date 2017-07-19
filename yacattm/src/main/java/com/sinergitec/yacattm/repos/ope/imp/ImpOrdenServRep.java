@@ -98,8 +98,60 @@ public class ImpOrdenServRep implements OrdenServRep {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void actulizar(String cUsuario, OrdenServicio viejos, OrdenServicio nuevos) {
+		
+		Connection conexion = null;
+		
+		try{
+			
+			conexion = ConexionApp.iniConexion();
+
+			BooleanHolder lhResultado = new BooleanHolder();
+			StringHolder chTexto = new StringHolder();
+			app app = new app(conexion);
+
+			Vector vViejos = new Vector();
+			vViejos.add(viejos.getRegistro());
+
+			Vector vNuevos = new Vector();
+			vNuevos.add(nuevos.getRegistro());
+			
+			Vector vOpeOSInvVeh = new Vector();
+			Vector vNueOpeOSInvVeh = new Vector();
+
+			ResultSet tt_Viejos = new VectorResultSet(vViejos);
+			ResultSet tt_Nuevos = new VectorResultSet(vNuevos);
+			ResultSet tt_OpeOSInvVeh = new VectorResultSet(vOpeOSInvVeh);
+			ResultSet tt_NueOpeOSInvVeh = new VectorResultSet(vNueOpeOSInvVeh);
+
+			app.as_OrdenServicio_Actualiza(cUsuario, tt_Viejos, tt_Nuevos, tt_OpeOSInvVeh, tt_NueOpeOSInvVeh, lhResultado, chTexto);
+
+			this.setResultado(lhResultado.getBooleanValue());
+			this.setMensaje(chTexto.getStringValue());
+
+			app._release();
+			
+		} catch(Open4GLException | IOException e){
+			
+			e.printStackTrace();
+
+			this.setResultado(true);
+			this.setMensaje("error" + " " + "Open4GLException | IOException | SQLException e" + " "
+					+ this.getClass().getEnclosingMethod().getName());
+			
+		} finally {
+			try {
+				ConexionApp.finConexion(conexion);
+
+			} catch (Open4GLException | IOException e) {
+				e.printStackTrace();
+				this.setResultado(true);
+				this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+						+ this.getClass().getEnclosingMethod().getName());
+			}
+		}
 
 	}
 
@@ -108,8 +160,9 @@ public class ImpOrdenServRep implements OrdenServRep {
 		
 		Connection conexion = null;
 		
-		OrdenServList ordenServList = new OrdenServList();
+		OrdenServicio ordenServicio = new OrdenServicio();
 		ResultSetHolder tt_OrdenServ    = new ResultSetHolder();
+		Funcion funcion = new Funcion();
 		
 		try{
 			
@@ -119,13 +172,54 @@ public class ImpOrdenServRep implements OrdenServRep {
 			StringHolder chTexto = new StringHolder();
 			app app = new app(conexion);
 			
-		} catch(Exception e){
+			app.as_opeOrdenSer_Carga(iModo, cQuery, tt_OrdenServ, lhResultado, chTexto);
+			
+			this.setResultado(lhResultado.getBooleanValue());
+			this.setMensaje(chTexto.getStringValue());
+			
+			ResultSet rs_OrdenServ  = tt_OrdenServ.getResultSetValue();
+			
+			while(rs_OrdenServ.next()){
+				ordenServicio.setCompania(rs_OrdenServ.getString("cCveCia"));
+				ordenServicio.setOrden(rs_OrdenServ.getInt("iOrden"));
+				ordenServicio.setFecha(funcion.dtConvertStrWTime(rs_OrdenServ.getTimestamp("dtFecha")));
+				ordenServicio.setFalla(rs_OrdenServ.getString("cFalla"));
+				ordenServicio.setDiagnostico(rs_OrdenServ.getString("cDiagnostico"));
+				ordenServicio.setObs(rs_OrdenServ.getString("cObs"));
+				ordenServicio.setReferencia(rs_OrdenServ.getString("cReferecia"));
+				ordenServicio.setEstatus(rs_OrdenServ.getString("cEstatus"));
+				ordenServicio.setKilometraje(String.valueOf(rs_OrdenServ.getInt("iKilometraje")));
+				ordenServicio.setCliente(rs_OrdenServ.getInt("iCliente"));
+				ordenServicio.setVehiculo(rs_OrdenServ.getInt("iVehiculo"));
+				ordenServicio.setNivelCombustible(rs_OrdenServ.getInt("iNivelCombustible"));
+				ordenServicio.setReparacion(rs_OrdenServ.getString("cReparacion"));
+				ordenServicio.setRowid(rs_OrdenServ.getBytes("Id"));
+				
+			}
+			
+			app._release();
+			
+		} catch(Open4GLException | IOException | SQLException e){
+			
+			e.printStackTrace();
+
+			this.setResultado(true);
+			this.setMensaje("error" + " " + "Open4GLException | IOException | SQLException e" + " "
+					+ this.getClass().getEnclosingMethod().getName());
 			
 		} finally {
-			
+			try {
+				ConexionApp.finConexion(conexion);
+
+			} catch (Open4GLException | IOException e) {
+				e.printStackTrace();
+				this.setResultado(true);
+				this.setMensaje("error" + " " + "Open4GLException | IOException e" + " "
+						+ this.getClass().getEnclosingMethod().getName());
+			}
 		}
 
-		return null;
+		return ordenServicio;
 	}
 
 	@Override

@@ -31,6 +31,7 @@ public class OrdenServicioCtrl {
 	private static final String VIEW = "/ope/gen/opeAltaOSV";
 	private static final String FORM_UPD = "/ope/gen/opeConsultaOSV";
 	private static final String REDIRECT = "redirect:/ope/gnOrdenServicio/ordenservicio";
+	private static final String REDIRECT2 = "redirect:/ope/gnOrdenServicio/consultaOS";
 
 	private String cError;
 	
@@ -140,16 +141,24 @@ public class OrdenServicioCtrl {
 		ModelAndView mav = new ModelAndView();
 		OrdenServicio viejo = new OrdenServicio();
 		
+		viejo = this.ordenServRep.getOrdenServ(1, "FOR EACH opeOrdenSer WHERE opeOrdenSer.cCveCia = '"
+				+ ordenServicio.getCompania() + "' AND opeOrdenSer.iOrden = '" + ordenServicio.getOrden() + " ' NO-LOCK:");
 		
+		if (this.ordenServRep.getResultado()) { // error
+			mav.setViewName(FORM_UPD);
+			mav.addObject("ordenServicio", ordenServicio);
+			mav.addObject("error", this.ordenServRep.getMensaje());
+			return mav;
+		}
 
 		this.ordenServRep.actulizar(objUsuario.getUsuario(), viejo, ordenServicio);
 
 		if (this.ordenServRep.getResultado()) {
-			mav.setViewName(VIEW);
+			mav.setViewName(FORM_UPD);
 			mav.addObject("ordenServicio", ordenServicio);
 			mav.addObject("error", this.ordenServRep.getMensaje());
 		} else {
-			mav.setViewName(REDIRECT);
+			mav.setViewName(REDIRECT2);
 			mav.addObject("iOrdenServ", ordenServicio.getOrden());
 		}
 

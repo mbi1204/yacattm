@@ -26,11 +26,17 @@ public class Funcion {
 	 */
 	public Timestamp strConvertDT(String fecha) {
 		Timestamp timestamp = null;
-		Calendar fechaYHora = new GregorianCalendar();
+		Date date  = null;
+		Calendar fechaYHora = new GregorianCalendar();		
 		try {
-			Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm:sss")
-					.parse(fecha + " " + fechaYHora.get(Calendar.HOUR_OF_DAY) + ":" + fechaYHora.get(Calendar.MINUTE)
-							+ ":" + fechaYHora.get(Calendar.SECOND));
+			if(fecha.indexOf(" ") > 0){
+				date = new SimpleDateFormat("dd/MM/yyyy HH:mm:sss")
+						.parse(fecha);
+			}else{
+				date = new SimpleDateFormat("dd/MM/yyyy HH:mm:sss")
+						.parse(fecha + " " + fechaYHora.get(Calendar.HOUR_OF_DAY) + ":" + fechaYHora.get(Calendar.MINUTE)
+								+ ":" + fechaYHora.get(Calendar.SECOND));
+			}
 			timestamp = new Timestamp(date.getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -94,6 +100,13 @@ public class Funcion {
 		return fechaStr;
 	}
 	
+	/**
+	 * Realiza la conversion de una fecha Timestamp a string en formato
+	 * dd/MM/yyyy HH:mm:sss
+	 * 
+	 * @param fecha
+	 * @return
+	 */
 	public String dtConvertStrWTime(Timestamp fecha){
 		if(fecha == null){
 			return "";
