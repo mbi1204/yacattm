@@ -113,6 +113,17 @@
 			
 		<!-- Fin Modal Inicio de Busqueda -->
 		
+		<!-- Boton Busqueda -->
+		
+		<button class="btn btn-primary btn-lg" data-toggle="modal"
+				data-target="#gridSystemModal">
+				<span class="fa fa-user-circle" aria-hidden="true">B&uacute;squeda de Orden</span>
+		</button>
+		
+		<div class="row"><br/></div>
+		
+		<!-- Fin Boton Busqueda -->
+		
 		<!-- Orden de Servicio -->
 		
 		<form action="#" th:action="@{/ope/gnOrdenServicio/actualizar}"
@@ -149,7 +160,7 @@
 			<div th:replace="ope/gen/OrdenServicioF :: formOS"></div>
 			
 			<div class="row">
-				<button type="submit" class="btn btn-primary btn-lg" >Guardar</button>
+				<button type="submit" class="btn btn-primary btn-lg" onclick="return validaOS();">Guardar</button>
 			</div>
 		
 		</form>		

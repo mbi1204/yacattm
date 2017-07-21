@@ -191,7 +191,7 @@ function buscar(busqueda){
 							elemento.matricula  = listVehiculo[item2].matricula;
 							elemento.nombre     = listCliente[item3].nombre;
 							elemento.referencia = listOrdenServicio[item].referencia;
-							elemento.estatus    = listOrdenServicio[item].estatus;
+							elemento.estatus    = listOrdenServicio[item].estatus == null ? "" : listOrdenServicio[item].estatus;
 							elemento.cliente    = listOrdenServicio[item].cliente;
 							elemento.vehiculo   = listOrdenServicio[item].vehiculo;
 
@@ -270,7 +270,7 @@ function selecciona(registro) {
 	
 	for ( var item in listOrdenServicio ){
 		if(registro["0"].cells["0"].innerHTML == listOrdenServicio[item].orden){
-			os = listOrdenServicio[item];
+			OS = listOrdenServicio[item];
 		}
 	}
 
@@ -291,14 +291,14 @@ function selecciona(registro) {
 
 	$('#gridSystemModal').modal('hide');
 	//limpieza();
-	llenaRegistro(os, cliente, vehiculo);
+	llenaRegistro(OS, cliente, vehiculo);
 
 }
 
 function llenaRegistro(oServicio, clienteInfo, vehiculoInfo){
 	
 	//Orden de Servicio
-	console.log(oServicio.compania);
+	
 	$('#compania').val(oServicio.compania);
 	$('#ordenV').val(oServicio.orden);
 	//$('#estatusV option:eq(2)').prop('selected', true)
@@ -400,6 +400,40 @@ function getParameterByName(name, url) {
 	if (!results[2])
 		return '';
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function validaOS(){
+	var bandera = true;
+	if ($('#fecha').val() == "" || $('#fecha').val() == null) {
+		$('#fecha').addClass('alert alert-danger');
+		bandera = false;
+	}
+
+	if ($('#referenciaV').val() == "" || $('#referenciaV').val() == null) {
+		$('#referenciaV').addClass('alert alert-danger');
+		bandera = false;
+	}
+
+	if ($('#kilometrajeV').val() == "" || $('#kilometrajeV').val() == null) {
+		$('#kilometrajeV').addClass('alert alert-danger');
+		bandera = false;
+	}
+
+	if ($('#IDVehiculoV').val() == "" || $('#IDVehiculoV').val() == null) {
+		swal('Error!!!', 'Selecciona una orden de servicio', 'error');
+		bandera = false;
+	}
+
+	if ($('#IDClienteV').val() == "" || $('#IDClienteV').val() == null) {
+		swal('Error!!!', 'Selecciona una orden de servicio', 'error');
+		bandera = false;
+	}
+
+	if ($('#falla').val() == "" || $('#falla').val() == null) {
+		$('#falla').addClass('alert alert-danger');
+		bandera = false;
+	}
+	return bandera;
 }
 
 $(document).ready(function(){
