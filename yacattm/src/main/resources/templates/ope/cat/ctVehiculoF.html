@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/headTag :: headTag">
+<meta charset="ISO-8859-1"/>
+<title>Catalogo de Vehiculos</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<h1> Catalogo de Vehiculos </h1>
+
+<div class="container">
+
+<form action="#" th:action="@{/ope/ctVehiculo/actualizar}"	th:object="${vehiculo}"  method="post">
+	
+	<label for="compania"  class="form-control-label">compania:</label>
+	<input type="text" readonly="true" class="form-control" id="compania" th:field="*{compania}" th:value="${compania}" />
+	
+	<label for="cliente"  class="form-control-label">Cliente:</label>
+	<input type="text" readonly="true" class="form-control" id="cliente" th:field="*{cliente}" th:value="${cliente}" />
+	
+	<label for="vehiculo"  class="form-control-label">Vehiculo:</label>
+	<input type="text" readonly="true" class="form-control" id="vehiculo" th:field="*{vehiculo}" th:value="${vehiculo}" />
+	
+	<label for="matricula"  class="form-control-label">Matricula:</label>
+	<input type="text" class="form-control" id="matricula" th:field="*{matricula}" th:value="${matricula}" />
+	
+	<!-- 
+	<label for="marca"  class="form-control-label">Marca:</label>
+	<input type="text" class="form-control" id="marca" th:field="*{marca}" th:value="${marca}" />
+	 -->
+	 
+	 <label for="marca"  class="form-control-label">Marca:</label>
+	  <select th:field="*{marca}" class="form-control" id="marca" onchange="getModeloVeh();">
+	   	<option value="null">Seleccione una opci&oacute;n:</option>
+	 	<option th:each="row : ${ListMarcaAuto}" th:value="${row.marca}" th:text="${row.marca}">Marca</option>
+	 </select>
+	 
+	 <!-- 
+	<label for="modelo"  class="form-control-label">Modelo:</label>
+	<input type="text" class="form-control" id="modelo" th:field="*{modelo}" th:value="${modelo}" />
+	 -->
+	<label for="modelo"  class="form-control-label">Modelo:</label>
+	
+	 <select th:field="*{modelo}" class="form-control" id="modelo">
+	 
+	 	<option th:each="row : ${ListModeloAuto}" th:value="${row.modelo}" th:text="${row.modelo}">Modelo</option>
+	 </select>
+	 
+	 
+	<label for="anio"  class="form-control-label">Año:</label>
+	<input type="text" class="form-control" id="anio" th:field="*{anio}" th:value="${anio}" />
+	
+	<label for="motor"  class="form-control-label">Motor:</label>
+	<input type="text" class="form-control" id="motor" th:field="*{motor}" th:value="${motor}" />
+	
+	<label for="numSerie"  class="form-control-label">Numero de Serie:</label>
+	<input type="text" class="form-control" id="numSerie" th:field="*{numSerie}" th:value="${numSerie}" />
+	
+	<label for="obs"  class="form-control-label">obs:</label>
+	<input type="text" class="form-control" id="obs" th:field="*{obs}" th:value="${obs}" />
+	
+	<label for="engomado"  class="form-control-label">engomado:</label>
+	<!-- 	
+	<input type="text" class="form-control" id="engomado" th:field="*{engomado}" th:value="${engomado}" />
+	 -->
+	 
+	 <select th:field="*{engomado}" class="form-control" id="engomado">	 
+	 	<option th:each="row : ${ListEngomado}" th:value="${row.engomado}" th:text="${row.engomado}">Engomado</option>
+	 </select>
+	
+	
+	<label for="calcomaniaC"  class="form-control-label">calcomania:</label>
+	<input type="text" class="form-control" id="calcomaniaC" th:field="*{calcomaniaC}" th:value="${calcomaniaC}" />
+	
+	 <label for="uso" class="form-control-label">uso:</label> 
+	 <select th:field="*{uso}" class="form-control" id="uso">
+	 	<option th:each="row : ${listUsosVeh}" th:value="${row.uso}" th:text="${row.uso}">Uso</option>
+	 </select>
+	 
+	 
+	 <label for="direccion" class="form-control-label">Direccion:</label> 
+	 <select th:field="*{direccion}" class="form-control" id="direccion">
+	 	<option th:each="row : ${listDireccion}" th:value="${row.direccion}" th:text="${row.direccion}">Direccion</option>
+	 </select>
+	 
+	 <label for="transmision" class="form-control-label">Trasmision:</label>
+	 <select th:field="*{transmision}" class="form-control" id="transmision">
+	 	<option th:each="row : ${listTransmision}" th:value="${row.transmision}" th:text="${row.transmision}">Trasmision</option>
+	 </select>
+
+	<label for="sistema" class="form-control-label">Sistema Combustion:</label>
+	 <select th:field="*{sistema}" class="form-control" id="sistema">
+	 	<option th:each="row : ${listSisComb}" th:value="${row.sistema}" th:text="${row.sistema}">Trasmision</option>
+	 </select>
+	 
+	 <label for="tipo" class="form-control-label">Tipo:</label>
+	 <select th:field="*{tipo}" class="form-control" id="tipo">
+	 	<option th:each="row : ${listTipo}" th:value="${row.tipo}" th:text="${row.tipo}">Trasmision</option>
+	 </select>
+	 
+	  <label for="color" class="form-control-label">Color:</label>
+	  <select th:field="*{color}" class="form-control" id="color">
+	 	<option th:each="row : ${ListColor}" th:value="${row.color}" th:text="${row.color}">Trasmision</option>
+	  </select>
+	 
+	  <div class="modal-footer">
+	  	<a href="#" th:href="@{/ope/ctCliente/lista}">
+			<button type="button" class="btn btn-danger">Cancelar</button>
+		</a>
+		<button type="submit" class="btn btn-primary">Guardar</button>
+	 </div>
+
+
+
+
+	</form>
+</div>
+
+
+	<div class="col-12" style="display: none;">
+		<span id="message" th:text="${error}"></span>
+	</div>
+
+	<script type="text/javascript">
+		if (document.getElementById("message").innerHTML != "") {
+			swal('Error', document.getElementById("message").innerHTML, 'error');
+		}
+	</script>
+
+	<script type="text/javascript" th:src="@{/js/lib/jquery.mask.js}"></script>	 	
+ 	<script type="text/javascript" th:src="@{/js/ope/ctVehiculoF.js}"></script>
+ 
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.sinergitec.yacattm.model.ct;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -25,7 +26,7 @@ public class Vehiculo {
 	private String pais;
 	private Boolean aireAC;
 	private Boolean activo;
-	private String fecha;
+	private Timestamp fecha;
 	private Integer cliente;
 	private String calcomaniaC;
 	private byte[] rowid;
@@ -150,10 +151,10 @@ public class Vehiculo {
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-	public String getFecha() {
+	public Timestamp getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
 	public Integer getCliente() {
@@ -175,6 +176,8 @@ public class Vehiculo {
 		this.rowid = rowid;
 	}
 	
+	
+	
 	@Override
 	public String toString() {
 		return "Vehiculo [compania=" + compania + ", vehiculo=" + vehiculo + ", matricula=" + matricula + ", modelo="
@@ -185,7 +188,6 @@ public class Vehiculo {
 				+ ", fecha=" + fecha + ", cliente=" + cliente + ", calcomaniaC=" + calcomaniaC + ", rowid="
 				+ Arrays.toString(rowid) + "]";
 	}
-	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Vector getRegistro(){
 		
@@ -212,7 +214,7 @@ public class Vehiculo {
 		vector.add(this.getActivo());
 		vector.add(this.getFecha());
 		vector.add(this.getCliente());
-		vector.add(this.getCalcomaniaI());
+		vector.add(this.getCalcomaniaC());
 		vector.add(this.getRowid());
 		
 		return vector;

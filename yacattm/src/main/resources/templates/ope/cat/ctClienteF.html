@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/headTag :: headTag">
+<meta charset="ISO-8859-1"/>
+<title>Cliente</title>
+</head>
+<body>
+
+
+<div th:replace="fragments/header :: header"></div>
+
+
+<div class="container">
+
+
+	<form action="#" th:action="@{/ope/ctCliente/actualizar}"	th:object="${cliente}"  method="post">
+		<label for="compania"  class="form-control-label">compania:</label>
+		<input type="text" readonly="true" class="form-control" id="compania" th:field="*{compania}" th:value="${compania}" />
+		
+		<label for="cliente"  class="form-control-label">cliente:</label>
+		<input type="text" readonly="true" class="form-control" id="cliente" th:field="*{cliente}" th:value="${cliente}" />
+		
+		<label for="activo"  class="form-control-label">Activo?:</label>
+		<input  type="checkbox" class="form-control" id="activo" th:field="*{activo}" th:value="${activo}" />
+		
+		
+		<label for="rfc"  class="form-control-label">RFC:</label>
+		<input type="text"  class="form-control" id="rfc" th:field="*{rfc}" th:value="${rfc}" />
+		
+		<label for="nombre"  class="form-control-label">nombre:</label>
+		<input type="text"  class="form-control" id="nombre" th:field="*{nombre}" th:value="${nombre}" />
+		
+		<label for="contacto"  class="form-control-label">contacto:</label>
+		<input type="text"  class="form-control" id="contacto" th:field="*{contacto}" th:value="${contacto}" />		
+		
+		<label for="email"  class="form-control-label">Email:</label>
+		<input type="text"  class="form-control" id="email" th:field="*{email}" th:value="${email}" />
+		
+		<label for="telefono1"  class="form-control-label">Telefono1:</label>
+		<input type="text"  class="form-control" id="telefono1" th:field="*{telefono1}" th:value="${telefono1}" />
+		
+		<label for="telefono2"  class="form-control-label">Telefono2:</label>
+		<input type="text"  class="form-control" id="telefono2" th:field="*{telefono2}" th:value="${telefono2}" />
+		
+		<label for="calle"  class="form-control-label">Calle:</label>
+		<input type="text"  class="form-control" id="calle" th:field="*{calle}" th:value="${calle}" />
+		
+		<label for="numExterior"  class="form-control-label">N. Exterior:</label>
+		<input type="text"  class="form-control" id="numExterior" th:field="*{numExterior}" th:value="${numExterior}" />
+		
+		<label for="numInterior"  class="form-control-label">N. Interior:</label>
+		<input type="text"  class="form-control" id="numInterior" th:field="*{numInterior}" th:value="${numInterior}" />
+		
+		<label for="colonia"  class="form-control-label">Colonia:</label>
+		<input type="text"  class="form-control" id="colonia" th:field="*{colonia}" th:value="${colonia}" />
+		
+		<label for="mpioDeleg"  class="form-control-label">Municipio / Delegacion:</label>
+		<input type="text"  class="form-control" id="mpioDeleg" th:field="*{mpioDeleg}" th:value="${mpioDeleg}" />
+		
+		<label for="ciudad"  class="form-control-label">Ciudad:</label>
+		<input type="text"  class="form-control" id="ciudad" th:field="*{ciudad}" th:value="${ciudad}" />
+		
+		<label for="estado"  class="form-control-label">Estado:</label>
+		<input type="text"  class="form-control" id="estado" th:field="*{estado}" th:value="${estado}" />
+		
+		<label for="pais"  class="form-control-label">Pais:</label>
+		<input type="text"  class="form-control" id="pais" th:field="*{pais}" th:value="${pais}" />	
+			
+		<label for="cp"  class="form-control-label">CP:</label>
+		<input type="text"  class="form-control" id="cp" th:field="*{cp}" th:value="${cp}" />
+		
+		<input type="hidden" class="form-control" id="rowid" th:field="*{rowid}"  />
+		
+		
+			<div class="modal-footer">
+				<a href="#" th:href="@{/ope/ctCliente/lista}">
+					<button type="button" class="btn btn-danger">Cancelar</button>
+				</a>
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</div>
+			
+		
+	</form>
+</div>
+	
+
+</body>
+</html>

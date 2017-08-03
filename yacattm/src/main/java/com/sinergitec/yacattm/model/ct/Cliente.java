@@ -215,7 +215,7 @@ public class Cliente {
 		vector.add(this.getNumInterior());
 		vector.add(this.getColonia());
 		vector.add(this.getMpioDeleg());
-		vector.add(this.getCp());
+		vector.add((this.getCp() == null) ? 0 : this.getCp());
 		vector.add(this.getCiudad());
 		vector.add(this.getEstado());
 		vector.add(this.getTelefono1());
@@ -223,7 +223,7 @@ public class Cliente {
 		vector.add(this.getContacto());
 		vector.add(this.getPais());
 		vector.add(this.getActivo());
-		vector.add(this.getCliente());
+		vector.add((this.getCliente() == null ) ? 0 : this.getCliente() );
 		vector.add(this.getNombre());
 		vector.add(this.getTelefono2());
 		vector.add(this.getObs());

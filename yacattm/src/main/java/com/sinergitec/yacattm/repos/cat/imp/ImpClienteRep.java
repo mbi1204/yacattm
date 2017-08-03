@@ -87,6 +87,7 @@ public class ImpClienteRep implements ClienteRep {
 
 			ResultSet tt_Viejos = new VectorResultSet(vector);
 			app.as_ctCliente_Borra(cUsuario, tt_Viejos, lhResultado, chTexto);
+			
 
 			this.setResultado(lhResultado.getBooleanValue());
 			this.setMensaje(chTexto.getStringValue());
@@ -134,6 +135,8 @@ public class ImpClienteRep implements ClienteRep {
 
 			Vector vNuevos = new Vector();
 			vNuevos.add(nuevos.getRegistro());
+			
+			
 
 			ResultSet tt_Viejos = new VectorResultSet(vViejos);
 			ResultSet tt_Nuevos = new VectorResultSet(vNuevos);
@@ -260,6 +263,9 @@ public class ImpClienteRep implements ClienteRep {
 			while (rs_ctCliente.next()) {
 
 				Cliente obj = new Cliente();
+				
+				
+				
 
 				obj.setCompania(rs_ctCliente.getString("cCveCia"));
 				obj.setRfc(rs_ctCliente.getString("cRFC"));

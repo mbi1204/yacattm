@@ -5,12 +5,10 @@
 
 function cargaLista(cMarca) {
 
-	$
-			.ajax({
-				url : '/ope/ctModeloVehiculo/lista',
-				dataType : "json",
-				contentType : "application/json",
-				data : {
+	$.ajax({url : '/ope/ctModeloVehiculo/lista',
+			dataType : "json",
+			contentType : "application/json",
+			data : {
 					cMarca : cMarca
 				},
 				type : 'GET',
